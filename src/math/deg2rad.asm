@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────┐
-;│ convert degree to radians	│
+;│ converts degree to radians	│
 ;│ input:						│
 ;│			xmm0 = deg input	│
 ;│ output:						│

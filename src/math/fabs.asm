@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────┐
-;│ return absolute value of a double number	│
+;│ returns absolute value of a double number│
 ;│ input:									│
 ;│			xmm0 = number					│
 ;│ output:									│

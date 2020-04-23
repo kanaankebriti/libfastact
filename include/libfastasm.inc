@@ -23,6 +23,7 @@ import	libfastasm,\
 		fa_cos,'fa_cos',\
 		fa_deg2rad,'fa_deg2rad',\
 		fa_fabs,'fa_fabs',\
+		fa_hypot,'fa_hypot',\
 		fa_pow2,'fa_pow2',\
 		fa_pow10,'fa_pow10',\
 		fa_round,'fa_round',\

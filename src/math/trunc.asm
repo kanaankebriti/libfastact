@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────┐
-;│ trunc a double number		│
+;│ truncates a double number	│
 ;│ input:						│
 ;│			xmm0 = number		│
 ;│ output:						│

@@ -41,6 +41,7 @@ extern "C"
 	double					fa_cos(double _X);
 	double					fa_deg2rad(double _X);
 	double					fa_fabs(double _X);
+	double					fa_hypot(double _X, double _Y);
 	long long int			fa_pow2(long long int _X);
 	long long int			fa_pow10(long long int _X);
 	long long int			fa_round(double _X);

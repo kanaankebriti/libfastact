@@ -14,22 +14,19 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────┐
-;│ computes sine				│
-;│ input:						│
-;│			xmm0 = number		│
-;│ output:						│
-;│			xmm0 = sin(number)	│
-;└──────────────────────────────┘
-proc fa_sin c
-	locals
-		temp_result dq ?
-	endl
-
-	movsd	[temp_result],xmm0		; move input to [temp_result]
-	fld		[temp_result]			; load [temp_result] into x87 stack (ST0)
-	fsin							; ST0 = sin(ST0)
-	fstp	[temp_result]			; [temp_result] = ST0 = sin(ST0)
-	movsd	xmm0,[temp_result]		; save [temp_result] into xmm0 register
+;┌──────────────────────────────────────────┐
+;│ returns the hypotenuse of a right-angled	│
+;│ triangle whose legs are x and y			│
+;│ input:									│
+;│			xmm0 = x						│
+;│			xmm1 = y						│
+;│ output:									│
+;│			xmm0 = sqrt(x^2 + y^2)			│
+;└──────────────────────────────────────────┘
+proc fa_hypot c
+	mulsd xmm0,xmm0 ; x^2
+	mulsd xmm1,xmm1 ; y^2
+	addsd xmm0,xmm1 ; x^2 + y^2
+	sqrtsd xmm0,xmm0 ; sqrt(x^2 + y^2)
 	ret
 endp

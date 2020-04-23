@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────────┐
-;│ return absolute value of an integer number	│
+;│ returns absolute value of an integer number	│
 ;│ input:										│
 ;│			rcx = number						│
 ;│ output:										│

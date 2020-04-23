@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────┐
-;│ compute 10^n			│
+;│ computes 10^n		│
 ;│ input:				│
 ;│			rcx = n		│
 ;│ output:				│

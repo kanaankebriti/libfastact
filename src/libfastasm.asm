@@ -46,6 +46,7 @@ section '.edata' export data readable
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
 			fa_fabs,'fa_fabs',\
+			fa_hypot,'fa_hypot',\
 			fa_pow2,'fa_pow2',\
 			fa_pow10,'fa_pow10',\
 			fa_round,'fa_round',\
@@ -82,6 +83,7 @@ include 'math/abs.asm'
 include 'math/cos.asm'
 include 'math/deg2rad.asm'
 include 'math/fabs.asm'
+include 'math/hypot.asm'
 include 'math/pow2.asm'
 include 'math/pow10.asm'
 include 'math/round.asm'
