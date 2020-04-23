@@ -23,6 +23,11 @@
 ;│			NaN						│
 ;└──────────────────────────────────┘
 proc fa_exit c
+	;╔══════════════════╗
+	;║ void ExitProcess(║
+	;║ UINT uExitCode	║
+	;║ );				║
+	;╚══════════════════╝
 	call	[ExitProcess]
 	ret
 endp

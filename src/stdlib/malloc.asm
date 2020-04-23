@@ -21,15 +21,15 @@
 ;│ output:											│
 ;│			rax = *ptr to the beginning of the block│
 ;└──────────────────────────────────────────────────┘
-;╔══════════════════════════╗
-;║LPVOID VirtualAlloc(		║
-;║ LPVOID lpAddress,		║
-;║ SIZE_T dwSize,			║
-;║ DWORD  flAllocationType,	║
-;║ DWORD  flProtect			║
-;║);						║
-;╚══════════════════════════╝
 proc fa_malloc c uses rcx
+	;╔══════════════════════════╗
+	;║LPVOID VirtualAlloc(		║
+	;║ LPVOID lpAddress,		║
+	;║ SIZE_T dwSize,			║
+	;║ DWORD  flAllocationType,	║
+	;║ DWORD  flProtect			║
+	;║);						║
+	;╚══════════════════════════╝
 	mov rdx,rcx			; set size
 	xor ecx,ecx			; let windows decide allocation address
 	mov r8,0x00003000	; MEM_COMMIT = 0x00001000 | MEM_RESERVE = 0x00002000

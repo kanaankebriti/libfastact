@@ -53,6 +53,7 @@ section '.edata' export data readable
 			fa_sin,'fa_sin',\
 			fa_sqrt,'fa_sqrt',\
 			fa_trunc,'fa_trunc',\
+			fa_putchar,'fa_putchar',\
 			fa_atoi,'fa_atoi',\
 			fa_atoui,'fa_atoui',\
 			fa_exit,'fa_exit',\
@@ -90,6 +91,8 @@ include 'math/round.asm'
 include 'math/sin.asm'
 include 'math/sqrt.asm'
 include 'math/trunc.asm'
+
+include 'stdio/putchar.asm'
 
 include 'stdlib/atoi.asm'
 include 'stdlib/atoui.asm'

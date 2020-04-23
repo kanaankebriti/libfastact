@@ -30,6 +30,7 @@ import	libfastasm,\
 		fa_sin,'fa_sin',\
 		fa_sqrt,'fa_sqrt',\
 		fa_trunc,'fa_trunc',\
+		fa_putchar,'fa_putchar',\
 		fa_atoi,'fa_atoi',\
 		fa_atoui,'fa_atoui',\
 		fa_exit,'fa_exit',\

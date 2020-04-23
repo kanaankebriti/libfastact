@@ -49,6 +49,9 @@ extern "C"
 	double					fa_sqrt(double _X);
 	long long int			fa_trunc(double _X);
 
+	// stdio
+	unsigned short int		fa_putchar(unsigned short int _Character);
+
 	// stdlib
 	int						fa_atoi(const char* _Source);
 	unsigned int			fa_atoui(const char* _Source);
