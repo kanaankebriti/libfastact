@@ -43,6 +43,8 @@ extern "C"
 	// ctype
 	/// <summary>checks whether c is a lowercase letter</summary>
 	short int				fa_islower(unsigned short int _Character);
+	/// <summary>checks whether c is an uppercase letter</summary>
+	short int				fa_isupper(unsigned short int _Character);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);

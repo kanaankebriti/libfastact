@@ -43,6 +43,7 @@ section '.edata' export data readable
 			fa_cimag,'fa_cimag',\
 			fa_creal,'fa_creal',\
 			fa_islower,'fa_islower',\
+			fa_isupper,'fa_isupper',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -84,6 +85,7 @@ include 'complex/creal.asm'
 
 ; ctype
 include 'ctype/islower.asm'
+include 'ctype/isupper.asm'
 
 ; math
 include 'math/abs.asm'
