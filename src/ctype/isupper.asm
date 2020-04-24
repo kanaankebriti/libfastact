@@ -20,7 +20,7 @@
 ;│			rcx = number					│
 ;│ output:									│
 ;│			rax = 0	if c is not uppercase	│
-;│			rax > 0	if c is uppercase		│
+;│			rax = number if c is uppercase	│
 ;└──────────────────────────────────────────┘
 proc fa_isupper c
 	xor ax,ax

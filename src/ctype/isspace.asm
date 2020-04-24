@@ -20,7 +20,7 @@
 ;│			rcx = number						│
 ;│ output:										│
 ;│			rax = 0	if c is not a white-space	│
-;│			rax > 0	if c is a white-space		│
+;│			rax = number if c is a white-space	│
 ;└──────────────────────────────────────────────┘
 proc fa_isspace c
 	xor ax,ax

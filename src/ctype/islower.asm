@@ -20,7 +20,7 @@
 ;│			rcx = number					│
 ;│ output:									│
 ;│			rax = 0	if c is not lowercase	│
-;│			rax > 0	if c is lowercase		│
+;│			rax = number if c is lowercase	│
 ;└──────────────────────────────────────────┘
 proc fa_islower c
 	xor ax,ax

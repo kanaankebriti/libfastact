@@ -20,7 +20,7 @@
 ;│			rcx = number						│
 ;│ output:										│
 ;│			rax = 0	if c is not digit			│
-;│			rax > 0	if c is digit				│
+;│			rax = number if c is digit			│
 ;└──────────────────────────────────────────────┘
 proc fa_isdigit c
 	xor ax,ax
