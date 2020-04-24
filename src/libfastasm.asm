@@ -42,6 +42,7 @@ section '.edata' export data readable
 			fa_carg,'fa_carg',\
 			fa_cimag,'fa_cimag',\
 			fa_creal,'fa_creal',\
+			fa_islower,'fa_islower',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -75,11 +76,16 @@ proc DllEntryPoint hinstDLL,fdwReason,lpvReserved
 	ret
 endp
 
+; complex
 include 'complex/cabs.asm'
 include 'complex/carg.asm'
 include 'complex/cimag.asm'
 include 'complex/creal.asm'
 
+; ctype
+include 'ctype/islower.asm'
+
+; math
 include 'math/abs.asm'
 include 'math/cos.asm'
 include 'math/deg2rad.asm'
@@ -92,8 +98,10 @@ include 'math/sin.asm'
 include 'math/sqrt.asm'
 include 'math/trunc.asm'
 
+; stdio
 include 'stdio/putchar.asm'
 
+; stdlib
 include 'stdlib/atoi.asm'
 include 'stdlib/atoui.asm'
 include 'stdlib/exit.asm'
@@ -102,10 +110,12 @@ include 'stdlib/itoa.asm'
 include 'stdlib/malloc.asm'
 include 'stdlib/rand.asm'
 
+; string
 include 'string/memset.asm'
 include 'string/strcat.asm'
 include 'string/strcmp.asm'
 include 'string/strcpy.asm'
 include 'string/strlen.asm'
 
+; time
 include 'time/time.asm'

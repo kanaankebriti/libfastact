@@ -40,6 +40,10 @@ extern "C"
 	/// <summary>retrieves the real part of a complex number</summary>
 	double					fa_creal(fa_complex _X);
 
+	// ctype
+	/// <summary>checks whether c is a lowercase letter</summary>
+	short int				fa_islower(unsigned short int _Character);
+
 	// math
 	unsigned long long int	fa_abs(long long int _X);
 	double					fa_cos(double _X);
