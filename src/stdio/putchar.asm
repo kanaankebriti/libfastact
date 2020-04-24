@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────┐
-;│ Writes a character to the stdout			│
+;│ writes a character to the stdout			│
 ;│ input:									│
 ;│			rcx = (unsigned short int) char	│
 ;│ output:									│

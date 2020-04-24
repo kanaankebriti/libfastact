@@ -14,14 +14,14 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────┐
-;│ int to ascii							│
-;│ input:								│
-;│			rcx = uint64				│
-;│			rdx = *_result_str			│
-;│ output:								│
-;│			NaN							│
-;└──────────────────────────────────────┘
+;┌──────────────────────────────┐
+;│ converts integer to ascii	│
+;│ input:						│
+;│			rcx = uint64		│
+;│			rdx = *_result_str	│
+;│ output:						│
+;│			NaN					│
+;└──────────────────────────────┘
 proc fa_itoa c uses rdi rbx r9 r10
 	; max 64bit unsigned int = 9,223,372,036,854,775,807
 	; this number has 19 digits

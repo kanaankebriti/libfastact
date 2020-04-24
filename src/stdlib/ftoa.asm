@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────┐
-;│ float to ascii						│
+;│ converts float to ascii				│
 ;│ input:								│
 ;│			xmm0 = float input			│
 ;│			rdx = *_result_str			│

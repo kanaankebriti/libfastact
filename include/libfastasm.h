@@ -31,9 +31,13 @@ extern "C"
 {
 #endif
 	// complex
+	/// <summary>retrieves the absolute value of a complex number</summary>
 	double					fa_cabs(fa_complex _X);
+	/// <summary>retrieves the argument of a complex number in rad</summary>
 	double					fa_carg(fa_complex _X);
+	/// <summary>retrieves the imaginary part of a complex number</summary>
 	double					fa_cimag(fa_complex _X);
+	/// <summary>retrieves the real part of a complex number</summary>
 	double					fa_creal(fa_complex _X);
 
 	// math
@@ -50,25 +54,39 @@ extern "C"
 	long long int			fa_trunc(double _X);
 
 	// stdio
+	/// <summary>writes a character to the stdout</summary>
 	unsigned short int		fa_putchar(unsigned short int _Character);
 
 	// stdlib
+	/// <summary>convert string to integer</summary>
 	int						fa_atoi(const char* _Source);
+	/// <summary>convert string to unsigned integer</summary>
 	unsigned int			fa_atoui(const char* _Source);
+	/// <summary>exit the program</summary>
 	long long int			fa_exit(unsigned short int _Status);
+	/// <summary>converts float to ascii</summary>
 	void					fa_ftoa(double _Value, char* _Destination);
+	/// <summary>converts integer to ascii</summary>
 	char*					fa_itoa(long long int _Value, char* _Destination);
+	/// <summary>allocates a block of size bytes of memory</summary>
 	void*					fa_malloc(long long int _Size);
+	/// <summary>generate 64bit random number</summary>
 	long long int			fa_rand(void);
 
 	// string
+	/// <summary>appends a copy of the source string</summary>
 	void*					fa_memset(char* _Destination, short int _Value, int _Size);
+	/// <summary>appends a copy of the source string</summary>
 	char*					fa_strcat(char* _Destination, const char* _Source);
+	/// <summary>compares the C string str1 to the C string str2</summary>
 	int						fa_strcmp(const char* _Str1, const char* _Str2);
+	/// <summary>copy string from source to destination</summary>
 	char*					fa_strcpy(char* _Destination, const char* _Source);
+	/// <summary>returns length of a string</summary>
 	unsigned long long int	fa_strlen(const char* _Str);
 
 	// time
+	/// <summary>returns current time in unix time format</summary>
 	long long int			fa_time(void);
 
 #ifdef __cplusplus

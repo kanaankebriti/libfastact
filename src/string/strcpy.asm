@@ -16,7 +16,6 @@
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────┐
 ;│ copy string from source to destination 	│
-;│ to the destination string				│
 ;│ input:									│
 ;│			rcx = *destination_str			│
 ;│			rdx = *source_str				│

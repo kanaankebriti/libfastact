@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────────┐
-;│ Retrieves the real part of a complex number	│
+;│ retrieves the real part of a complex number	│
 ;│ to the destination string					│
 ;│ input:										│
 ;│			rcx = fa_complex					│

@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────┐
-;│ return length of a string	│
+;│ returns length of a string	│
 ;│ input:						│
 ;│			rcx = *str			│
 ;│ output:						│

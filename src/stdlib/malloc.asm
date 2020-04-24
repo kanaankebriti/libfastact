@@ -15,7 +15,7 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────────────┐
-;│ Allocates a block of size bytes of memory		│
+;│ allocates a block of size bytes of memory		│
 ;│ input:											│
 ;│			rcx = size in bytes						│
 ;│ output:											│

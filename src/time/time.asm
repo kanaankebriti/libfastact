@@ -14,13 +14,13 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────┐
-;│ get unix time				│
-;│ input:						│
-;│			NaN					│
-;│ output:						│
-;│			rax = unix time		│
-;└──────────────────────────────┘
+;┌──────────────────────────────────────────┐
+;│ returns current time in unix time format	│
+;│ input:									│
+;│			NaN								│
+;│ output:									│
+;│			rax = unix time					│
+;└──────────────────────────────────────────┘
 proc fa_time c
 	; get system time -> convert to file time -> convert to unix time
 	locals

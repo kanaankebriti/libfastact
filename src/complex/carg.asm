@@ -14,13 +14,13 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────────────┐
-;│ retrieves the argument of a complex number in rad│
-;│ input:											│
-;│			xmm0 = number							│
-;│ output:											│
-;│			rax = arg(number)						│
-;└──────────────────────────────────────────────────┘
+;┌───────────────────────────────────────────────────┐
+;│ retrieves the argument of a complex number in rad │
+;│ input:											 │
+;│			xmm0 = number							 │
+;│ output:											 │
+;│			rax = arg(number)						 │
+;└───────────────────────────────────────────────────┘
 proc fa_carg c
 	fld	QWORD [rcx]		; xmm0 = real
 	fld	QWORD [rcx+8]	; xmm1 = img
