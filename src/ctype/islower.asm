@@ -24,10 +24,10 @@
 ;└──────────────────────────────────────────┘
 proc fa_islower c
 	xor ax,ax
-	xor bx,bx
 	cmp cx,'z'
 	cmovbe ax,cx
+	xor cx,cx
 	cmp ax,'a'
-	cmovb ax,bx
+	cmovb ax,cx
 	ret
 endp
