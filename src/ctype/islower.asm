@@ -19,13 +19,15 @@
 ;│ input:									│
 ;│			rcx = number					│
 ;│ output:									│
-;│			rax < 0	if c is not lowercase	│
+;│			rax = 0	if c is not lowercase	│
 ;│			rax > 0	if c is lowercase		│
 ;└──────────────────────────────────────────┘
 proc fa_islower c
-	xor eax,eax
+	xor ax,ax
+	xor bx,bx
 	cmp cx,'z'
 	cmovbe ax,cx
-	sub ax,'a'
+	cmp ax,'a'
+	cmovb ax,bx
 	ret
 endp
