@@ -44,6 +44,7 @@ section '.edata' export data readable
 			fa_creal,'fa_creal',\
 			fa_isdigit,'fa_isdigit',\
 			fa_islower,'fa_islower',\
+			fa_isspace,'fa_isspace',\
 			fa_isupper,'fa_isupper',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
@@ -87,6 +88,7 @@ include 'complex/creal.asm'
 ; ctype
 include 'ctype/isdigit.asm'
 include 'ctype/islower.asm'
+include 'ctype/isspace.asm'
 include 'ctype/isupper.asm'
 
 ; math
