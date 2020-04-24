@@ -41,6 +41,8 @@ extern "C"
 	double					fa_creal(fa_complex _X);
 
 	// ctype
+	/// <summary>checks whether c is decimal digit character</summary>
+	short int				fa_isdigit(unsigned short int _Character);
 	/// <summary>checks whether c is a lowercase letter</summary>
 	short int				fa_islower(unsigned short int _Character);
 	/// <summary>checks whether c is an uppercase letter</summary>

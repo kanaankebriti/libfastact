@@ -42,6 +42,7 @@ section '.edata' export data readable
 			fa_carg,'fa_carg',\
 			fa_cimag,'fa_cimag',\
 			fa_creal,'fa_creal',\
+			fa_isdigit,'fa_isdigit',\
 			fa_islower,'fa_islower',\
 			fa_isupper,'fa_isupper',\
 			fa_abs,'fa_abs',\
@@ -84,6 +85,7 @@ include 'complex/cimag.asm'
 include 'complex/creal.asm'
 
 ; ctype
+include 'ctype/isdigit.asm'
 include 'ctype/islower.asm'
 include 'ctype/isupper.asm'
 

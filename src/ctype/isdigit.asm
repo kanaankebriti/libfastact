@@ -14,20 +14,20 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────┐
-;│ checks whether c is an uppercase letter	│
-;│ input:									│
-;│			rcx = number					│
-;│ output:									│
-;│			rax = 0	if c is not uppercase	│
-;│			rax > 0	if c is uppercase		│
-;└──────────────────────────────────────────┘
-proc fa_isupper c
+;┌──────────────────────────────────────────────┐
+;│ checks whether c is decimal digit character	│
+;│ input:										│
+;│			rcx = number						│
+;│ output:										│
+;│			rax = 0	if c is not digit			│
+;│			rax > 0	if c is digit				│
+;└──────────────────────────────────────────────┘
+proc fa_isdigit c
 	xor ax,ax
-	cmp cx,'Z'
+	cmp cx,'9'
 	cmovbe ax,cx
 	xor cx,cx
-	cmp ax,'A'
+	cmp ax,'0'
 	cmovb ax,cx
 	ret
 endp

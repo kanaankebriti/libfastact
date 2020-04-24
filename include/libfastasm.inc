@@ -19,6 +19,7 @@ import	libfastasm,\
 		fa_carg,'fa_carg',\
 		fa_cimag,'fa_cimag',\
 		fa_creal,'fa_creal',\
+		fa_isdigit,'fa_isdigit',\
 		fa_islower,'fa_islower',\
 		fa_isupper,'fa_isupper',\
 		fa_abs,'fa_abs',\
