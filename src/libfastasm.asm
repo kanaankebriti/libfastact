@@ -29,12 +29,28 @@ section '.reloc' fixups data readable discardable
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.idata' import data readable writeable
 	library	kernel32,'KERNEL32.DLL',\
+			user32,'USER32.DLL',\
+			gdi32,'GDI32.DLL',\
+			opengl32,'OPENGL32.DLL',\
 			ntdll,'NTDLL.DLL'
 
 	include	'include\api\kernel32.inc'
+	include	'include\api\user32.inc'
+	include	'include\api\gdi32.inc'
+	include	'include\api\opengl32.inc'
+	include	'include\api\opengl.inc'
 
 	import	ntdll,\
 			RtlTimeToSecondsSince1970,'RtlTimeToSecondsSince1970'
+;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
+section '.data' data readable writeable
+	_main_window_class WNDCLASSEX sizeof.WNDCLASSEX,0,WindowProc,0,0,?,?,?,?,?,_class,?
+	_window_title db 'libfastasm',0
+	_class db '_class',0
+	hdc dq ?
+	hrc dq ?
+	rc RECT
+	pfd PIXELFORMATDESCRIPTOR
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.edata' export data readable
 	export	'libfastasm.dll',\
@@ -46,6 +62,11 @@ section '.edata' export data readable
 			fa_islower,'fa_islower',\
 			fa_isspace,'fa_isspace',\
 			fa_isupper,'fa_isupper',\
+			fa_createwindow,'fa_createwindow',\
+			fa_cls,'fa_cls',\
+			fa_draw,'fa_draw',\
+			fa_pollevent,'fa_pollevent',\
+			fa_pset,'fa_pset',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -90,6 +111,13 @@ include 'ctype/isdigit.asm'
 include 'ctype/islower.asm'
 include 'ctype/isspace.asm'
 include 'ctype/isupper.asm'
+
+; graphics
+include 'graphics/createwindow.asm'
+include 'graphics/cls.asm'
+include 'graphics/draw.asm'
+include 'graphics/pollevent.asm'
+include 'graphics/pset.asm'
 
 ; math
 include 'math/abs.asm'

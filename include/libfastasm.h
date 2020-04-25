@@ -16,10 +16,7 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #ifndef _LIBFASTASM
 
-#define fa_EXIT_SUCCESS 0
-#define fa_EXIT_FAILURE 1
-#define fa_M_PI			3.14159265358979323846
-#define fa_M_E			2.71828182845904523536
+#include <Windows.h>
 
 typedef struct fa_complex
 {
@@ -49,6 +46,13 @@ extern "C"
 	short int				fa_isspace(unsigned short int _Character);
 	/// <summary>checks whether c is an uppercase letter</summary>
 	short int				fa_isupper(unsigned short int _Character);
+
+	// graphics
+	void					fa_createwindow(void);
+	void					fa_cls(void);
+	void					fa_draw(void);
+	int						fa_pollevent(void);
+	void					fa_pset(void);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);

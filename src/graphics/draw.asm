@@ -14,42 +14,7 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-import	libfastasm,\
-		fa_cabs,'fa_cabs',\
-		fa_carg,'fa_carg',\
-		fa_cimag,'fa_cimag',\
-		fa_creal,'fa_creal',\
-		fa_isdigit,'fa_isdigit',\
-		fa_islower,'fa_islower',\
-		fa_isspace,'fa_isspace',\
-		fa_isupper,'fa_isupper',\
-		fa_createwindow,'fa_createwindow',\
-		fa_cls,'fa_cls',\
-		fa_draw,'fa_draw',\
-		fa_pollevent,'fa_pollevent',\
-		fa_pset,'fa_pset',\
-		fa_abs,'fa_abs',\
-		fa_cos,'fa_cos',\
-		fa_deg2rad,'fa_deg2rad',\
-		fa_fabs,'fa_fabs',\
-		fa_hypot,'fa_hypot',\
-		fa_pow2,'fa_pow2',\
-		fa_pow10,'fa_pow10',\
-		fa_round,'fa_round',\
-		fa_sin,'fa_sin',\
-		fa_sqrt,'fa_sqrt',\
-		fa_trunc,'fa_trunc',\
-		fa_putchar,'fa_putchar',\
-		fa_atoi,'fa_atoi',\
-		fa_atoui,'fa_atoui',\
-		fa_exit,'fa_exit',\
-		fa_ftoa,'fa_ftoa',\
-		fa_itoa,'fa_itoa',\
-		fa_malloc,'fa_malloc',\
-		fa_rand,'fa_rand',\
-		fa_memset,'fa_memset',\
-		fa_strcat,'fa_strcat',\
-		fa_strcmp,'fa_strcmp',\
-		fa_strcpy,'fa_strcpy',\
-		fa_strlen,'fa_strlen',\
-		fa_time,'fa_time'
+proc fa_draw c
+	invoke	SwapBuffers,[hdc]
+	ret
+endp
