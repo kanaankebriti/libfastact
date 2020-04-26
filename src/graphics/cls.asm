@@ -14,7 +14,16 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+; rcx = IDirect3DDevice9* dev
 proc fa_cls c
-	invoke	glClear,GL_COLOR_BUFFER_BIT
+	locals
+		d3ddev dq ?
+	endl
+
+	mov	[d3ddev],rcx
+
+	mov	rax, QWORD [d3ddev]
+	mov	rax, QWORD [rax]
+	fastcall QWORD [rax+344],QWORD [d3ddev],0,0,1,DWORD 0xFF002864,float DWORD 1.0,DWORD 0
 	ret
 endp

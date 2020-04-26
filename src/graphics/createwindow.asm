@@ -92,48 +92,28 @@ proc fa_createwindow c
 	;║ );					║
 	;╚══════════════════════╝
 	invoke  CreateWindowEx,0,_class,_window_title,WS_VISIBLE+WS_OVERLAPPEDWINDOW,16,16,800,600,NULL,NULL,[_main_window_class.hInstance],NULL
+	mov		[hwnd],rax
 	ret
 endp
 
-proc WindowProc uses rbx rsi rdi, hwnd,wmsg,wparam,lparam
+proc WindowProc uses rdi,hwnd,wmsg,wparam,lparam
 	mov	[hwnd],rcx
-	cmp	edx,WM_CREATE
-	je	.wmcreate
+	frame
 	cmp	edx,WM_KEYDOWN
-	je	.wmdestroy
+	je	.wmkeydown
 	cmp	edx,WM_DESTROY
 	je	.wmdestroy
 	.defwndproc:
 	invoke	DefWindowProc,rcx,rdx,r8,r9
-	ret
-	.wmcreate:
-	invoke	GetDC,rcx
-	mov	[hdc],rax
-	lea	rdi,[pfd]
-	mov	rcx,sizeof.PIXELFORMATDESCRIPTOR shr 3
-	xor	eax,eax
-	rep	stosq
-	mov	[pfd.nSize],sizeof.PIXELFORMATDESCRIPTOR
-	mov	[pfd.nVersion],1
-	mov	[pfd.dwFlags],PFD_SUPPORT_OPENGL+PFD_DOUBLEBUFFER+PFD_DRAW_TO_WINDOW
-	mov	[pfd.iLayerType],PFD_MAIN_PLANE
-	mov	[pfd.iPixelType],PFD_TYPE_RGBA
-	mov	[pfd.cColorBits],16
-	mov	[pfd.cDepthBits],16
-	mov	[pfd.cAccumBits],0
-	mov	[pfd.cStencilBits],0
-	invoke	ChoosePixelFormat,[hdc],pfd
-	invoke	SetPixelFormat,[hdc],eax,pfd
-	invoke	wglCreateContext,[hdc]
-	mov	[hrc],rax
-	invoke	wglMakeCurrent,[hdc],[hrc]
-	invoke	GetClientRect,[hwnd],rc
-	invoke	glViewport,0, 0,[rc.right],[rc.bottom]
-	ret
+	jmp	.finish
+	.wmkeydown:
+	cmp	r8d,VK_ESCAPE
+	jne	.defwndproc
 	.wmdestroy:
-	invoke	wglMakeCurrent,0,0
-	invoke	wglDeleteContext,[hrc]
 	invoke	ReleaseDC,[hwnd],[hdc]
 	invoke	PostQuitMessage,0
+	xor	eax,eax
+	.finish:
+	endf
 	ret
 endp

@@ -22,7 +22,6 @@ include 'include/win64a.inc'
 include 'include/libfastasm.inc'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.reloc' fixups data readable discardable
-
   if $=$$
     dd 0,8		; if there are no fixups, generate dummy entry
   end if
@@ -31,26 +30,29 @@ section '.idata' import data readable writeable
 	library	kernel32,'KERNEL32.DLL',\
 			user32,'USER32.DLL',\
 			gdi32,'GDI32.DLL',\
-			opengl32,'OPENGL32.DLL',\
-			ntdll,'NTDLL.DLL'
+			ntdll,'NTDLL.DLL',\
+			d3d9,'D3D9.DLL'
 
 	include	'include\api\kernel32.inc'
 	include	'include\api\user32.inc'
 	include	'include\api\gdi32.inc'
-	include	'include\api\opengl32.inc'
-	include	'include\api\opengl.inc'
+	include 'include\api\d3d9.inc'
+	include 'include\api\d3d9caps.inc'
+	include 'include\api\d3d9types.inc'
 
 	import	ntdll,\
 			RtlTimeToSecondsSince1970,'RtlTimeToSecondsSince1970'
+	import	d3d9,\
+			Direct3DCreate9,'Direct3DCreate9'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.data' data readable writeable
 	_main_window_class WNDCLASSEX sizeof.WNDCLASSEX,0,WindowProc,0,0,?,?,?,?,?,_class,?
-	_window_title db 'libfastasm',0
+	_window_title db 'test',0
 	_class db '_class',0
+	rc RECT
 	hdc dq ?
 	hrc dq ?
-	rc RECT
-	pfd PIXELFORMATDESCRIPTOR
+	hwnd dq ?
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.edata' export data readable
 	export	'libfastasm.dll',\
@@ -65,7 +67,6 @@ section '.edata' export data readable
 			fa_createwindow,'fa_createwindow',\
 			fa_cls,'fa_cls',\
 			fa_draw,'fa_draw',\
-			fa_pollevent,'fa_pollevent',\
 			fa_pset,'fa_pset',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
@@ -116,7 +117,6 @@ include 'ctype/isupper.asm'
 include 'graphics/createwindow.asm'
 include 'graphics/cls.asm'
 include 'graphics/draw.asm'
-include 'graphics/pollevent.asm'
 include 'graphics/pset.asm'
 
 ; math

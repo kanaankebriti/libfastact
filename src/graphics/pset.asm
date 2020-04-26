@@ -15,9 +15,5 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 proc fa_pset c
-	invoke	glBegin,GL_POINTS
-	invoke	glColor3b,127,127,127
-	invoke	glVertex2i,0,0
-	invoke	glEnd
 	ret
 endp

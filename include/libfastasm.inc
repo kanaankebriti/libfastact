@@ -26,7 +26,6 @@ import	libfastasm,\
 		fa_createwindow,'fa_createwindow',\
 		fa_cls,'fa_cls',\
 		fa_draw,'fa_draw',\
-		fa_pollevent,'fa_pollevent',\
 		fa_pset,'fa_pset',\
 		fa_abs,'fa_abs',\
 		fa_cos,'fa_cos',\

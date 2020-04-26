@@ -15,6 +15,5 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 proc fa_draw c
-	invoke	SwapBuffers,[hdc]
 	ret
 endp

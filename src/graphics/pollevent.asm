@@ -15,9 +15,6 @@
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 proc fa_pollevent c
-	locals
-		event MSG
-	endl
 	;╔══════════════════════╗
 	;║ BOOL WaitMessage();	║
 	;╚══════════════════════╝
@@ -43,6 +40,9 @@ proc fa_pollevent c
 	;╚══════════════════════════╝
 	lea		rcx,[event]
 	call	[TranslateMessage]
+	lea		rcx,[event]
+	call	[DispatchMessage]
+	xor eax,eax
 	mov		eax,[event.message]
 	ret
 endp

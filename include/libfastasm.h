@@ -17,6 +17,7 @@
 #ifndef _LIBFASTASM
 
 #include <Windows.h>
+#include <d3d9.h>
 
 typedef struct fa_complex
 {
@@ -48,10 +49,10 @@ extern "C"
 	short int				fa_isupper(unsigned short int _Character);
 
 	// graphics
-	void					fa_createwindow(void);
-	void					fa_cls(void);
+	HWND					fa_createwindow(void);
+	void					fa_cls(IDirect3DDevice9* d3ddev);
 	void					fa_draw(void);
-	int						fa_pollevent(void);
+	//int						fa_pollevent(void);
 	void					fa_pset(void);
 
 	// math
