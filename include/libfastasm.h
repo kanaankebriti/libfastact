@@ -50,7 +50,8 @@ extern "C"
 
 	// graphics
 	HWND					fa_createwindow(void);
-	void					fa_cls(IDirect3DDevice9* d3ddev);
+	/// <summary>clears entire viewport rectangle and sets background color</summary>
+	void					fa_cls(IDirect3DDevice9* d3ddev, unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	void					fa_draw(void);
 	//int						fa_pollevent(void);
 	void					fa_pset(void);

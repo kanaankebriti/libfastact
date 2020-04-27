@@ -14,16 +14,36 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+
+; entire viewport rectangle
 ; rcx = IDirect3DDevice9* dev
+;┌──────────────────────────────────────┐
+;│ entire viewport rectangle			│
+;│ input:								│
+;│			rcx = IDirect3DDevice9* dev	│
+;│			rdx = R						│
+;│			r8 = G						│
+;│			r9 = B						│
+;│ output:								│
+;│			NaN							│
+;└──────────────────────────────────────┘
 proc fa_cls c
 	locals
-		d3ddev dq ?
+		d3ddev		dq ?
+		rgb_input	db ?,?,?,0x00	;BGR
 	endl
 
+	; get d3ddev pointer
 	mov	[d3ddev],rcx
-
 	mov	rax, QWORD [d3ddev]
 	mov	rax, QWORD [rax]
-	fastcall QWORD [rax+344],QWORD [d3ddev],0,0,1,DWORD 0xFF002864,float DWORD 1.0,DWORD 0
+
+	; get RGB color
+	mov [rgb_input],r9l
+	mov [rgb_input+1],r8l
+	mov [rgb_input+2],dl
+	mov r10d,DWORD [rgb_input]
+
+	fastcall QWORD [rax+IDirect3DDevice9_Clear],QWORD [d3ddev],0,0,1,r10d,float DWORD 1.0,DWORD 0
 	ret
 endp

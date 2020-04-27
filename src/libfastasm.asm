@@ -36,9 +36,6 @@ section '.idata' import data readable writeable
 	include	'include\api\kernel32.inc'
 	include	'include\api\user32.inc'
 	include	'include\api\gdi32.inc'
-	include 'include\api\d3d9.inc'
-	include 'include\api\d3d9caps.inc'
-	include 'include\api\d3d9types.inc'
 
 	import	ntdll,\
 			RtlTimeToSecondsSince1970,'RtlTimeToSecondsSince1970'

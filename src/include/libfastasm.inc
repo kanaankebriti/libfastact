@@ -14,11 +14,6 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌───────────┐
-;│ Constants │
-;└───────────┘
-fa_EXIT_SUCCESS		equ 0
-fa_EXIT_FAILURE		equ 1
 fa_M_PI				equ 3.14159265358979323846
 ; Immediate byte constants
 fa_EQUAL_ANY			= 0000B
@@ -27,6 +22,9 @@ fa_EQUAL_EACH			= 1000B
 fa_EQUAL_ORDERED		= 1100B
 fa_NEGATIVE_POLARITY	= 010000B
 fa_BYTE_MASK			= 1000000B
+
+; IDirect3DDevice9 interface
+IDirect3DDevice9_Clear equ 344
 
 struct fa_complex
 	real	dq	?
