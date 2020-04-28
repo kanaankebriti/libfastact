@@ -14,24 +14,27 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────┐
-;│ copy string from source to destination 	│
-;│ input:									│
-;│			rcx = *destination_str			│
-;│			rdx = *source_str				│
-;│ output:									│
-;│			rax = *destination_str			│
-;└──────────────────────────────────────────┘
-proc fa_strcpy uses rdi rsi
-	mov rdi,rcx		; load destination string
-	mov rsi,rdx		; load source string
+;┌──────────────────────────────────┐
+;│ copies the values of num bytes	│
+;│ from source destination 			│
+;│ input:							│
+;│			rcx = *destination		│
+;│			rdx = *source			│
+;│			r8 = num				│
+;│ output:							│
+;│			rax = *destination		│
+;└──────────────────────────────────┘
+proc fa_memcpy uses rdi rsi
+	mov rdi,rcx		; load destination location
+	mov rsi,rdx		; load source location
+	mov r9,rcx		; store destination location
+	mov ecx,r8d		; number of bytes
 
 	@@:
 		lodsb
 		stosb
-		test	al,al	; check for end of source string which is 0
-		jnz		@B
+		loop	@B
 
-	mov rax,rcx
+	mov rax,r9
 	ret
 endp

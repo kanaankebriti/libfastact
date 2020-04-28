@@ -84,6 +84,7 @@ section '.edata' export data readable
 			fa_itoa,'fa_itoa',\
 			fa_malloc,'fa_malloc',\
 			fa_rand,'fa_rand',\
+			fa_memcpy,'fa_memcpy',\
 			fa_memset,'fa_memset',\
 			fa_strcat,'fa_strcat',\
 			fa_strcmp,'fa_strcmp',\
@@ -142,6 +143,7 @@ include 'stdlib/malloc.asm'
 include 'stdlib/rand.asm'
 
 ; string
+include 'string/memcpy.asm'
 include 'string/memset.asm'
 include 'string/strcat.asm'
 include 'string/strcmp.asm'

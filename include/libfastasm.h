@@ -90,6 +90,8 @@ extern "C"
 	long long int			fa_rand(void);
 
 	// string
+	/// <summary>copy string from source to destination</summary>
+	char*					fa_memcpy(void* _Destination, void* _Source,unsigned int _Size);
 	/// <summary>appends a copy of the source string</summary>
 	void*					fa_memset(char* _Destination, short int _Value, int _Size);
 	/// <summary>appends a copy of the source string</summary>
