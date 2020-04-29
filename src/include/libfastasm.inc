@@ -24,7 +24,9 @@ fa_NEGATIVE_POLARITY	= 010000B
 fa_BYTE_MASK			= 1000000B
 
 ; IDirect3DDevice9 interface
-IDirect3DDevice9_Clear equ 344
+IDirect3DDevice9_BeginScene equ 328
+IDirect3DDevice9_EndScene	equ 336
+IDirect3DDevice9_Clear		equ 344
 
 struct fa_complex
 	real	dq	?

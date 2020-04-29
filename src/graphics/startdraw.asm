@@ -16,33 +16,15 @@
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 
 ;┌──────────────────────────────────────┐
-;│ clears entire viewport rectangle		│
-;│ and fill it with RGB color			│
+;│ begins draw to screen				|
 ;│ input:								│
 ;│			rcx = IDirect3DDevice9* dev	│
-;│			rdx = R						│
-;│			r8 = G						│
-;│			r9 = B						│
 ;│ output:								│
 ;│			NaN							│
 ;└──────────────────────────────────────┘
-proc fa_cls c
-	locals
-		d3ddev		dq ?
-		rgb_input	db ?,?,?,0x00	;BGR
-	endl
-
-	; get d3ddev pointer
-	mov	[d3ddev],rcx
-	mov	rax, QWORD [d3ddev]
-	mov	rax, QWORD [rax]
-
-	; get RGB color
-	mov [rgb_input],r9l
-	mov [rgb_input+1],r8l
-	mov [rgb_input+2],dl
-	mov r10d,DWORD [rgb_input]
-
-	fastcall QWORD [rax+IDirect3DDevice9_Clear],QWORD [d3ddev],0,0,1,r10d,float DWORD 1.0,DWORD 0
+proc fa_startdraw c
+	mov	rax, rcx
+	mov	rax, QWORD [rcx]
+	fastcall QWORD [rax+IDirect3DDevice9_BeginScene],rcx
 	ret
 endp

@@ -14,6 +14,17 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-proc fa_draw c
+
+;┌──────────────────────────────────────┐
+;│ ends draw to screen					|
+;│ input:								│
+;│			rcx = IDirect3DDevice9* dev	│
+;│ output:								│
+;│			NaN							│
+;└──────────────────────────────────────┘
+proc fa_enddraw c
+	mov	rax, rcx
+	mov	rax, QWORD [rcx]
+	fastcall QWORD [rax+IDirect3DDevice9_EndScene],rcx
 	ret
 endp

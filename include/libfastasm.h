@@ -52,9 +52,12 @@ extern "C"
 	HWND					fa_createwindow(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void					fa_cls(IDirect3DDevice9* d3ddev, unsigned short int _R, unsigned short int _G, unsigned short int _B);
-	void					fa_draw(void);
+	/// <summary>ends draw to screen</summary>
+	void					fa_enddraw(IDirect3DDevice9* d3ddev);
 	//int						fa_pollevent(void);
 	void					fa_pset(void);
+	/// <summary>begins draw to screen</summary>
+	void					fa_startdraw(IDirect3DDevice9* d3ddev);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);
@@ -93,7 +96,7 @@ extern "C"
 	/// <summary>copy string from source to destination</summary>
 	char*					fa_memcpy(void* _Destination, void* _Source,unsigned int _Size);
 	/// <summary>appends a copy of the source string</summary>
-	void*					fa_memset(char* _Destination, short int _Value, int _Size);
+	void*					fa_memset(void* _Destination, short int _Value, int _Size);
 	/// <summary>appends a copy of the source string</summary>
 	char*					fa_strcat(char* _Destination, const char* _Source);
 	/// <summary>compares the C string str1 to the C string str2</summary>

@@ -14,16 +14,16 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────┐
-;│ appends a copy of the source string	│
-;│ to the destination string			│
-;│ input:								│
-;│			rcx = *destination_str		│
-;│			rdx = value					│
-;│			r8 = size					│
-;│ output:								│
-;│			rax = *destination_str		│
-;└──────────────────────────────────────┘
+;┌──────────────────────────────────────────────────┐
+;│ sets the first num bytes of the block of memory	│
+;| pointed by destination_str to the specified value│
+;│ input:											│
+;│			rcx = *destination_str					│
+;│			rdx = value								│
+;│			r8 = size								│
+;│ output:											│
+;│			rax = *destination_str					│
+;└──────────────────────────────────────────────────┘
 proc fa_memset c uses rdi r9
 	mov r9,rcx	; save *destination_str
 	mov	rdi,rcx	; set destination_str
