@@ -24,11 +24,11 @@ extern "C"
 #endif
 	// graphics
 	/// <summary>cleans up Direct3D and COM</summary>
-	void fa_destroygraphics(void);
+	void fa_closegraph(void);
 	/// <summary>returns *d3ddev</summary>
 	IDirect3DDevice9* fa_get_d3ddev(void);
 	/// <summary>initializes and prepares Direct3D</summary>
-	void fa_initgraphics(HWND hWnd);
+	void fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
 	void fa_line(void);
 	/// <summary>draws a 2d pixel with color RGB</summary>

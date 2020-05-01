@@ -41,14 +41,14 @@ extern "C" __declspec(dllexport) void fa_render(void)
 }
 
 /// <summary>cleans up Direct3D and COM</summary>
-extern "C" __declspec(dllexport) void fa_destroygraphics(void)
+extern "C" __declspec(dllexport) void fa_closegraph(void)
 {
     d3ddev->Release();  // close and release the 3D device
     d3d->Release();     // close and release Direct3D
 }
 
 /// <summary>initializes and prepares Direct3D</summary>
-extern "C" __declspec(dllexport) void fa_initgraphics(HWND hWnd)
+extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
 {
     d3d = Direct3DCreate9(D3D_SDK_VERSION);     // create the Direct3D interface
     D3DPRESENT_PARAMETERS d3dpp;                // create a struct to hold various device information
