@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			rax = int result	│
 ;└──────────────────────────────┘
-proc fa_atoi c uses rsi
+proc fa_atoi uses rsi
 	locals
 		ddqDigitRange	db  '0','9',0,0,0,0,0,0,0,0,0,0,0,0,0,0
     	ddqShuffleMask	db  15D,14D,13D,12D,11D,10D,9D,8D,7D,6D,5D,4D,3D,2D,1D,0D

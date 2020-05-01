@@ -22,7 +22,7 @@
 ;│			rax = 0	if c is not digit			│
 ;│			rax = number if c is digit			│
 ;└──────────────────────────────────────────────┘
-proc fa_isdigit c
+proc fa_isdigit
 	xor ax,ax
 	cmp cx,'9'
 	cmovbe ax,cx

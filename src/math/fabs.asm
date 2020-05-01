@@ -21,7 +21,7 @@
 ;│ output:									│
 ;│			xmm0 = fabs(number)				│
 ;└──────────────────────────────────────────┘
-proc fa_fabs c
+proc fa_fabs
 	locals
 		input_double dq ?
 	endl

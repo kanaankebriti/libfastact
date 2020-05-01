@@ -23,7 +23,7 @@
 ;│ output:								│
 ;│			NaN							│
 ;└──────────────────────────────────────┘
-proc fa_ftoa c uses rdi r10
+proc fa_ftoa uses rdi r10
 	locals
 		integer_part	dq ?
 		decimal_part	dq ?

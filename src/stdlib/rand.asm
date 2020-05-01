@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			rax = random		│
 ;└──────────────────────────────┘
-proc fa_rand c
+proc fa_rand
 	rdrand	rax
 	ret
 endp

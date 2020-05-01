@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			xmm0 = rad output	│
 ;└──────────────────────────────┘
-proc fa_deg2rad c
+proc fa_deg2rad
 	locals
 		pi			dq M_PI
 		divisor		dq 180.000

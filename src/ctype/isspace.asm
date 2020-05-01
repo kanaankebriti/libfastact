@@ -22,7 +22,7 @@
 ;│			rax = 0	if c is not a white-space	│
 ;│			rax = number if c is a white-space	│
 ;└──────────────────────────────────────────────┘
-proc fa_isspace c
+proc fa_isspace
 	xor ax,ax
 	cmp cx,0x20		; SPC
 	je @F

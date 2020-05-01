@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			rax = length of	str	│
 ;└──────────────────────────────┘
-proc fa_strlen c
+proc fa_strlen
 	mov rax,-16D
 	mov rdx,rcx
 	pxor xmm0,xmm0

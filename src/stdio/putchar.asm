@@ -21,7 +21,7 @@
 ;│ output:									│
 ;│			rax = (unsigned short int) char	│
 ;└──────────────────────────────────────────┘
-proc fa_putchar c
+proc fa_putchar
 	locals
 		temp_char db ?
 	endl

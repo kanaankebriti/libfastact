@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			xmm0 = sin(number)	│
 ;└──────────────────────────────┘
-proc fa_sin c
+proc fa_sin
 	locals
 		temp_result dq ?
 	endl

@@ -22,7 +22,7 @@
 ;│			rax = 0	if c is not lowercase	│
 ;│			rax = number if c is lowercase	│
 ;└──────────────────────────────────────────┘
-proc fa_islower c
+proc fa_islower
 	xor ax,ax
 	cmp cx,'z'
 	cmovbe ax,cx

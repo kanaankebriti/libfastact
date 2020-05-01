@@ -24,7 +24,7 @@
 ;│ output:											│
 ;│			rax = *destination_str					│
 ;└──────────────────────────────────────────────────┘
-proc fa_memset c uses rdi r9
+proc fa_memset uses rdi r9
 	mov r9,rcx	; save *destination_str
 	mov	rdi,rcx	; set destination_str
 	mov	rcx,r8	; set size

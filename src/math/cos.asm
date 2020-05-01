@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			xmm0 = cos(number)	│
 ;└──────────────────────────────┘
-proc fa_cos c
+proc fa_cos
 	locals
 		temp_result dq ?
 	endl

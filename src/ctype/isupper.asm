@@ -22,7 +22,7 @@
 ;│			rax = 0	if c is not uppercase	│
 ;│			rax = number if c is uppercase	│
 ;└──────────────────────────────────────────┘
-proc fa_isupper c
+proc fa_isupper
 	xor ax,ax
 	cmp cx,'Z'
 	cmovbe ax,cx

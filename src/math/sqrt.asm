@@ -23,7 +23,7 @@
 ;│			or if number < 0	|
 ;│			xmm0 = number		│
 ;└──────────────────────────────┘
-proc fa_sqrt c
+proc fa_sqrt
 	pxor	xmm1,xmm1		; xmm1 = 0
 	comisd	xmm0,xmm1		; cehck for negative input. xmm0 < 0
 	jb		negative_sqrt

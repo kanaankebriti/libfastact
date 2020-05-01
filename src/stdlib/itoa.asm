@@ -22,7 +22,7 @@
 ;│ output:						│
 ;│			NaN					│
 ;└──────────────────────────────┘
-proc fa_itoa c uses rdi rbx r9 r10
+proc fa_itoa uses rdi rbx r9 r10
 	; max 64bit unsigned int = 9,223,372,036,854,775,807
 	; this number has 19 digits
 

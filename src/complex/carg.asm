@@ -21,7 +21,7 @@
 ;│ output:											 │
 ;│			rax = arg(number)						 │
 ;└───────────────────────────────────────────────────┘
-proc fa_carg c
+proc fa_carg
 	fld	QWORD [rcx]		; xmm0 = real
 	fld	QWORD [rcx+8]	; xmm1 = img
 	fpatan

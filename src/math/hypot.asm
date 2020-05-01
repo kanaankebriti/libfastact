@@ -23,7 +23,7 @@
 ;│ output:									│
 ;│			xmm0 = sqrt(x^2 + y^2)			│
 ;└──────────────────────────────────────────┘
-proc fa_hypot c
+proc fa_hypot
 	mulsd xmm0,xmm0 ; x^2
 	mulsd xmm1,xmm1 ; y^2
 	addsd xmm0,xmm1 ; x^2 + y^2

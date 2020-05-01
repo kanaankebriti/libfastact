@@ -21,7 +21,7 @@
 ;│ output:				│
 ;│			rax = 10^n	│
 ;└──────────────────────┘
-proc fa_pow10 c uses rbx
+proc fa_pow10 uses rbx
 	; based on fact that 10^n = 2^n * 5^n
 	mov ebx,5D		; for 5^n loop
 	xor eax,eax		; rax = 0

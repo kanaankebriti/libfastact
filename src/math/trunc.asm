@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			rax = trunc(number)	│
 ;└──────────────────────────────┘
-proc fa_trunc c
+proc fa_trunc
 	locals
 		input_double dq ?
 	endl

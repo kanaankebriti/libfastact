@@ -21,7 +21,7 @@
 ;│ output:										│
 ;│			rax = abs(number)					│
 ;└──────────────────────────────────────────────┘
-proc fa_abs c
+proc fa_abs
 	mov		rax,rcx ; store rcx in rax
 	neg		rax
 	cmovl	rax,rcx ; if rax is now negative, restore its saved value

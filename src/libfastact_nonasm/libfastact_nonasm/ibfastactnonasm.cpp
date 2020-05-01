@@ -18,6 +18,7 @@
 #define D3DFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
 #include <d3d9.h>
+#include <DirectXMath.h>
 #include "libfastact.h"
 
 LPDIRECT3D9 d3d;            // the pointer to our Direct3D interface
@@ -27,7 +28,7 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 {
     return TRUE;
 }
-
+#include <iostream>
 /// <summary>returns *d3ddev</summary>
 extern "C" __declspec(dllexport) IDirect3DDevice9* fa_get_d3ddev(void)
 {

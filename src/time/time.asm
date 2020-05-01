@@ -21,7 +21,7 @@
 ;│ output:									│
 ;│			rax = unix time					│
 ;└──────────────────────────────────────────┘
-proc fa_time c
+proc fa_time
 	; get system time -> convert to file time -> convert to unix time
 	locals
 		system_time		SYSTEMTIME ?

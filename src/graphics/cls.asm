@@ -24,7 +24,7 @@
 ;│ output:								│
 ;│			NaN							│
 ;└──────────────────────────────────────┘
-proc fa_cls c uses rbx
+proc fa_cls uses rbx
 	locals
 		d3ddev		dq ?
 		rgb_input	db ?,?,?,0x00	;BGR

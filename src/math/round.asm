@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			rax = round(number)	│
 ;└──────────────────────────────┘
-proc fa_round c
+proc fa_round
 	cvtsd2si	rax, xmm0	;Convert Scalar Double-Precision Floating-Point Value to Quadword Integer With Sign Extension
 	ret
 endp

@@ -24,7 +24,7 @@
 ;│			rax = 0	the contents of both strings are equal											│
 ;│			rax > 0	the first character that does not match has a greater value in str1 than in str2│
 ;└──────────────────────────────────────────────────────────────────────────────────────────────────┘
-proc fa_strcmp c
+proc fa_strcmp
 	; Using __fastcall convention, ecx = string1, edx = string2
 	mov rax,rcx
 	sub rax,rdx	; eax = ecx - edx

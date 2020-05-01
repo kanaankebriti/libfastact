@@ -21,7 +21,7 @@
 ;│ output:											│
 ;│			rax = *ptr to the beginning of the block│
 ;└──────────────────────────────────────────────────┘
-proc fa_malloc c uses rcx
+proc fa_malloc uses rcx
 	;╔══════════════════════════╗
 	;║LPVOID VirtualAlloc(		║
 	;║ LPVOID lpAddress,		║

@@ -22,7 +22,7 @@
 ;│ output:							│
 ;│			NaN						│
 ;└──────────────────────────────────┘
-proc fa_exit c
+proc fa_exit
 	;╔═══════════════════╗
 	;║ void ExitProcess( ║
 	;║ UINT uExitCode	 ║
