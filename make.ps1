@@ -20,7 +20,7 @@ rm .\lib\*.*
 
 cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.dll .\lib
 cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.lib .\lib
-
+cp .\src\libfastact_nonasm\libfastact_nonasm\libfastactnonasm.h .\include\libfastactnonasm.h
 [string]$modulePath = ".\lib\libfastact.dll"
 [string]$machine = "x64"
 

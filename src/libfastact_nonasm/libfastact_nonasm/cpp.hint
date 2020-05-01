@@ -1,2 +1,0 @@
-#define LIBFASTACTNONASM_API __declspec(dllexport)
-#define LIBFASTACTNONASM_API __declspec(dllimport)

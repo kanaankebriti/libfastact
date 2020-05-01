@@ -1,19 +1,19 @@
 /*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-░This file is part of libfastasm.										░
+░ This file is part of libfastact.										░
 ░																		░
-░libfastasm is free software: you can redistribute it and/or modify		░
-░it under the terms of the GNU General Public License as published by	░
-░the Free Software Foundation, either version 3 of the License, or		░
-░(at your option) any later version.									░
+░ libfastact is free software: you can redistribute it and/or modify	░
+░ it under the terms of the GNU General Public License as published by	░
+░ the Free Software Foundation, either version 3 of the License, or		░
+░ (at your option) any later version.									░
 ░																		░
-░libfastasm is distributed in the hope that it will be useful,			░
-░but WITHOUT ANY WARRANTY; without even the implied warranty of			░
-░MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the			░
-░GNU General Public License for more details.							░
+░ libfastact is distributed in the hope that it will be useful,			░
+░ but WITHOUT ANY WARRANTY; without even the implied warranty of		░
+░ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the			░
+░ GNU General Public License for more details.							░
 ░																		░
-░You should have received a copy of the GNU General Public License		░
-░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
+░ You should have received a copy of the GNU General Public License		░
+░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #ifndef _LIBFASTASM
 
 #include <Windows.h>
@@ -50,14 +50,9 @@ extern "C"
 	// graphics
 	HWND					fa_createwindow(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
-	void					fa_cls(IDirect3DDevice9* d3ddev, unsigned short int _R, unsigned short int _G, unsigned short int _B);
+	void					fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>ends draw to screen</summary>
 	void					fa_enddraw(IDirect3DDevice9* d3ddev);
-	/// <summary>draws a 2d line with color RGB</summary>
-	void					fa_line(IDirect3DDevice9* d3ddev,unsigned int _x1, unsigned int _y1, unsigned int _x2, unsigned int _y2, unsigned short int _r, unsigned short int _g, unsigned short int _b);
-	//int						fa_pollevent(void);
-	/// <summary>draws a 2d pixel with color RGB</summary>
-	void					fa_pset(IDirect3DDevice9* _d3ddev, IDirect3DVertexBuffer9* vertex_buffer);
 	/// <summary>begins draw to screen</summary>
 	void					fa_startdraw(IDirect3DDevice9* d3ddev);
 

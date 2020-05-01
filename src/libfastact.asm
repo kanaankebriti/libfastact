@@ -1,18 +1,18 @@
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;░This file is part of libfastasm.										░
+;░ This file is part of libfastact.										░
 ;░																		░
-;░libfastasm is free software: you can redistribute it and/or modify	░
-;░it under the terms of the GNU General Public License as published by	░
-;░the Free Software Foundation, either version 3 of the License, or		░
-;░(at your option) any later version.									░
+;░ libfastact is free software: you can redistribute it and/or modify	░
+;░ it under the terms of the GNU General Public License as published by	░
+;░ the Free Software Foundation, either version 3 of the License, or	░
+;░ (at your option) any later version.									░
 ;░																		░
-;░libfastasm is distributed in the hope that it will be useful,			░
-;░but WITHOUT ANY WARRANTY; without even the implied warranty of		░
-;░MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the			░
-;░GNU General Public License for more details.							░
+;░ libfastact is distributed in the hope that it will be useful,		░
+;░ but WITHOUT ANY WARRANTY; without even the implied warranty of		░
+;░ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the			░
+;░ GNU General Public License for more details.							░
 ;░																		░
-;░You should have received a copy of the GNU General Public License		░
-;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
+;░ You should have received a copy of the GNU General Public License	░
+;░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 format PE64 DLL
 
@@ -32,7 +32,7 @@ section '.idata' import data readable writeable
 			gdi32,'GDI32.DLL',\
 			ntdll,'NTDLL.DLL',\
 			d3d9,'D3D9.DLL',\
-			fastact_nonasm,'libfastact_nonasm.dll'
+			fastact_nonasm,'libfastactnonasm.dll'
 
 	include	'include\api\kernel32.inc'
 	include	'include\api\user32.inc'
@@ -43,6 +43,9 @@ section '.idata' import data readable writeable
 	import	d3d9,\
 			Direct3DCreate9,'Direct3DCreate9'
 	import	fastact_nonasm,\
+			fa_get_d3ddev,'fa_get_d3ddev',\
+			fa_initgraphics,'fa_initgraphics',\
+			fa_line,'fa_line',\
 			fa_pset,'fa_pset'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.data' data readable writeable
@@ -67,7 +70,6 @@ section '.edata' export data readable
 			fa_createwindow,'fa_createwindow',\
 			fa_cls,'fa_cls',\
 			fa_enddraw,'fa_enddraw',\
-			fa_line,'fa_line',\
 			fa_startdraw,'fa_startdraw',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
@@ -119,7 +121,6 @@ include 'ctype/isupper.asm'
 include 'graphics/createwindow.asm'
 include 'graphics/cls.asm'
 include 'graphics/enddraw.asm'
-include 'graphics/line.asm'
 include 'graphics/startdraw.asm'
 
 ; math
