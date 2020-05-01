@@ -34,7 +34,7 @@ proc fa_strcmp c
 		add		rdx,16
 		movdqu	xmm0,dqword[rdx]
 		; find the first *different* bytes, hence negative polarity
-		pcmpistri xmm0, dqword[rdx + rax], fa_EQUAL_EACH + fa_NEGATIVE_POLARITY
+		pcmpistri xmm0, dqword[rdx + rax], EQUAL_EACH + NEGATIVE_POLARITY
 		ja @B
 
 	jc fa_strcmp_diff

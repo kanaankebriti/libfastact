@@ -14,6 +14,15 @@
 ;░You should have received a copy of the GNU General Public License		░
 ;░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-proc fa_pset c
+;┌──────────────────────────────────────┐
+;│ draws a 2d pixel with color RGB		|
+;│ input:								│
+;│			rcx = IDirect3DDevice9* dev	│
+;│ output:								│
+;│			NaN							│
+;└──────────────────────────────────────┘
+
+proc c fa_pset
+	call [_pset]
 	ret
 endp

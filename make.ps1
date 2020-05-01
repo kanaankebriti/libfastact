@@ -14,9 +14,14 @@
 #░You should have received a copy of the GNU General Public License		░
 #░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 #░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-.\FASM.EXE .\src\libfastasm.asm .\lib\libfastasm.dll
+rm .\lib\*.*
 
-[string]$modulePath = ".\lib\libfastasm.dll"
+.\FASM.EXE .\src\libfastact.asm .\lib\libfastact.dll
+
+cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.dll .\lib
+cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.lib .\lib
+
+[string]$modulePath = ".\lib\libfastact.dll"
 [string]$machine = "x64"
 
 if(!(Test-Path $modulePath -PathType Leaf))

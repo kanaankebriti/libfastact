@@ -23,7 +23,7 @@
 ;└──────────────────────────────┘
 proc fa_deg2rad c
 	locals
-		pi			dq fa_M_PI
+		pi			dq M_PI
 		divisor		dq 180.000
 	endl
 	divsd	xmm0,[divisor]

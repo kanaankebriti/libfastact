@@ -27,8 +27,8 @@ proc fa_strlen c
 	pxor xmm0,xmm0
 	@@:
     	add rax,16D										; read 8 chars
-    	pcmpistri xmm0,dqword[rax + rdx],fa_EQUAL_EACH	; find zero in address [rdx + r8] if any
-    	jnz @B								; or try again in next loop
+    	pcmpistri xmm0,dqword[rax + rdx],EQUAL_EACH		; find zero in address [rdx + r8] if any
+    	jnz @B											; or try again in next loop
 	add rax,rcx
 	ret
 endp

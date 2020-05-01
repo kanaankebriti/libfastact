@@ -19,7 +19,7 @@ format PE64 DLL
 entry DllEntryPoint
 
 include 'include/win64a.inc'
-include 'include/libfastasm.inc'
+include 'include/libfastact.inc'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.reloc' fixups data readable discardable
   if $=$$
@@ -31,7 +31,8 @@ section '.idata' import data readable writeable
 			user32,'USER32.DLL',\
 			gdi32,'GDI32.DLL',\
 			ntdll,'NTDLL.DLL',\
-			d3d9,'D3D9.DLL'
+			d3d9,'D3D9.DLL',\
+			fastact_nonasm,'libfastact_nonasm.dll'
 
 	include	'include\api\kernel32.inc'
 	include	'include\api\user32.inc'
@@ -41,6 +42,8 @@ section '.idata' import data readable writeable
 			RtlTimeToSecondsSince1970,'RtlTimeToSecondsSince1970'
 	import	d3d9,\
 			Direct3DCreate9,'Direct3DCreate9'
+	import	fastact_nonasm,\
+			fa_pset,'fa_pset'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.data' data readable writeable
 	_main_window_class WNDCLASSEX sizeof.WNDCLASSEX,0,WindowProc,0,0,?,?,?,?,?,_class,?
@@ -64,7 +67,7 @@ section '.edata' export data readable
 			fa_createwindow,'fa_createwindow',\
 			fa_cls,'fa_cls',\
 			fa_enddraw,'fa_enddraw',\
-			fa_pset,'fa_pset',\
+			fa_line,'fa_line',\
 			fa_startdraw,'fa_startdraw',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
@@ -116,7 +119,7 @@ include 'ctype/isupper.asm'
 include 'graphics/createwindow.asm'
 include 'graphics/cls.asm'
 include 'graphics/enddraw.asm'
-include 'graphics/pset.asm'
+include 'graphics/line.asm'
 include 'graphics/startdraw.asm'
 
 ; math

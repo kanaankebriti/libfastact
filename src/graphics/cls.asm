@@ -17,7 +17,7 @@
 
 ;┌──────────────────────────────────────┐
 ;│ clears entire viewport rectangle		│
-;│ and fill it with RGB color			│
+;│ and fill it with RGB					│
 ;│ input:								│
 ;│			rcx = IDirect3DDevice9* dev	│
 ;│			rdx = R						│
@@ -26,16 +26,15 @@
 ;│ output:								│
 ;│			NaN							│
 ;└──────────────────────────────────────┘
-proc fa_cls c
+proc fa_cls c uses rbx
 	locals
 		d3ddev		dq ?
 		rgb_input	db ?,?,?,0x00	;BGR
 	endl
 
 	; get d3ddev pointer
-	mov	[d3ddev],rcx
-	mov	rax, QWORD [d3ddev]
-	mov	rax, QWORD [rax]
+	lea	rbx,[rcx]
+	mov	rax,QWORD [rbx]
 
 	; get RGB color
 	mov [rgb_input],r9l
@@ -43,6 +42,6 @@ proc fa_cls c
 	mov [rgb_input+2],dl
 	mov r10d,DWORD [rgb_input]
 
-	fastcall QWORD [rax+IDirect3DDevice9_Clear],QWORD [d3ddev],0,0,1,r10d,float DWORD 1.0,DWORD 0
+	fastcall QWORD [rax+IDirect3DDevice9_Clear],rbx,0,0,1,r10d,float DWORD 1.0,DWORD 0
 	ret
 endp

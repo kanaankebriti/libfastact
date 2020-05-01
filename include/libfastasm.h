@@ -18,7 +18,6 @@
 
 #include <Windows.h>
 #include <d3d9.h>
-
 typedef struct fa_complex
 {
 	double _Val[2];
@@ -54,8 +53,11 @@ extern "C"
 	void					fa_cls(IDirect3DDevice9* d3ddev, unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>ends draw to screen</summary>
 	void					fa_enddraw(IDirect3DDevice9* d3ddev);
+	/// <summary>draws a 2d line with color RGB</summary>
+	void					fa_line(IDirect3DDevice9* d3ddev,unsigned int _x1, unsigned int _y1, unsigned int _x2, unsigned int _y2, unsigned short int _r, unsigned short int _g, unsigned short int _b);
 	//int						fa_pollevent(void);
-	void					fa_pset(void);
+	/// <summary>draws a 2d pixel with color RGB</summary>
+	void					fa_pset(IDirect3DDevice9* _d3ddev, IDirect3DVertexBuffer9* vertex_buffer);
 	/// <summary>begins draw to screen</summary>
 	void					fa_startdraw(IDirect3DDevice9* d3ddev);
 
@@ -82,7 +84,7 @@ extern "C"
 	/// <summary>convert string to unsigned integer</summary>
 	unsigned int			fa_atoui(const char* _Source);
 	/// <summary>exit the program</summary>
-	long long int			fa_exit(unsigned short int _Status);
+	long long int*			fa_exit(unsigned short int _Status);
 	/// <summary>converts float to ascii</summary>
 	void					fa_ftoa(double _Value, char* _Destination);
 	/// <summary>converts integer to ascii</summary>
