@@ -43,7 +43,9 @@ section '.idata' import data readable writeable
 	import	d3d9,\
 			Direct3DCreate9,'Direct3DCreate9'
 	import	fastact_nonasm,\
+			fa_begindraw,'fa_begindraw',\
 			fa_get_d3ddev,'fa_get_d3ddev',\
+			fa_enddraw,'fa_enddraw',\
 			fa_initgraphics,'fa_initgraphics',\
 			fa_line,'fa_line',\
 			fa_pset,'fa_pset'
@@ -69,8 +71,6 @@ section '.edata' export data readable
 			fa_isupper,'fa_isupper',\
 			fa_createwindow,'fa_createwindow',\
 			fa_cls,'fa_cls',\
-			fa_enddraw,'fa_enddraw',\
-			fa_startdraw,'fa_startdraw',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -120,8 +120,6 @@ include 'ctype/isupper.asm'
 ; graphics
 include 'graphics/createwindow.asm'
 include 'graphics/cls.asm'
-include 'graphics/enddraw.asm'
-include 'graphics/startdraw.asm'
 
 ; math
 include 'math/abs.asm'

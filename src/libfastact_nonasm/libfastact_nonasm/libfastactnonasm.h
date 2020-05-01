@@ -23,8 +23,12 @@ extern "C"
 {
 #endif
 	// graphics
+	/// <summary>begins draw to screen</summary>
+	void fa_begindraw();
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
+	/// <summary>ends draw to screen</summary>
+	void fa_enddraw();
 	/// <summary>returns *d3ddev</summary>
 	IDirect3DDevice9* fa_get_d3ddev(void);
 	/// <summary>initializes and prepares Direct3D</summary>
@@ -32,7 +36,7 @@ extern "C"
 	/// <summary>draws a 2d line with color RGB</summary>
 	void fa_line(void);
 	/// <summary>draws a 2d pixel with color RGB</summary>
-	void fa_pset(void);
+	void fa_pset(int _X, int _Y, int _R, int _B, int _G);
 	/// <summary>main rendering function</summary>
 	void fa_render(void);
 #ifdef __cplusplus

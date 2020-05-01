@@ -65,8 +65,20 @@ extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
         &d3ddev);
 }
 
+/// <summary>begins draw to screen</summary>
+extern "C" __declspec(dllexport) void fa_begindraw()
+{
+    d3ddev->BeginScene();
+}
+
+/// <summary>ends draw to screen</summary>
+extern "C" __declspec(dllexport) void fa_enddraw()
+{
+    d3ddev->EndScene();
+}
+
 /// <summary>draws a 2d pixel with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_pset()
+extern "C" __declspec(dllexport) void fa_pset(int _x, int _y, int _r, int _b, int _g)
 {
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
@@ -75,7 +87,7 @@ extern "C" __declspec(dllexport) void fa_pset()
         FLOAT x, y, z, rhw; // from the D3DFVF_XYZRHW flag
         BYTE b, g, r;       // from the D3DFVF_DIFFUSE flag
     };
-    VERTEX p1 = { 10,10,0,1, 255,255,255 };
+    VERTEX p1 = { _x,_y,0,1, _r,_b,_g };
 
     d3ddev->CreateVertexBuffer(sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
 

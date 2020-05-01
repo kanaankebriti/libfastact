@@ -51,10 +51,6 @@ extern "C"
 	HWND					fa_createwindow(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void					fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
-	/// <summary>ends draw to screen</summary>
-	void					fa_enddraw(IDirect3DDevice9* d3ddev);
-	/// <summary>begins draw to screen</summary>
-	void					fa_startdraw(IDirect3DDevice9* d3ddev);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);
