@@ -1,5 +1,5 @@
-# libfastasm
-an attempt to write most commonly used functions (specifically cstdlib funtions) in modern AMD64 assembly using FASM
+# libfastact
+an attempt to write most commonly used functions (specifically cstdlib funtions) in modern AMD64 assembly using FASM, plus minimal c++ code.
 
 this library only supports windows NT x64
 
