@@ -99,3 +99,30 @@ extern "C" __declspec(dllexport) void fa_pset(int _x, int _y, int _r, int _b, in
     d3ddev->SetStreamSource(0, vertex_buffer, 0, sizeof(VERTEX));
     d3ddev->DrawPrimitive(D3DPT_POINTLIST, 0, 1);
 }
+
+/// <summary>draws a 2d pixel with color RGB</summary>
+extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2, int _r, int _b, int _g)
+{
+    LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
+
+    struct VERTEX
+    {
+        FLOAT x, y, z, rhw; // from the D3DFVF_XYZRHW flag
+        BYTE b, g, r;       // from the D3DFVF_DIFFUSE flag
+    };
+    VERTEX vertices[] =
+    {
+        { _x1, _y1, 0.5f, 1.0f, _r, _b, _g },
+        { _x2, _y2, 0.5f, 1.0f, _r, _b, _g},
+    };
+
+    d3ddev->CreateVertexBuffer(2*sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
+
+    void* pVoid;                                            // the void pointer
+    vertex_buffer->Lock(0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    memcpy(pVoid,vertices, sizeof(vertices));           // copy the vertices to the locked buffer
+    vertex_buffer->Unlock();// unlock the vertex buffer
+    d3ddev->SetFVF(D3DFVF);
+    d3ddev->SetStreamSource(0, vertex_buffer, 0, sizeof(VERTEX));
+    d3ddev->DrawPrimitive(D3DPT_LINESTRIP, 0, 1);
+}

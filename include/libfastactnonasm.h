@@ -34,7 +34,7 @@ extern "C"
 	/// <summary>initializes and prepares Direct3D</summary>
 	void fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
-	void fa_line(void);
+	void fa_line(float _X1, float _Y1, float _X2, float _Y2, int _R, int _B, int _G);
 	/// <summary>draws a 2d pixel with color RGB</summary>
 	void fa_pset(int _X, int _Y, int _R, int _B, int _G);
 	/// <summary>main rendering function</summary>
