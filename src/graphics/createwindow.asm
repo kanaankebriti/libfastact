@@ -14,7 +14,20 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-proc fa_createwindow
+;┌──────────────────────────────────┐
+;│ creates then opens a new window	│
+;│ input:							│
+;│			rcx = *title			│
+;│			rdx = width				│
+;│			r9 = height				│
+;│ output:							│
+;│			NaN						│
+;└──────────────────────────────────┘
+proc fa_createwindow uses rbx r10 r11
+
+	mov	rbx,rcx		; store *title
+	mov r10,rdx		; store width
+	mov r11,r9		; store height
 	;┌───────────────┐
 	;│ set hInstance │
 	;└───────────────┘
@@ -36,10 +49,10 @@ proc fa_createwindow
 	;║ LPCSTR    lpIconName	║
 	;║ );					║
 	;╚══════════════════════╝
-	xor		ecx,ecx
-	mov		rdx,IDI_HAND
-	call	[LoadIcon]
-	mov		[_main_window_class.hIcon],rax
+	;xor		ecx,ecx
+	;mov		rdx,IDI_HAND
+	;call	[LoadIcon]
+	;mov		[_main_window_class.hIcon],rax
 
 	;┌────────────┐
 	;│ set crusor │
@@ -50,10 +63,10 @@ proc fa_createwindow
 	;║ LPCSTR    lpCursorName	║
 	;║ );						║
 	;╚══════════════════════════╝
-	xor		ecx,ecx
-	mov		rdx,IDC_WAIT
-	call	[LoadCursorA]
-	mov		[_main_window_class.hCursor],rax
+	;xor		ecx,ecx
+	;mov		rdx,IDC_WAIT
+	;call	[LoadCursorA]
+	;mov		[_main_window_class.hCursor],rax
 
 	;┌───────────────────────┐
 	;│ set window background │
@@ -91,7 +104,7 @@ proc fa_createwindow
 	;║ LPVOID lpParam		║
 	;║ );					║
 	;╚══════════════════════╝
-	invoke  CreateWindowEx,0,_class,_window_title,WS_VISIBLE+WS_OVERLAPPEDWINDOW,16,16,800,600,NULL,NULL,[_main_window_class.hInstance],NULL
+	invoke  CreateWindowEx,0,_class,rbx,WS_VISIBLE+WS_OVERLAPPEDWINDOW,16,16,r10,r11,NULL,NULL,[_main_window_class.hInstance],NULL
 	mov		[hwnd],rax
 	ret
 endp

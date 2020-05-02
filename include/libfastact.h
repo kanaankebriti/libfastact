@@ -48,7 +48,8 @@ extern "C"
 	short int				fa_isupper(unsigned short int _Character);
 
 	// graphics
-	HWND					fa_createwindow(void);
+	/// <summary>creates then opens a new window</summary>
+	HWND					fa_createwindow(const char* _WindowName, unsigned int _Width, unsigned int _Height);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void					fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 
