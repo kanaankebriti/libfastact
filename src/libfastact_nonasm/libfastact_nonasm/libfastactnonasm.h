@@ -25,6 +25,8 @@ extern "C"
 	// graphics
 	/// <summary>begins draw to screen</summary>
 	void fa_begindraw();
+	/// <summary>draws a circle based on center location and radius and color RGB</summary>
+	void fa_circle(int _xCenter, int _yCenter, int _Radius, unsigned short int _R, unsigned short int _B, unsigned short int _G);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
 	/// <summary>ends draw to screen</summary>
@@ -34,7 +36,7 @@ extern "C"
 	/// <summary>initializes and prepares Direct3D</summary>
 	void fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
-	void fa_line(float _X1, float _Y1, float _X2, float _Y2, int _R, int _B, int _G);
+	void fa_line(float _X1, float _Y1, float _X2, float _Y2, unsigned short int _R, unsigned short int _B, unsigned short int _G);
 	/// <summary>draws a 2d pixel with color RGB</summary>
 	void fa_pset(int _X, int _Y, int _R, int _B, int _G);
 	/// <summary>main rendering function</summary>

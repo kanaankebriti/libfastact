@@ -18,11 +18,16 @@
 #define D3DFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 
 #include <d3d9.h>
-#include <DirectXMath.h>
 #include "libfastact.h"
 
 LPDIRECT3D9 d3d;            // the pointer to our Direct3D interface
 LPDIRECT3DDEVICE9 d3ddev;   // the pointer to the device class
+
+struct VERTEX
+{
+    FLOAT x, y, z, rhw; // from the D3DFVF_XYZRHW flag
+    DWORD color;       // from the D3DFVF_DIFFUSE flag
+};
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
@@ -102,19 +107,14 @@ extern "C" __declspec(dllexport) void fa_pset(int _x, int _y, int _r, int _b, in
 }
 
 /// <summary>draws a 2d pixel with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2, int _r, int _b, int _g)
+extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2, unsigned short int _r, unsigned short int _b, unsigned short int _g)
 {
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
-    struct VERTEX
-    {
-        FLOAT x, y, z, rhw; // from the D3DFVF_XYZRHW flag
-        BYTE b, g, r;       // from the D3DFVF_DIFFUSE flag
-    };
     VERTEX vertices[] =
     {
-        { _x1, _y1, 0.5f, 1.0f, _r, _b, _g },
-        { _x2, _y2, 0.5f, 1.0f, _r, _b, _g},
+        { _x1, _y1, 0.5f, 1.0f, D3DCOLOR_XRGB(_r, _b, _g) },
+        { _x2, _y2, 0.5f, 1.0f, D3DCOLOR_XRGB(_r, _b, _g)},
     };
 
     d3ddev->CreateVertexBuffer(2*sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
@@ -126,4 +126,109 @@ extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, f
     d3ddev->SetFVF(D3DFVF);
     d3ddev->SetStreamSource(0, vertex_buffer, 0, sizeof(VERTEX));
     d3ddev->DrawPrimitive(D3DPT_LINESTRIP, 0, 1);
+}
+
+extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nRadius, unsigned short int _r, unsigned short int _b, unsigned short int _g)
+{
+    VERTEX* pVertices = new VERTEX[2 * 3.141592653 * nRadius];
+
+    //Bresenham algorithm
+    int x = 0, y = nRadius, d = 1 - nRadius, i = 0;
+
+    while (x <= y)
+    {
+        //get eight points
+        //(x,y)
+        pVertices[i].x = x + xCenter;
+        pVertices[i].y = y + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(x,-y)
+        ++i;
+        pVertices[i].x = x + xCenter;
+        pVertices[i].y = -y + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(-x, y)
+        ++i;
+        pVertices[i].x = -x + xCenter;
+        pVertices[i].y = y + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(-x, -y)
+        ++i;
+        pVertices[i].x = -x + xCenter;
+        pVertices[i].y = -y + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(y, x)
+        ++i;
+        pVertices[i].x = y + xCenter;
+        pVertices[i].y = x + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(-y, x)
+        ++i;
+        pVertices[i].x = -y + xCenter;
+        pVertices[i].y = x + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(y, -x)
+        ++i;
+        pVertices[i].x = y + xCenter;
+        pVertices[i].y = -x + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        //(-y,-x)
+        ++i;
+        pVertices[i].x = -y + xCenter;
+        pVertices[i].y = -x + yCenter;
+        pVertices[i].z = 0.5f;
+        pVertices[i].rhw = 1.0f;
+        pVertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
+
+        ++i;
+        if (d > 0)
+        {
+            d += 2 * (x - y) + 5;
+            --y;
+        }
+        else
+        {
+            d += 2 * x + 3;
+        }
+        ++x;
+    }
+    d3ddev->SetRenderState(D3DRS_ALPHABLENDENABLE, TRUE);
+    d3ddev->SetRenderState(D3DRS_SRCBLEND, D3DBLEND_SRCALPHA);
+    d3ddev->SetRenderState(D3DRS_DESTBLEND, D3DBLEND_INVSRCALPHA);
+    d3ddev->SetRenderState(D3DRS_ALPHATESTENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_SEPARATEALPHABLENDENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_BLENDOP, D3DBLENDOP_ADD);
+    d3ddev->SetRenderState(D3DRS_COLORWRITEENABLE, D3DCOLORWRITEENABLE_ALPHA | D3DCOLORWRITEENABLE_BLUE | D3DCOLORWRITEENABLE_GREEN | D3DCOLORWRITEENABLE_RED);
+    d3ddev->SetRenderState(D3DRS_SHADEMODE, D3DSHADE_GOURAUD);
+    d3ddev->SetRenderState(D3DRS_FOGENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+    d3ddev->SetRenderState(D3DRS_CULLMODE, D3DCULL_NONE);
+    d3ddev->SetTextureStageState(0, D3DTSS_COLOROP, D3DTOP_SELECTARG2);
+    d3ddev->SetTextureStageState(0, D3DTSS_COLORARG2, D3DTA_DIFFUSE);
+    d3ddev->SetTextureStageState(0, D3DTSS_ALPHAOP, D3DTOP_SELECTARG1);
+    d3ddev->SetTextureStageState(0, D3DTSS_ALPHAARG1, D3DTA_DIFFUSE);
+    d3ddev->SetFVF(D3DFVF);
+    d3ddev->DrawPrimitiveUP(D3DPT_POINTLIST, i, pVertices, sizeof(VERTEX));
+    delete[] pVertices;
 }
