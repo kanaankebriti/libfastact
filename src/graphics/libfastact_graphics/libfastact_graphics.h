@@ -1,4 +1,4 @@
-/*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+﻿/*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░ This file is part of libfastact.										░
 ░																		░
 ░ libfastact is free software: you can redistribute it and/or modify	░
@@ -29,6 +29,8 @@ extern "C"
 	void fa_circle(int _xCenter, int _yCenter, int _Radius, unsigned short int _R, unsigned short int _B, unsigned short int _G);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
+	/// <summary>clears entire viewport rectangle and sets background color</summary>
+	void fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>ends draw to screen</summary>
 	void fa_enddraw();
 	/// <summary>returns *d3ddev</summary>
@@ -38,7 +40,7 @@ extern "C"
 	/// <summary>draws a 2d line with color RGB</summary>
 	void fa_line(float _X1, float _Y1, float _X2, float _Y2, unsigned short int _R, unsigned short int _B, unsigned short int _G);
 	/// <summary>draws a 2d pixel with color RGB</summary>
-	void fa_pset(int _X, int _Y, int _R, int _B, int _G);
+	void fa_pset(float _X, float _Y, unsigned short int _R, unsigned short int _B, unsigned short int _G);
 	/// <summary>main rendering function</summary>
 	void fa_render(void);
 #ifdef __cplusplus

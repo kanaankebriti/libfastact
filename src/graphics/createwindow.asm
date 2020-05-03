@@ -49,10 +49,10 @@ proc fa_createwindow uses rbx r10 r11
 	;║ LPCSTR    lpIconName	║
 	;║ );					║
 	;╚══════════════════════╝
-	;xor		ecx,ecx
-	;mov		rdx,IDI_HAND
-	;call	[LoadIcon]
-	;mov		[_main_window_class.hIcon],rax
+	xor		ecx,ecx
+	mov		rdx,IDI_HAND
+	call	[LoadIcon]
+	mov		[_main_window_class.hIcon],rax
 
 	;┌────────────┐
 	;│ set crusor │
@@ -63,10 +63,10 @@ proc fa_createwindow uses rbx r10 r11
 	;║ LPCSTR    lpCursorName	║
 	;║ );						║
 	;╚══════════════════════════╝
-	;xor		ecx,ecx
-	;mov		rdx,IDC_WAIT
-	;call	[LoadCursorA]
-	;mov		[_main_window_class.hCursor],rax
+	xor		ecx,ecx
+	mov		rdx,IDC_ARROW
+	call	[LoadCursorA]
+	mov		[_main_window_class.hCursor],rax
 
 	;┌───────────────────────┐
 	;│ set window background │
@@ -81,7 +81,6 @@ proc fa_createwindow uses rbx r10 r11
 	;║ const WNDCLASSEXA *Arg1	║
 	;║ );						║
 	;╚══════════════════════════╝
-	;invoke	RegisterClassEx,_main_window_class
 	lea		rcx,[_main_window_class]
     call	[RegisterClassExA]
 

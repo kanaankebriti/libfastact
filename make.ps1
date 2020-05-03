@@ -18,9 +18,9 @@ rm .\lib\*.*
 
 .\FASM.EXE .\src\libfastact.asm .\lib\libfastact.dll
 
-cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.dll .\lib
-cp .\src\libfastact_nonasm\x64\Release\LIBFASTACTNONASM.lib .\lib
-cp .\src\libfastact_nonasm\libfastact_nonasm\libfastactnonasm.h .\include\libfastactnonasm.h
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.dll .\lib
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.lib .\lib
+cp .\src\graphics\libfastact_graphics\libfastact_graphics.h .\include\libfastact_graphics.h
 [string]$modulePath = ".\lib\libfastact.dll"
 [string]$machine = "x64"
 

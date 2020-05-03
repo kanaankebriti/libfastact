@@ -98,6 +98,7 @@ IDirect3DDevice9_BeginScene			equ 328
 IDirect3DDevice9_EndScene			equ 336
 IDirect3DDevice9_Clear				equ 344
 IDirect3DDevice9_DrawPrimitive		equ 648
+IDirect3DDevice9_DrawPrimitiveUP	equ 664
 IDirect3DDevice9_SetFVF				equ 712
 IDirect3DDevice9_SetStreamSource	equ 800
 
@@ -108,16 +109,6 @@ IDirect3DVertexBuffer9_Unlock		equ 96
 struct fa_complex
 	real	dq	?
 	img		dq	?
-ends
-
-struct fa_vertex
-	x	dd ?
-	y	dd ?
-	z	dd ?
-	rhw	dd ?
-    r	db ?
-	g	db ?
-	b	db ?
 ends
 
 struct IDirect3DVertexBuffer9

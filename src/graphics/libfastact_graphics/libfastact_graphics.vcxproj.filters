@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ibfastactnonasm.cpp">
+    <ClCompile Include="libfastact_graphics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libfastactnonasm.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="libfastact_graphics.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\libfastact.h">
-      <Filter>Resource Files</Filter>
+    <ClInclude Include="libfastact.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

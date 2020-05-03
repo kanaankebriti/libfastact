@@ -50,8 +50,6 @@ extern "C"
 	// graphics
 	/// <summary>creates then opens a new window</summary>
 	HWND					fa_createwindow(const char* _WindowName, unsigned int _Width, unsigned int _Height);
-	/// <summary>clears entire viewport rectangle and sets background color</summary>
-	void					fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);
