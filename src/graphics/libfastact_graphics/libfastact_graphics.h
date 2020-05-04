@@ -24,7 +24,7 @@ extern "C"
 #endif
 	// graphics
 	/// <summary>begins draw to screen</summary>
-	void fa_begindraw();
+	void fa_begindraw(void);
 	/// <summary>draws a circle based on center location and radius and color RGB</summary>
 	void fa_circle(int _xCenter, int _yCenter, int _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
