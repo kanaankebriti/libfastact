@@ -25,7 +25,7 @@ extern "C"
 	// graphics
 	/// <summary>begins draw to screen</summary>
 	void fa_begindraw(void);
-	/// <summary>draws a circle based on center location and radius and color RGB</summary>
+	/// <summary>draws a 2d circle based on center location and radius</summary>
 	void fa_circle(int _xCenter, int _yCenter, int _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
@@ -33,6 +33,8 @@ extern "C"
 	void fa_cls(void);
 	/// <summary>ends draw to screen</summary>
 	void fa_enddraw();
+	/// <summary>draws a 2d rectangle</summary>
+	void fa_rectangle(float _x1, float _y1, float _x2, float _y2);
 	/// <summary>returns *d3ddev</summary>
 	IDirect3DDevice9* fa_get_d3ddev(void);
 	/// <summary>initializes and prepares Direct3D</summary>

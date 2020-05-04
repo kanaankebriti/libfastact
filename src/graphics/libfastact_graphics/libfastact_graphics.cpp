@@ -48,7 +48,7 @@ extern "C" __declspec(dllexport) void fa_begindraw(void)
     IDirect3DDevice9_BeginScene(d3ddev);
 }
 
-/// <summary>draws a 2d circle with color specified in palette</summary>
+/// <summary>draws a 2d circle based on center location and radius</summary>
 extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nRadius)
 {
     VERTEX* vertices = new VERTEX[2 * 3.141592653 * nRadius];
@@ -151,6 +151,36 @@ extern "C" __declspec(dllexport) void fa_cls(void)
     IDirect3DDevice9_Clear(d3ddev, 0, 0, 1, bpalette, 1, 0);
 }
 
+/// <summary>draws a 2d rectangle</summary>
+extern "C" __declspec(dllexport) void fa_rectangle(float _x1, float _y1, float _x2, float _y2)
+{
+    void* pVoid; // the void pointer
+    LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
+
+    VERTEX vertices[] =
+    {   // top
+        { _x1, _y1, 0.5f, 1.0f, palette },
+        { _x2, _y1, 0.5f, 1.0f, palette },
+        // right
+        { _x2, _y1, 0.5f, 1.0f, palette },
+        { _x2, _y2, 0.5f, 1.0f, palette },
+        // bottom
+        { _x1, _y2, 0.5f, 1.0f, palette },
+        { _x2, _y2, 0.5f, 1.0f, palette },
+        // left
+        { _x1, _y1, 0.5f, 1.0f, palette },
+        { _x1, _y2, 0.5f, 1.0f, palette },
+    };
+
+    IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
+    vertex_buffer->Lock(0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
+    vertex_buffer->Unlock();                                        // unlock the vertex buffer
+    IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                        // select which vertex format we are using
+    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
+    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINELIST, 0, 4);                  // copy the vertex buffer to the back buffer
+}
+
 /// <summary>ends draw to screen</summary>
 extern "C" __declspec(dllexport) void fa_enddraw()
 {
@@ -172,7 +202,7 @@ extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
     d3dpp.Windowed = TRUE;                      // program windowed, not fullscreen
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;   // discard old frames
     d3dpp.hDeviceWindow = hWnd;                 // set the window to be used by Direct3D
-    // create a device class using this information and the info from the d3dpp stuct
+    // create a device class using this information and the info from the d3dpp struct
     d3d->CreateDevice(D3DADAPTER_DEFAULT,
         D3DDEVTYPE_HAL,
         hWnd,
@@ -193,7 +223,7 @@ extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, f
         { _x2, _y2, 0.5f, 1.0f, palette },
     };
 
-    IDirect3DDevice9_CreateVertexBuffer(d3ddev, 2 * sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
+    IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
     vertex_buffer->Lock(0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
     memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
     vertex_buffer->Unlock();                                        // unlock the vertex buffer

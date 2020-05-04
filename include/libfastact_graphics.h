@@ -24,23 +24,25 @@ extern "C"
 #endif
 	// graphics
 	/// <summary>begins draw to screen</summary>
-	void fa_begindraw();
-	/// <summary>draws a circle based on center location and radius and color RGB</summary>
+	void fa_begindraw(void);
+	/// <summary>draws a 2d circle based on center location and radius</summary>
 	void fa_circle(int _xCenter, int _yCenter, int _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void fa_cls(void);
-	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
-	void fa_outtextxy(float _X, float _Y, const char* _Txt);
 	/// <summary>ends draw to screen</summary>
 	void fa_enddraw();
+	/// <summary>draws a 2d rectangle</summary>
+	void fa_rectangle(float _x1, float _y1, float _x2, float _y2);
 	/// <summary>returns *d3ddev</summary>
 	IDirect3DDevice9* fa_get_d3ddev(void);
 	/// <summary>initializes and prepares Direct3D</summary>
 	void fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
 	void fa_line(float _X1, float _Y1, float _X2, float _Y2);
+	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+	void fa_outtextxy(float _X, float _Y, const char* _Txt);
 	/// <summary>sets palette color for backgound</summary>
 	void fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>
