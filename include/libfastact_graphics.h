@@ -31,6 +31,8 @@ extern "C"
 	void fa_closegraph(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void fa_cls(unsigned short int _R, unsigned short int _G, unsigned short int _B);
+	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+	void fa_outtextxy(float _X, float _Y, unsigned short int _R, unsigned short int _G, unsigned short int _B, const char* _Txt);
 	/// <summary>ends draw to screen</summary>
 	void fa_enddraw();
 	/// <summary>returns *d3ddev</summary>

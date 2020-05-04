@@ -16,9 +16,15 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #define WIN32_LEAN_AND_MEAN
 #define D3DFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
+#pragma comment(lib, "d3d9.lib")
+#pragma comment(lib, "d3dx9.lib")
+#pragma comment(lib, "libfastact.lib")
 
+#include <stdio.h>
 #include <d3d9.h>
+#include <d3dx9core.h>
 #include "libfastact.h"
+
 
 LPDIRECT3D9 d3d;            // the pointer to our Direct3D interface
 LPDIRECT3DDEVICE9 d3ddev;   // the pointer to the device class
@@ -107,6 +113,30 @@ extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, f
 extern "C" __declspec(dllexport) void fa_cls(unsigned short int _r, unsigned short int _b, unsigned short int _g)
 {
     d3ddev->Clear(0, 0, 1, D3DCOLOR_XRGB(_r, _b, _g), 1, 0);
+}
+
+/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y,unsigned short int _r, unsigned short int _g, unsigned short int _b, const char* txt)
+{
+    // set font up
+    LPD3DXFONT font;
+    D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);
+    
+    // set rectangle
+    RECT FontRect;
+
+    // get text width
+    unsigned long long int string_length = fa_strlen(txt);
+    font->DrawText(NULL, LPCWSTR(txt), string_length, &FontRect, DT_CALCRECT, D3DCOLOR_XRGB(_r, _g, _b));
+
+    // set rectangle up
+    FontRect.left = _x;
+    FontRect.top = _y;
+    FontRect.bottom = _y + 16;
+    --(FontRect.right);
+
+    // draw final text
+    font->DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, D3DCOLOR_XRGB(_r, _g, _b));
 }
 
 /// <summary>draws a 2d pixel with color RGB</summary>
