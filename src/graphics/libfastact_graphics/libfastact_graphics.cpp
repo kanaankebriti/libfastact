@@ -26,8 +26,10 @@
 #include "libfastact.h"
 
 
-LPDIRECT3D9 d3d;            // the pointer to our Direct3D interface
-LPDIRECT3DDEVICE9 d3ddev;   // the pointer to the device class
+LPDIRECT3D9 d3d;                                // the pointer to our Direct3D interface
+LPDIRECT3DDEVICE9 d3ddev;                       // the pointer to the device class
+DWORD palette = D3DCOLOR_XRGB(255, 255, 255);   // palette color for text, graphics
+DWORD bpalette = D3DCOLOR_XRGB(0, 0, 0);        // palette color for text, graphics
 
 struct VERTEX
 {
@@ -40,16 +42,99 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
     return TRUE;
 }
 
-/// <summary>returns *d3ddev</summary>
-extern "C" __declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(void)
+/// <summary>begins draw to screen</summary>
+extern "C" __declspec(dllexport) void fa_begindraw()
 {
-    return d3ddev;
+    d3ddev->BeginScene();
 }
 
-/// <summary>main rendering function</summary>
-extern "C" __declspec(dllexport) void fa_render(void)
+/// <summary>draws a 2d circle with color specified in palette</summary>
+extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nRadius)
 {
-    d3ddev->Present(NULL, NULL, NULL, NULL);
+    VERTEX* vertices = new VERTEX[2 * 3.141592653 * nRadius];
+
+    //Bresenham algorithm
+    int x = 0, y = nRadius, d = 1 - nRadius, i = 0;
+
+    while (x <= y)
+    {
+        //get eight points
+        //(x,y)
+        vertices[i].x = x + xCenter;
+        vertices[i].y = y + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(x,-y)
+        ++i;
+        vertices[i].x = x + xCenter;
+        vertices[i].y = -y + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(-x,y)
+        ++i;
+        vertices[i].x = -x + xCenter;
+        vertices[i].y = y + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(-x,-y)
+        ++i;
+        vertices[i].x = -x + xCenter;
+        vertices[i].y = -y + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(y,x)
+        ++i;
+        vertices[i].x = y + xCenter;
+        vertices[i].y = x + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(-y,x)
+        ++i;
+        vertices[i].x = -y + xCenter;
+        vertices[i].y = x + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(y,-x)
+        ++i;
+        vertices[i].x = y + xCenter;
+        vertices[i].y = -x + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        //(-y,-x)
+        ++i;
+        vertices[i].x = -y + xCenter;
+        vertices[i].y = -x + yCenter;
+        vertices[i].z = 0;
+        vertices[i].rhw = 1.0f;
+        vertices[i].color = palette;
+
+        ++i;
+        if (d > 0)
+        {
+            d += 2 * (x - y) + 5;
+            --y;
+        }
+        else
+            d += 2 * x + 3;
+        ++x;
+    }
+    d3ddev->SetFVF(D3DFVF);
+    d3ddev->DrawPrimitiveUP(D3DPT_POINTLIST, i, vertices, sizeof(VERTEX));
+    delete[] vertices;
 }
 
 /// <summary>cleans up Direct3D and COM</summary>
@@ -57,6 +142,23 @@ extern "C" __declspec(dllexport) void fa_closegraph(void)
 {
     d3ddev->Release();  // close and release the 3D device
     d3d->Release();     // close and release Direct3D
+}
+
+extern "C" __declspec(dllexport) void fa_cls(void)
+{
+    d3ddev->Clear(0, 0, 1, bpalette, 1, 0);
+}
+
+/// <summary>ends draw to screen</summary>
+extern "C" __declspec(dllexport) void fa_enddraw()
+{
+    d3ddev->EndScene();
+}
+
+/// <summary>returns *d3ddev</summary>
+extern "C" __declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(void)
+{
+    return d3ddev;
 }
 
 /// <summary>initializes and prepares Direct3D</summary>
@@ -77,28 +179,16 @@ extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
         &d3ddev);
 }
 
-/// <summary>begins draw to screen</summary>
-extern "C" __declspec(dllexport) void fa_begindraw()
-{
-    d3ddev->BeginScene();
-}
-
-/// <summary>ends draw to screen</summary>
-extern "C" __declspec(dllexport) void fa_enddraw()
-{
-    d3ddev->EndScene();
-}
-
 /// <summary>draws a 2d pixel with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2, unsigned short int _r, unsigned short int _b, unsigned short int _g)
+extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2)
 {
     void* pVoid; // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
     VERTEX vertices[] =
     {
-        { _x1, _y1, 0.5f, 1.0f, D3DCOLOR_XRGB(_r, _b, _g) },
-        { _x2, _y2, 0.5f, 1.0f, D3DCOLOR_XRGB(_r, _b, _g) },
+        { _x1, _y1, 0.5f, 1.0f, palette },
+        { _x2, _y2, 0.5f, 1.0f, palette },
     };
 
     d3ddev->CreateVertexBuffer(2 * sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
@@ -110,24 +200,19 @@ extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, f
     d3ddev->DrawPrimitive(D3DPT_LINESTRIP, 0, 1);                   // copy the vertex buffer to the back buffer
 }
 
-extern "C" __declspec(dllexport) void fa_cls(unsigned short int _r, unsigned short int _b, unsigned short int _g)
-{
-    d3ddev->Clear(0, 0, 1, D3DCOLOR_XRGB(_r, _b, _g), 1, 0);
-}
-
 /// <summary>draws txt to screen at location (x,y) with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y,unsigned short int _r, unsigned short int _g, unsigned short int _b, const char* txt)
+extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y, const char* txt)
 {
     // set font up
     LPD3DXFONT font;
     D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);
-    
+
     // set rectangle
     RECT FontRect;
 
     // get text width
     unsigned long long int string_length = fa_strlen(txt);
-    font->DrawText(NULL, LPCWSTR(txt), string_length, &FontRect, DT_CALCRECT, D3DCOLOR_XRGB(_r, _g, _b));
+    font->DrawText(NULL, LPCWSTR(txt), string_length, &FontRect, DT_CALCRECT, palette);
 
     // set rectangle up
     FontRect.left = _x;
@@ -136,15 +221,27 @@ extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y,unsigned s
     --(FontRect.right);
 
     // draw final text
-    font->DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, D3DCOLOR_XRGB(_r, _g, _b));
+    font->DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, palette);
 }
 
-/// <summary>draws a 2d pixel with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_pset(float _x, float _y, unsigned short int _r, unsigned short int _b, unsigned short int _g)
+/// <summary>sets palette color for backgound</summary>
+extern "C" __declspec(dllexport) void fa_setbkcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
+{
+    bpalette = D3DCOLOR_XRGB(_r, _b, _g);
+}
+
+/// <summary>sets palette color for text and graphics</summary>
+extern "C" __declspec(dllexport) void fa_setcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
+{
+    palette = D3DCOLOR_XRGB(_r, _b, _g);
+}
+
+/// <summary>draws a 2d pixel with color specified in palette</summary>
+extern "C" __declspec(dllexport) void fa_pset(float _x, float _y)
 {
     VOID* pVoid;    // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
-    VERTEX p1 = { _x,_y,0,1,D3DCOLOR_XRGB(_r, _b, _g) };
+    VERTEX p1 = { _x,_y,0,1,palette };
 
     d3ddev->CreateVertexBuffer(sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
     vertex_buffer->Lock(0, 0, &pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
@@ -155,90 +252,8 @@ extern "C" __declspec(dllexport) void fa_pset(float _x, float _y, unsigned short
     d3ddev->DrawPrimitive(D3DPT_POINTLIST, 0, 1);           // copy the vertex buffer to the back buffer
 }
 
-extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nRadius, unsigned short int _r, unsigned short int _b, unsigned short int _g)
+/// <summary>main rendering function</summary>
+extern "C" __declspec(dllexport) void fa_render(void)
 {
-    VERTEX* vertices = new VERTEX[2 * 3.141592653 * nRadius];
-
-    //Bresenham algorithm
-    int x = 0, y = nRadius, d = 1 - nRadius, i = 0;
-
-    while (x <= y)
-    {
-        //get eight points
-        //(x,y)
-        vertices[i].x = x + xCenter;
-        vertices[i].y = y + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(x,-y)
-        ++i;
-        vertices[i].x = x + xCenter;
-        vertices[i].y = -y + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(-x,y)
-        ++i;
-        vertices[i].x = -x + xCenter;
-        vertices[i].y = y + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(-x,-y)
-        ++i;
-        vertices[i].x = -x + xCenter;
-        vertices[i].y = -y + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(y,x)
-        ++i;
-        vertices[i].x = y + xCenter;
-        vertices[i].y = x + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(-y,x)
-        ++i;
-        vertices[i].x = -y + xCenter;
-        vertices[i].y = x + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(y,-x)
-        ++i;
-        vertices[i].x = y + xCenter;
-        vertices[i].y = -x + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        //(-y,-x)
-        ++i;
-        vertices[i].x = -y + xCenter;
-        vertices[i].y = -x + yCenter;
-        vertices[i].z = 0;
-        vertices[i].rhw = 1.0f;
-        vertices[i].color = D3DCOLOR_XRGB(_r, _b, _g);
-
-        ++i;
-        if (d > 0)
-        {
-            d += 2 * (x - y) + 5;
-            --y;
-        }
-        else
-            d += 2 * x + 3;
-        ++x;
-    }
-    d3ddev->SetFVF(D3DFVF);
-    d3ddev->DrawPrimitiveUP(D3DPT_POINTLIST, i, vertices, sizeof(VERTEX));
-    delete[] vertices;
+    d3ddev->Present(NULL, NULL, NULL, NULL);
 }
