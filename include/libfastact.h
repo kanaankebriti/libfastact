@@ -64,6 +64,10 @@ extern "C"
 	double					fa_sqrt(double _X);
 	long long int			fa_trunc(double _X);
 
+	// serial
+	/// <summary>writes a character to the stdout</summary>
+	void*					fa_openserial(const char* _Port);
+
 	// stdio
 	/// <summary>writes a character to the stdout</summary>
 	unsigned short int		fa_putchar(unsigned short int _Character);
@@ -101,6 +105,8 @@ extern "C"
 	// time
 	/// <summary>returns current time in unix time format</summary>
 	long long int			fa_time(void);
+	/// <summary>suspends the execution of the current thread until the time-out interval elapses</summary>
+	void					fa_wait(void);
 
 #ifdef __cplusplus
 }

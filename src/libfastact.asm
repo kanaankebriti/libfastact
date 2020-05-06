@@ -82,6 +82,7 @@ section '.edata' export data readable
 			fa_sin,'fa_sin',\
 			fa_sqrt,'fa_sqrt',\
 			fa_trunc,'fa_trunc',\
+			fa_openserial,'fa_openserial',\
 			fa_putchar,'fa_putchar',\
 			fa_atoi,'fa_atoi',\
 			fa_atoui,'fa_atoui',\
@@ -96,7 +97,8 @@ section '.edata' export data readable
 			fa_strcmp,'fa_strcmp',\
 			fa_strcpy,'fa_strcpy',\
 			fa_strlen,'fa_strlen',\
-			fa_time,'fa_time'
+			fa_time,'fa_time',\
+			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
 
@@ -133,6 +135,9 @@ include 'math/sin.asm'
 include 'math/sqrt.asm'
 include 'math/trunc.asm'
 
+; serial
+include 'serial/openserial.asm'
+
 ; stdio
 include 'stdio/putchar.asm'
 
@@ -155,3 +160,4 @@ include 'string/strlen.asm'
 
 ; time
 include 'time/time.asm'
+include 'time/wait.asm'
