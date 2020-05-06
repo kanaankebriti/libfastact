@@ -14,26 +14,19 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────┐
-;│ opens a serial connection│
-;│ input:					│
-;│			rcx = *port_name│
-;│ output:					│
-;│			NaN				│
-;└──────────────────────────┘
-proc fa_openserial
-	;╔══════════════════════════════════════════════╗
-	;║ HANDLE CreateFileA(							║
-	;║  LPCSTR                lpFileName,			║
-	;║  DWORD                 dwDesiredAccess,		║
-	;║  DWORD                 dwShareMode,			║
-	;║  LPSECURITY_ATTRIBUTES lpSecurityAttributes,	║
-	;║  DWORD                 dwCreationDisposition,║
-	;║  DWORD                 dwFlagsAndAttributes,	║
-	;║  HANDLE                hTemplateFile			║
-	;║ );											║
-	;╚══════════════════════════════════════════════╝
-	invoke CreateFileA,rcx,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL
-	mov [serial_handler],rax
+;┌──────────────────────────────┐
+;│ closes a serial connection	│
+;│ input:						│
+;│			rcx = *port_name	│
+;│ output:						│
+;│			NaN					│
+;└──────────────────────────────┘
+proc fa_closeserial
+	;╔══════════════════╗
+	;║ BOOL CloseHandle(║
+	;║  HANDLE hObject	║
+	;║ );				║
+	;╚══════════════════╝
+	call [CloseHandle]
 	ret
 endp

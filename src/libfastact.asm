@@ -59,6 +59,7 @@ section '.data' data readable writeable
 	hdc dq ?
 	hrc dq ?
 	hwnd dq ?
+	serial_handler dq ?
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.edata' export data readable
 	export	'libfastasm.dll',\
@@ -82,7 +83,9 @@ section '.edata' export data readable
 			fa_sin,'fa_sin',\
 			fa_sqrt,'fa_sqrt',\
 			fa_trunc,'fa_trunc',\
+			fa_closeserial,'fa_closeserial',\
 			fa_openserial,'fa_openserial',\
+			fa_serialread,'fa_serialread',\
 			fa_putchar,'fa_putchar',\
 			fa_atoi,'fa_atoi',\
 			fa_atoui,'fa_atoui',\
@@ -136,7 +139,9 @@ include 'math/sqrt.asm'
 include 'math/trunc.asm'
 
 ; serial
+include 'serial/closeserial.asm'
 include 'serial/openserial.asm'
+include 'serial/serialread.asm'
 
 ; stdio
 include 'stdio/putchar.asm'

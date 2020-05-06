@@ -65,8 +65,12 @@ extern "C"
 	long long int			fa_trunc(double _X);
 
 	// serial
-	/// <summary>writes a character to the stdout</summary>
+	/// <summary>closes a serial connection</summary>
+	void*					fa_closeserial(void* _SerialHandler);
+	/// <summary>opens a serial connection</summary>
 	void*					fa_openserial(const char* _Port);
+	/// <summary>reads from serial connection</summary>
+	void*					fa_serialread(const char* buffer, unsigned int buf_size);
 
 	// stdio
 	/// <summary>writes a character to the stdout</summary>

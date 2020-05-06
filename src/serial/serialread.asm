@@ -14,26 +14,38 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────┐
-;│ opens a serial connection│
-;│ input:					│
-;│			rcx = *port_name│
-;│ output:					│
-;│			NaN				│
-;└──────────────────────────┘
-proc fa_openserial
-	;╔══════════════════════════════════════════════╗
-	;║ HANDLE CreateFileA(							║
-	;║  LPCSTR                lpFileName,			║
-	;║  DWORD                 dwDesiredAccess,		║
-	;║  DWORD                 dwShareMode,			║
-	;║  LPSECURITY_ATTRIBUTES lpSecurityAttributes,	║
-	;║  DWORD                 dwCreationDisposition,║
-	;║  DWORD                 dwFlagsAndAttributes,	║
-	;║  HANDLE                hTemplateFile			║
-	;║ );											║
-	;╚══════════════════════════════════════════════╝
-	invoke CreateFileA,rcx,GENERIC_READ,0,NULL,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,NULL
-	mov [serial_handler],rax
+;┌──────────────────────────────┐
+;│ reads from serial connection	│
+;│ input:						│
+;│			rcx = *buffer		│
+;│			rdx = buf_size		│
+;│ output:						│
+;│			NaN					│
+;└──────────────────────────────┘
+proc fa_serialread uses r10 r11 r12
+	locals
+		bytesRead dd ?
+	endl
+	;╔══════════════════════════════════════╗
+	;║ BOOL ReadFile(						║
+	;║ HANDLE       hFile,					║
+	;║ LPVOID       lpBuffer,				║
+	;║ DWORD        nNumberOfBytesToRead,	║
+	;║ LPDWORD      lpNumberOfBytesRead,	║
+	;║ LPOVERLAPPED lpOverlapped			║
+	;║ );									║
+	;╚══════════════════════════════════════╝
+
+	mov r12,rcx
+	mov r11,rdx
+	lea r10,[bytesRead]
+
+	; clear read buffer
+	mov		r8,rdx
+	xor		edx,edx
+	call	fa_memset
+
+	invoke ReadFile, [serial_handler], r12, r11, r10, NULL
+
 	ret
 endp
