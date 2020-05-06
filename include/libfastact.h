@@ -66,7 +66,7 @@ extern "C"
 
 	// serial
 	/// <summary>closes a serial connection</summary>
-	void*					fa_closeserial(void* _SerialHandler);
+	void*					fa_closeserial();
 	/// <summary>opens a serial connection</summary>
 	void*					fa_openserial(const char* _Port);
 	/// <summary>reads from serial connection</summary>

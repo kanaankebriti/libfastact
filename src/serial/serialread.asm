@@ -22,10 +22,9 @@
 ;│ output:						│
 ;│			NaN					│
 ;└──────────────────────────────┘
-proc fa_serialread uses r10 r11 r12
-	locals
-		bytesRead dd ?
-	endl
+proc fa_serialread
+	mov r8,rcx
+	mov r9,rdx
 	;╔══════════════════════════════════════╗
 	;║ BOOL ReadFile(						║
 	;║ HANDLE       hFile,					║
@@ -35,17 +34,7 @@ proc fa_serialread uses r10 r11 r12
 	;║ LPOVERLAPPED lpOverlapped			║
 	;║ );									║
 	;╚══════════════════════════════════════╝
-
-	mov r12,rcx
-	mov r11,rdx
-	lea r10,[bytesRead]
-
-	; clear read buffer
-	mov		r8,rdx
-	xor		edx,edx
-	call	fa_memset
-
-	invoke ReadFile, [serial_handler], r12, r11, r10, NULL
+	invoke ReadFile, [serial_handler], r8, r9, NULL, NULL
 
 	ret
 endp

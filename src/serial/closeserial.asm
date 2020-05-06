@@ -27,6 +27,7 @@ proc fa_closeserial
 	;║  HANDLE hObject	║
 	;║ );				║
 	;╚══════════════════╝
+	mov rcx,[serial_handler]
 	call [CloseHandle]
 	ret
 endp
