@@ -55,6 +55,8 @@ extern "C"
 	unsigned long long int	fa_abs(long long int _X);
 	double					fa_cos(double _X);
 	double					fa_deg2rad(double _X);
+	double					fa_det2(double _M11, double _M12, double _M21, double _M22);
+	double					fa_det3(double _M11, double _M12, double _M13, double _M21, double _M22, double _M23, double _M31, double _M32, double _M33);
 	double					fa_fabs(double _X);
 	double					fa_hypot(double _X, double _Y);
 	long long int			fa_pow2(long long int _X);
