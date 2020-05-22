@@ -1,10 +1,9 @@
 # libfastact
-an attempt to write most commonly used functions (specifically cstdlib funtions) in modern AMD64 assembly using FASM, plus minimal c++ code.
+a collection of most commonly used functions written in C and AMD64 assembly (using FASM).
 
 this library only supports windows NT x64
 
-in order to assemble it you need flat assembler (FASM) and visual studio
-the using Developer PowerShell for VS and run make.ps1 script.
-the libfastasm.dll and libfastasm.lib will appear in lib directory.
-required header file libfastasm.h is available in include directory.
-also latest binary is available at lib directory.
+in order to build it you will need flat assembler (FASM) and visual studio
+run "Developer PowerShell for VS" and execute make.ps1 script.
+the .dll and .lib files will appear in lib directory (latest binaries are already available at lib directory).
+required header files are available in include directory.
