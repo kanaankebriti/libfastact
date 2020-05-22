@@ -16,6 +16,9 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #pragma once
 
+#ifndef __LIBFASTACT_GRAPHICS_H__
+#define __LIBFASTACT_GRAPHICS_H__
+
 #include <d3d9.h>
 
 #ifdef __cplusplus
@@ -54,3 +57,5 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
+
+#endif // !__LIBFASTACT_GRAPHICS_H__

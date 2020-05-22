@@ -14,10 +14,13 @@
 ░ You should have received a copy of the GNU General Public License		░
 ░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
-#ifndef _LIBFASTASM
+#pragma once
 
-#include <Windows.h>
+#ifndef __LIBFASTACT_H__
+#define __LIBFASTACT_H__
+
 #include <d3d9.h>
+
 typedef struct fa_complex
 {
 	double _Val[2];
@@ -118,4 +121,4 @@ extern "C"
 }
 #endif
 
-#endif // !_LIBFASTASM
+#endif // !__LIBFASTACT_H__

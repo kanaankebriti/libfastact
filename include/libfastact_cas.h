@@ -16,6 +16,9 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #pragma once
 
+#ifndef __LIBFASTACT_CAS_H__
+#define __LIBFASTACT_CAS_H__
+
 #ifdef __cplusplus
 extern "C"
 {
@@ -24,3 +27,5 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
+
+#endif // !__LIBFASTACT_CAS_H__
