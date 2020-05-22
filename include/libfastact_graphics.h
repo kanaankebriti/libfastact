@@ -32,7 +32,7 @@ extern "C"
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void fa_cls(void);
 	/// <summary>ends draw to screen</summary>
-	void fa_enddraw();
+	void fa_enddraw(void);
 	/// <summary>draws a 2d rectangle</summary>
 	void fa_rectangle(float _x1, float _y1, float _x2, float _y2);
 	/// <summary>returns *d3ddev</summary>

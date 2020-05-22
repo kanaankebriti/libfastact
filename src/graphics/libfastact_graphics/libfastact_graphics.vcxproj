@@ -159,6 +159,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="dllmain.c" />
     <ClCompile Include="libfastact_graphics.c" />
   </ItemGroup>
   <ItemGroup>
