@@ -12,8 +12,8 @@
 ░ GNU General Public License for more details.							░
 ░																		░
 ░ You should have received a copy of the GNU General Public License		░
-░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
+░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #ifndef _LIBFASTASM
 
 #include <Windows.h>
@@ -90,7 +90,7 @@ extern "C"
 	/// <summary>converts integer to ascii</summary>
 	char*					fa_itoa(long long int _Value, char* _Destination);
 	/// <summary>allocates a block of size bytes of memory</summary>
-	void*					fa_malloc(long long int _Size);
+	void*					fa_malloc(unsigned long int _Size);
 	/// <summary>generate 64bit random number</summary>
 	long long int			fa_rand(void);
 

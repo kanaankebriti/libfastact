@@ -12,8 +12,8 @@
 ░ GNU General Public License for more details.							░
 ░																		░
 ░ You should have received a copy of the GNU General Public License		░
-░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
+░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #pragma once
 
 #include <d3d9.h>
@@ -26,7 +26,7 @@ extern "C"
 	/// <summary>begins draw to screen</summary>
 	void fa_begindraw(void);
 	/// <summary>draws a 2d circle based on center location and radius</summary>
-	void fa_circle(int _xCenter, int _yCenter, int _Radius);
+	void fa_circle(int _xCenter, int _yCenter, unsigned int _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>

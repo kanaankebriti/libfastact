@@ -21,6 +21,11 @@ rm .\lib\*.*
 cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.dll .\lib
 cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.lib .\lib
 cp .\src\graphics\libfastact_graphics\libfastact_graphics.h .\include\libfastact_graphics.h
+
+cp .\src\cas\x64\Release\LIBFASTACTCAS.dll .\lib
+cp .\src\cas\x64\Release\LIBFASTACTCAS.lib .\lib
+cp .\src\cas\libfastact_cas\libfastact_cas.h .\include\libfastact_cas.h
+
 [string]$modulePath = ".\lib\libfastact.dll"
 [string]$machine = "x64"
 

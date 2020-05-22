@@ -12,8 +12,8 @@
 ░ GNU General Public License for more details.							░
 ░																		░
 ░ You should have received a copy of the GNU General Public License		░
-░ along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
-░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
+░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #define WIN32_LEAN_AND_MEAN
 #define D3DFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE)
 #pragma comment(lib, "d3d9.lib")
@@ -33,7 +33,7 @@ struct VERTEX
 {
     FLOAT x, y, z, rhw; // from the D3DFVF_XYZRHW flag
     DWORD color;       // from the D3DFVF_DIFFUSE flag
-};
+}typedef VERTEX;
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
@@ -41,15 +41,16 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserv
 }
 
 /// <summary>begins draw to screen</summary>
-extern "C" __declspec(dllexport) void fa_begindraw(void)
+__declspec(dllexport) void fa_begindraw(void)
 {
     IDirect3DDevice9_BeginScene(d3ddev);
 }
 
 /// <summary>draws a 2d circle based on center location and radius</summary>
-extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nRadius)
+__declspec(dllexport) void fa_circle(int xCenter, int yCenter, unsigned int nRadius)
 {
-    VERTEX* vertices = new VERTEX[2 * 3.141592653 * nRadius];
+    VERTEX* vertices;
+    vertices = malloc(6 * nRadius * sizeof(VERTEX)); // note that 6 = (int) 2*3.141
 
     //Bresenham algorithm
     int x = 0, y = nRadius, d = 1 - nRadius, i = 0;
@@ -134,28 +135,28 @@ extern "C" __declspec(dllexport) void fa_circle(int xCenter, int yCenter, int nR
     }
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);
     IDirect3DDevice9_DrawPrimitiveUP(d3ddev, D3DPT_POINTLIST, i, vertices, sizeof(VERTEX));
-    delete[] vertices;
+    free(vertices);
 }
 
 /// <summary>cleans up Direct3D and COM</summary>
-extern "C" __declspec(dllexport) void fa_closegraph(void)
+ __declspec(dllexport) void fa_closegraph(void)
 {
     IDirect3DDevice9_Release(d3ddev);  // close and release the 3D device
     IDirect3DDevice9_Release(d3d);     // close and release Direct3D
 }
 
-extern "C" __declspec(dllexport) void fa_cls(void)
+__declspec(dllexport) void fa_cls(void)
 {
     IDirect3DDevice9_Clear(d3ddev, 0, 0, 1, bpalette, 1, 0);
 }
 
 /// <summary>draws a 2d rectangle</summary>
-extern "C" __declspec(dllexport) void fa_rectangle(float _x1, float _y1, float _x2, float _y2)
+__declspec(dllexport) void fa_rectangle(float _x1, float _y1, float _x2, float _y2)
 {
     void* pVoid; // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
-    VERTEX vertices[] =
+    VERTEX vertices[8] =
     {   // top
         { _x1, _y1, 0.5f, 1.0f, palette },
         { _x2, _y1, 0.5f, 1.0f, palette },
@@ -171,28 +172,28 @@ extern "C" __declspec(dllexport) void fa_rectangle(float _x1, float _y1, float _
     };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
-    vertex_buffer->Lock(0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
-    memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
-    vertex_buffer->Unlock();                                        // unlock the vertex buffer
-    IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                        // select which vertex format we are using
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    fa_memcpy(pVoid, vertices, sizeof(vertices));   // copy the vertices to the locked buffer
+    IDirect3DVertexBuffer9_Unlock(vertex_buffer);   // unlock the vertex buffer
+    IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);        // select which vertex format we are using
     IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
-    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINELIST, 0, 4);                  // copy the vertex buffer to the back buffer
+    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINELIST, 0, 4);                   // copy the vertex buffer to the back buffer
 }
 
 /// <summary>ends draw to screen</summary>
-extern "C" __declspec(dllexport) void fa_enddraw()
+__declspec(dllexport) void fa_enddraw()
 {
     IDirect3DDevice9_EndScene(d3ddev);
 }
 
 /// <summary>returns *d3ddev</summary>
-extern "C" __declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(void)
+__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(void)
 {
     return d3ddev;
 }
 
 /// <summary>initializes and prepares Direct3D</summary>
-extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
+__declspec(dllexport) void fa_initgraph(HWND hWnd)
 {
     d3d = Direct3DCreate9(D3D_SDK_VERSION);     // create the Direct3D interface
     D3DPRESENT_PARAMETERS d3dpp;                // create a struct to hold various device information
@@ -201,37 +202,32 @@ extern "C" __declspec(dllexport) void fa_initgraph(HWND hWnd)
     d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;   // discard old frames
     d3dpp.hDeviceWindow = hWnd;                 // set the window to be used by Direct3D
     // create a device class using this information and the info from the d3dpp struct
-    d3d->CreateDevice(D3DADAPTER_DEFAULT,
-        D3DDEVTYPE_HAL,
-        hWnd,
-        D3DCREATE_SOFTWARE_VERTEXPROCESSING,
-        &d3dpp,
-        &d3ddev);
+    IDirect3D9_CreateDevice(d3d, D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd, D3DCREATE_SOFTWARE_VERTEXPROCESSING, &d3dpp, &d3ddev);
 }
 
 /// <summary>draws a 2d pixel with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2)
+__declspec(dllexport) void fa_line(float _x1, float _y1, float _x2, float _y2)
 {
     void* pVoid; // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
-    VERTEX vertices[] =
+    VERTEX vertices[2] =
     {
         { _x1, _y1, 0.5f, 1.0f, palette },
         { _x2, _y2, 0.5f, 1.0f, palette },
     };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
-    vertex_buffer->Lock(0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
-    memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
-    vertex_buffer->Unlock();                                        // unlock the vertex buffer
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (void**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    fa_memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
+    IDirect3DVertexBuffer9_Unlock(vertex_buffer);                                        // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                        // select which vertex format we are using
     IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
     IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, 1);                  // copy the vertex buffer to the back buffer
 }
 
 /// <summary>draws txt to screen at location (x,y) with color RGB</summary>
-extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y, const char* txt)
+__declspec(dllexport) void fa_outtextxy(float _x, float _y, const char* txt)
 {
     // set font up
     LPD3DXFONT font;
@@ -242,7 +238,7 @@ extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y, const cha
 
     // get text width
     unsigned long long int string_length = fa_strlen(txt);
-    font->DrawText(NULL, LPCWSTR(txt), string_length, &FontRect, DT_CALCRECT, palette);
+    DrawTextW(NULL, txt, string_length, &FontRect, DT_CALCRECT, palette);
 
     // set rectangle up
     FontRect.left = _x;
@@ -251,39 +247,39 @@ extern "C" __declspec(dllexport) void fa_outtextxy(float _x, float _y, const cha
     --(FontRect.right);
 
     // draw final text
-    font->DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, palette);
+    DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, palette);
 }
 
 /// <summary>sets palette color for backgound</summary>
-extern "C" __declspec(dllexport) void fa_setbkcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
+__declspec(dllexport) void fa_setbkcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
 {
     bpalette = D3DCOLOR_XRGB(_r, _b, _g);
 }
 
 /// <summary>sets palette color for text and graphics</summary>
-extern "C" __declspec(dllexport) void fa_setcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
+__declspec(dllexport) void fa_setcolor(unsigned short int _r, unsigned short int _g, unsigned short int _b)
 {
     palette = D3DCOLOR_XRGB(_r, _b, _g);
 }
 
 /// <summary>draws a 2d pixel with color specified in palette</summary>
-extern "C" __declspec(dllexport) void fa_pset(float _x, float _y)
+__declspec(dllexport) void fa_pset(float _x, float _y)
 {
     VOID* pVoid;    // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
     VERTEX p1 = { _x,_y,0,1,palette };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
-    vertex_buffer->Lock(0, 0, &pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, &pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
     fa_memcpy(pVoid, &p1, sizeof(VERTEX));                  // copy the vertices to the locked buffer
-    vertex_buffer->Unlock();                                // unlock the vertex buffer
+    IDirect3DVertexBuffer9_Unlock(vertex_buffer);           // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                // select which vertex format we are using
     IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
     IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_POINTLIST, 0, 1);                  // copy the vertex buffer to the back buffer
 }
 
 /// <summary>main rendering function</summary>
-extern "C" __declspec(dllexport) void fa_render(void)
+__declspec(dllexport) void fa_render(void)
 {
     IDirect3DDevice9_Present(d3ddev, NULL, NULL, NULL, NULL);
 }

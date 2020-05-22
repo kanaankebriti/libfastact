@@ -15,15 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libfastact_graphics.h">
+    <ClInclude Include="libfastact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="libfastact.h">
+    <ClInclude Include="tinyexpr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libfastact_cas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="libfastact_graphics.c">
+    <ClCompile Include="dllmain.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tinyexpr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="realroot.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
