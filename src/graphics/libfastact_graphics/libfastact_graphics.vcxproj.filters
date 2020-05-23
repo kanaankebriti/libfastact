@@ -29,5 +29,8 @@
     <ClCompile Include="dllmain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fa_abs.asm">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

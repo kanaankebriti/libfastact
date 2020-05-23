@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c" />
+    <ClCompile Include="fa_abs.asm" />
     <ClCompile Include="libfastact_graphics.c" />
   </ItemGroup>
   <ItemGroup>

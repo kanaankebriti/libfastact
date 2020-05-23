@@ -14,18 +14,19 @@
 ░ You should have received a copy of the GNU General Public License		░
 ░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
-#define STEP 0.000001
+#define EPSILON	0.00000000000005 // a good value for doubles
 
 #include "tinyexpr.h"
 
-double root;
-const char* _expression;
-const char* _variable;
-double upper_than_at;
+DOUBLE root;
+DOUBLE upper_than_at;
+CONST CHAR* _expression;
+CONST CHAR* _variable;
 
 VOID WINAPI lower_bound()
 {
-	double lower_than_at = upper_than_at;
+	DOUBLE lower_than_at = upper_than_at;
+	lower_than_at -= EPSILON; // avoid double check for f(_at)
 	te_variable var = { _variable, &lower_than_at };
 	te_expr* n = te_compile(_expression, &var, 1, 0);
 
@@ -33,10 +34,10 @@ VOID WINAPI lower_bound()
 	// the root is found if sign of f(x) has changed
 	if (te_eval(n) > 0)
 		while (te_eval(n) > 0)
-			lower_than_at -= STEP;
+			lower_than_at -= EPSILON;
 	else
 		while (te_eval(n) < 0)
-			lower_than_at -= STEP;
+			lower_than_at -= EPSILON;
 	root = lower_than_at;
 }
 
@@ -45,14 +46,20 @@ VOID WINAPI upper_bound()
 	te_variable var = { _variable, &upper_than_at };
 	te_expr* n = te_compile(_expression, &var, 1, 0);
 
+	// check for current _at which may leads to f(_at)=0
+	if (te_eval(n) == 0)
+	{
+		root = upper_than_at;
+		return;
+	}
 	// check current sign of f(x)
 	// the root is found if sign of f(x) has changed
 	if (te_eval(n) > 0)
 		while (te_eval(n) > 0)
-			upper_than_at += STEP;
+			upper_than_at += EPSILON;
 	else
 		while (te_eval(n) < 0)
-			upper_than_at += STEP;
+			upper_than_at += EPSILON;
 	root = upper_than_at;
 }
 
