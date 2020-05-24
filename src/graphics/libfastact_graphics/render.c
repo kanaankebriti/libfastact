@@ -16,9 +16,9 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>main rendering function</summary>
+__declspec(dllexport) VOID fa_render(VOID)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
+    IDirect3DDevice9_Present(d3ddev, NULL, NULL, NULL, NULL);
 }

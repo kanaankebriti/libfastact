@@ -16,9 +16,10 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>redefine center of screen's position</summary>
+__declspec(dllexport) VOID fa_center(INT xCenter, INT yCenter)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern FLOAT screen_center_x, screen_center_y;     // center of screen
+    screen_center_x = xCenter;
+    screen_center_y = yCenter;
 }

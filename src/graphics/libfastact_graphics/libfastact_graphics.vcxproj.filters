@@ -21,6 +21,9 @@
     <ClInclude Include="libfastact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="libfastact_graphics.c">
@@ -29,7 +32,52 @@
     <ClCompile Include="dllmain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fa_abs.asm">
+    <ClCompile Include="begindraw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="center.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="circle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="closegraph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cls.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="drawcrs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rectangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="enddraw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initgraph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="line.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="outtextxy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="render.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setbkcolor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="setcolor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -28,12 +28,16 @@ extern "C"
 	// graphics
 	/// <summary>begins draw to screen</summary>
 	void fa_begindraw(void);
+	/// <summary>redefine center of screen's position</summary>
+	void fa_center(int xCenter, int yCenter);
 	/// <summary>draws a 2d circle based on center location and radius</summary>
 	void fa_circle(int _xCenter, int _yCenter, unsigned int _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
 	void fa_closegraph(void);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	void fa_cls(void);
+	/// <summary>draws catmull-rom spline</summary>
+	void fa_drawcrs(void);
 	/// <summary>ends draw to screen</summary>
 	void fa_enddraw(void);
 	/// <summary>draws a 2d rectangle</summary>

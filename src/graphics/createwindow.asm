@@ -24,7 +24,6 @@
 ;│			NaN						│
 ;└──────────────────────────────────┘
 proc fa_createwindow uses rbx r10 r11
-
 	mov	rbx,rcx		; store *title
 	mov r10,rdx		; store width
 	mov r11,r9		; store height

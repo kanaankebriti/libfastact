@@ -16,9 +16,20 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>draws a 2d pixel with color specified in palette</summary>
+__declspec(dllexport) VOID fa_pset(FLOAT _x, FLOAT _y)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
+    extern D3DCOLOR palette;            // palette color for text, graphics
+    VOID* pVoid;                        // the void pointer
+    LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
+    VERTEX p1 = { _x,_y,0,1,palette };
+
+    IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, &pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
+    fa_memcpy(pVoid, &p1, sizeof(VERTEX));                  // copy the vertices to the locked buffer
+    IDirect3DVertexBuffer9_Unlock(vertex_buffer);           // unlock the vertex buffer
+    IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                // select which vertex format we are using
+    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
+    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_POINTLIST, 0, 1);                  // copy the vertex buffer to the back buffer
 }

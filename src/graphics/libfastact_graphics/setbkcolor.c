@@ -16,9 +16,9 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>sets palette color for backgound</summary>
+__declspec(dllexport) VOID fa_setbkcolor(WORD _r, WORD _g, WORD _b)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern D3DCOLOR bpalette;   // palette color for background
+    bpalette = D3DCOLOR_XRGB(_r, _b, _g);
 }

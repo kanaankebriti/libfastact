@@ -159,11 +159,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="begindraw.c" />
+    <ClCompile Include="center.c" />
+    <ClCompile Include="circle.c" />
+    <ClCompile Include="closegraph.c" />
+    <ClCompile Include="cls.c" />
+    <ClCompile Include="common.c" />
     <ClCompile Include="dllmain.c" />
-    <ClCompile Include="fa_abs.asm" />
+    <ClCompile Include="drawcrs.c" />
+    <ClCompile Include="enddraw.c" />
+    <ClCompile Include="initgraph.c" />
     <ClCompile Include="libfastact_graphics.c" />
+    <ClCompile Include="line.c" />
+    <ClCompile Include="outtextxy.c" />
+    <ClCompile Include="pset.c" />
+    <ClCompile Include="rectangle.c" />
+    <ClCompile Include="render.c" />
+    <ClCompile Include="setbkcolor.c" />
+    <ClCompile Include="setcolor.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="common.h" />
     <ClInclude Include="libfastact.h" />
     <ClInclude Include="libfastact_graphics.h" />
   </ItemGroup>

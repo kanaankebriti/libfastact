@@ -1,4 +1,5 @@
-﻿/*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+﻿
+/*░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ░ This file is part of libfastact.										░
 ░																		░
 ░ libfastact is free software: you can redistribute it and/or modify	░
@@ -16,9 +17,9 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>sets palette color for text and graphics</summary>
+__declspec(dllexport) VOID fa_setcolor(WORD _r, WORD _g, WORD _b)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern D3DCOLOR palette;   // palette color for background
+    palette = D3DCOLOR_XRGB(_r, _b, _g);
 }

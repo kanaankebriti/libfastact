@@ -16,9 +16,12 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>cleans up Direct3D and COM</summary>
+__declspec(dllexport) VOID fa_closegraph(VOID)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern LPDIRECT3D9 d3d;                    // the pointer to our Direct3D interface
+    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
+
+    IDirect3DDevice9_Release(d3ddev);   // close and release the 3D device
+    IDirect3DDevice9_Release(d3d);      // close and release Direct3D
 }

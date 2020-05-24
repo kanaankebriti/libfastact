@@ -16,9 +16,29 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>returns *d3ddev</summary>
-__declspec(dllexport) IDirect3DDevice9 * fa_get_d3ddev(VOID)
+/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+__declspec(dllexport) VOID fa_outtextxy(FLOAT _x, FLOAT _y, CONST CHAR* txt)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
-    return d3ddev;
+    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
+    extern D3DCOLOR palette;            // palette color for text, graphics
+
+    // set font up
+    LPD3DXFONT font;
+    D3DXCreateFont(d3ddev, 16, 0, FW_BOLD, 0, FALSE, DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE, TEXT("Arial"), &font);
+
+    // set rectangle
+    RECT FontRect;
+
+    // get text width
+    ULONG string_length = fa_strlen(txt);
+    DrawTextW(NULL, txt, string_length, &FontRect, DT_CALCRECT, palette);
+
+    // set rectangle up
+    FontRect.left = _x;
+    FontRect.top = _y;
+    FontRect.bottom = _y + 16;
+    --(FontRect.right);
+
+    // draw final text
+    DrawTextA(NULL, txt, -1, &FontRect, DT_CENTER, palette);
 }
