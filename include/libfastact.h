@@ -50,10 +50,6 @@ extern "C"
 	/// <summary>checks whether c is an uppercase letter</summary>
 	short int				fa_isupper(unsigned short int _Character);
 
-	// graphics
-	/// <summary>creates then opens a new window</summary>
-	HWND					fa_createwindow(const char* _WindowName, unsigned int _Width, unsigned int _Height);
-
 	// math
 	unsigned long long int	fa_abs(long long int _X);
 	double					fa_cos(double _X);

@@ -27,37 +27,39 @@ extern "C"
 #endif
 	// graphics
 	/// <summary>begins draw to screen</summary>
-	void fa_begindraw(void);
+	VOID fa_begindraw(VOID);
 	/// <summary>redefine center of screen's position</summary>
-	void fa_center(int xCenter, int yCenter);
+	VOID fa_center(INT xCenter, INT yCenter);
 	/// <summary>draws a 2d circle based on center location and radius</summary>
-	void fa_circle(int _xCenter, int _yCenter, unsigned int _Radius);
+	VOID fa_circle(INT _xCenter, INT _yCenter, UINT _Radius);
 	/// <summary>cleans up Direct3D and COM</summary>
-	void fa_closegraph(void);
+	VOID fa_closegraph(VOID);
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
-	void fa_cls(void);
+	VOID fa_cls(VOID);
+	/// <summary>creates then opens a new window</summary>
+	HWND fa_createwindow(CONST WCHAR* _Title, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
-	void fa_drawcrs(void);
+	VOID fa_drawcrs(VOID);
 	/// <summary>ends draw to screen</summary>
-	void fa_enddraw(void);
+	VOID fa_enddraw(VOID);
 	/// <summary>draws a 2d rectangle</summary>
-	void fa_rectangle(float _x1, float _y1, float _x2, float _y2);
+	VOID fa_rectangle(FLOAT _x1, FLOAT _y1, FLOAT _x2, FLOAT _y2);
 	/// <summary>returns *d3ddev</summary>
-	IDirect3DDevice9* fa_get_d3ddev(void);
+	IDirect3DDevice9* fa_get_d3ddev(VOID);
 	/// <summary>initializes and prepares Direct3D</summary>
-	void fa_initgraph(HWND hWnd);
+	VOID fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
-	void fa_line(float _X1, float _Y1, float _X2, float _Y2);
+	VOID fa_line(FLOAT _X1, FLOAT _Y1, FLOAT _X2, FLOAT _Y2);
 	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
-	void fa_outtextxy(float _X, float _Y, const char* _Txt);
+	VOID fa_outtextxy(FLOAT _X, FLOAT _Y, CONST CHAR* _Txt);
 	/// <summary>sets palette color for backgound</summary>
-	void fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
+	VOID fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>
-	void fa_setcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
+	VOID fa_setcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>draws a 2d pixel with color RGB</summary>
-	void fa_pset(float _X, float _Y);
+	VOID fa_pset(FLOAT _X, FLOAT _Y);
 	/// <summary>main rendering function</summary>
-	void fa_render(void);
+	VOID fa_render(VOID);
 #ifdef __cplusplus
 }
 #endif

@@ -52,13 +52,6 @@ section '.idata' import data readable writeable
 			fa_pset,'fa_pset'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.data' data readable writeable
-	_main_window_class WNDCLASSEX sizeof.WNDCLASSEX,0,WindowProc,0,0,?,?,?,?,?,_class,?
-	_window_title db 'test',0
-	_class db '_class',0
-	rc RECT
-	hdc dq ?
-	hrc dq ?
-	hwnd dq ?
 	serial_handler dq ?
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.edata' export data readable
@@ -71,7 +64,6 @@ section '.edata' export data readable
 			fa_islower,'fa_islower',\
 			fa_isspace,'fa_isspace',\
 			fa_isupper,'fa_isupper',\
-			fa_createwindow,'fa_createwindow',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -123,9 +115,6 @@ include 'ctype/isdigit.asm'
 include 'ctype/islower.asm'
 include 'ctype/isspace.asm'
 include 'ctype/isupper.asm'
-
-; graphics
-include 'graphics/createwindow.asm'
 
 ; math
 include 'math/abs.asm'
