@@ -22,8 +22,8 @@ __declspec(dllexport) VOID fa_circle(INT xCenter, INT yCenter, UINT nRadius)
     extern LPDIRECT3DDEVICE9 d3ddev;                    // the pointer to the device class
     extern FLOAT screen_center_x, screen_center_y;      // center of screen
     extern D3DCOLOR palette;                            // palette color for text, graphics
-    VERTEX* vertices;
-    vertices = malloc(6 * nRadius * sizeof(VERTEX));    // note that 6 = (int) 2*3.141
+    fa_VERTEX* vertices;
+    vertices = malloc(6 * nRadius * sizeof(fa_VERTEX));    // note that 6 = (int) 2*3.141
 
     //Bresenham algorithm
     INT x = 0, y = nRadius, d = 1 - nRadius, i = 0;
@@ -107,6 +107,6 @@ __declspec(dllexport) VOID fa_circle(INT xCenter, INT yCenter, UINT nRadius)
         ++x;
     }
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);
-    IDirect3DDevice9_DrawPrimitiveUP(d3ddev, D3DPT_POINTLIST, i, vertices, sizeof(VERTEX));
+    IDirect3DDevice9_DrawPrimitiveUP(d3ddev, D3DPT_POINTLIST, i, vertices, sizeof(fa_VERTEX));
     free(vertices);
 }

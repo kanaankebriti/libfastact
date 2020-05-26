@@ -20,6 +20,14 @@
 #define __LIBFASTACT_GRAPHICS_H__
 
 #include <d3d9.h>
+#include <d3dx9core.h>
+
+struct fa_VERTEX
+{
+	D3DXVECTOR3 location;   // (x,y,z)
+	FLOAT rhw;              // from the D3DFVF_XYZRHW flag
+	DWORD color;            // from the D3DFVF_DIFFUSE flag
+};
 
 #ifdef __cplusplus
 extern "C"
@@ -37,9 +45,9 @@ extern "C"
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	VOID fa_cls(VOID);
 	/// <summary>creates then opens a new window</summary>
-	HWND fa_createwindow(CONST WCHAR* _Title, UINT _Width, UINT _Height);
+	HWND fa_createwindow(CONST CHAR* _Title, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
-	VOID fa_drawcrs(VOID);
+	VOID fa_drawcrs(fa_VERTEX* _Vertices, UINT _Size);
 	/// <summary>ends draw to screen</summary>
 	VOID fa_enddraw(VOID);
 	/// <summary>draws a 2d rectangle</summary>

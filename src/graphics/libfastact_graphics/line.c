@@ -24,7 +24,7 @@ __declspec(dllexport) VOID fa_line(FLOAT _x1, FLOAT _y1, FLOAT _x2, FLOAT _y2)
     VOID* pVoid;                            // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
 
-    VERTEX vertices[2] =
+    fa_VERTEX vertices[2] =
     {
         { _x1, _y1, 0.5f, 1.0f, palette },
         { _x2, _y2, 0.5f, 1.0f, palette },
@@ -35,6 +35,6 @@ __declspec(dllexport) VOID fa_line(FLOAT _x1, FLOAT _y1, FLOAT _x2, FLOAT _y2)
     fa_memcpy(pVoid, vertices, sizeof(vertices));                      // copy the vertices to the locked buffer
     IDirect3DVertexBuffer9_Unlock(vertex_buffer);                                        // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);                        // select which vertex format we are using
-    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(VERTEX));  // select the vertex buffer to display
+    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(fa_VERTEX));  // select the vertex buffer to display
     IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, 1);                  // copy the vertex buffer to the back buffer
 }

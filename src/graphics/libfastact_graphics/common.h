@@ -19,9 +19,9 @@
 #include <d3d9.h>
 #include <d3dx9core.h>
 
-struct VERTEX
+struct fa_VERTEX
 {
     D3DXVECTOR3 location;   // (x,y,z)
     FLOAT rhw;              // from the D3DFVF_XYZRHW flag
     DWORD color;            // from the D3DFVF_DIFFUSE flag
-}typedef VERTEX;
+}typedef fa_VERTEX;
