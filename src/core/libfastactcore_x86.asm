@@ -57,7 +57,6 @@ section '.data' data readable writeable
 section '.edata' export data readable
 	export	'LIBFASTACTCORE_X86.dll',\
 			fa_abs,'fa_abs',\
-			fa_time,'fa_time',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
@@ -120,5 +119,5 @@ include 'math/abs_x86.asm'
 ;include 'string/strlen.asm'
 
 ; time
-include 'time/time_x86.asm'
+;include 'time/time_x86.asm'
 include 'time/wait_x86.asm'

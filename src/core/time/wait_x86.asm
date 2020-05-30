@@ -18,16 +18,16 @@
 ;│ suspends the execution of the current		|
 ;| thread until the time-out interval elapses	│
 ;│ input:										│
-;│			ecx = ms							│
+;│			ms									│
 ;│ output:										│
 ;│			NaN									│
 ;└──────────────────────────────────────────────┘
-proc fa_wait c
+proc fa_wait stdcall ms
 	;╔══════════════════════╗
 	;║ void Sleep(			║
 	;║ DWORD dwMilliseconds	║
 	;║ );					║
 	;╚══════════════════════╝
-	call	[Sleep]
+	invoke Sleep,[ms]
 	ret
 endp

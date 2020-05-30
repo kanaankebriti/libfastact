@@ -21,12 +21,12 @@
 ;│ output:									│
 ;│			rax = unix time					│
 ;└──────────────────────────────────────────┘
-proc fa_time c
+proc fa_time stdcall
 	; get system time -> convert to file time -> convert to unix time
 	locals
 		system_time		SYSTEMTIME ?
 		file_time		FILETIME ?
-		ElapsedSeconds	dd ?
+		ElapsedSeconds	dq ?
 	endl
 
 	;╔══════════════════════════╗

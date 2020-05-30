@@ -17,13 +17,13 @@
 ;┌──────────────────────────────────────────────┐
 ;│ returns absolute value of an integer number	│
 ;│ input:										│
-;│			ecx = number						│
+;│			number								│
 ;│ output:										│
 ;│			eax = abs(number)					│
 ;└──────────────────────────────────────────────┘
-proc fa_abs c
-	mov		eax,ecx ; store rcx in rax
+proc fa_abs stdcall num
+	mov		eax,[num] ; store rcx in rax
 	neg		eax
-	cmovl	eax,ecx ; if rax is now negative, restore its saved value
+	cmovl	eax,[num] ; if rax is now negative, restore its saved value
 	ret
 endp
