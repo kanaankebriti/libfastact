@@ -26,6 +26,8 @@ proc fa_deg2rad stdcall num:QWORD
 		pi			dq M_PI
 		divisor		dq 180.000
 	endl
+	; calculation using xmm
+	; store in st0
 	movsd	xmm0,[num]
 	divsd	xmm0,[divisor]
 	mulsd	xmm0,[pi]
