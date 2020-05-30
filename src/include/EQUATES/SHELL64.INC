@@ -1,3 +1,4 @@
+
 ; SHELL32.DLL structures and constants
 
 struct NOTIFYICONDATA

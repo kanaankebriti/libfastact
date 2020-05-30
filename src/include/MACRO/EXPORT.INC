@@ -1,3 +1,4 @@
+
 ; Macroinstruction for making export section
 
 macro export dllname,[label,string]

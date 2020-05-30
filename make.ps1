@@ -14,20 +14,36 @@
 #░You should have received a copy of the GNU General Public License		░
 #░along with Foobar.  If not, see <https://www.gnu.org/licenses/>.		░
 #░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-rm .\lib\*.*
+[string]$machine = Read-Host -Prompt "build target (x86 or x64)"
 
-.\FASM.EXE .\src\libfastact.asm .\lib\libfastact.dll
+# check for input
+if ($machine -eq "x64")
+{
+	[string]$modulePath = ".\lib\LIBFASTACTCORE_" + $machine + ".dll"
+	.\FASM.EXE .\src\core\libfastactcore_x64.asm .\lib\LIBFASTACTCORE_X64.dll
+}
+elseif($machine -eq "x86")
+{
+	[string]$modulePath = ".\lib\LIBFASTACTCORE_" + $machine + ".dll"
+	.\FASM.EXE .\src\core\libfastactcore_x86.asm .\lib\LIBFASTACTCORE_X86.dll
+}
+else
+{
+	Write-Host "WRONG Architecture"
+	return
+}
 
-cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.dll .\lib
-cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.lib .\lib
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.dll .\lib\LIBFASTACTGRAPHICS_x64.dll
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.lib .\lib\LIBFASTACTGRAPHICS_x64.lib
+cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS.dll .\lib\LIBFASTACTGRAPHICS_x86.dll
+cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS.lib .\lib\LIBFASTACTGRAPHICS_x86.lib
 cp .\src\graphics\libfastact_graphics\libfastact_graphics.h .\include\libfastact_graphics.h
 
-cp .\src\cas\x64\Release\LIBFASTACTCAS.dll .\lib
-cp .\src\cas\x64\Release\LIBFASTACTCAS.lib .\lib
+cp .\src\cas\x64\Release\LIBFASTACTCAS.dll .\lib\LIBFASTACTCAS_x64.dll
+cp .\src\cas\x64\Release\LIBFASTACTCAS.lib .\lib\LIBFASTACTCAS_x64.lib
+cp .\src\cas\x86\Release\LIBFASTACTCAS.dll .\lib\LIBFASTACTCAS_x86.dll
+cp .\src\cas\x86\Release\LIBFASTACTCAS.lib .\lib\LIBFASTACTCAS_x86.lib
 cp .\src\cas\libfastact_cas\libfastact_cas.h .\include\libfastact_cas.h
-
-[string]$modulePath = ".\lib\libfastact.dll"
-[string]$machine = "x64"
 
 if(!(Test-Path $modulePath -PathType Leaf))
 {

@@ -1,3 +1,4 @@
+
 ; KERNEL32.DLL structures and constants
 
 struct SYSTEM_INFO

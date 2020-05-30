@@ -1,3 +1,4 @@
+
 ; Macroinstructions for defining data structures
 
 macro struct name

@@ -1,3 +1,4 @@
+
 ; Macroinstructions for interfacing the COM (Component Object Model) classes
 
 macro cominvk object,proc,[arg]
@@ -35,3 +36,4 @@ macro interface name,[proc]
    common
      name#.com.interface = $ shr 3
     end virtual }
+

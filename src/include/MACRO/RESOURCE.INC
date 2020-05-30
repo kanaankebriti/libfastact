@@ -1,3 +1,4 @@
+
 ; Macroinstructions for making resource section
 
 macro directory [type,label]
