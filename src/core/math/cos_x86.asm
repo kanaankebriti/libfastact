@@ -22,7 +22,7 @@
 ;│			st0 = cos(number)	│
 ;└──────────────────────────────┘
 proc fa_cos stdcall num:QWORD
-	fld		[num]			; load [num] into x87 stack (ST0)
-	fcos					; ST0 = sin(ST0)
+	fld		[num]	; load [num] into x87 stack (ST0)
+	fcos			; ST0 = sin(ST0)
 	ret
 endp

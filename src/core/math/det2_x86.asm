@@ -18,12 +18,12 @@
 ;│ computes determinant of 	│
 ;| a 2×2 Matrix				|
 ;│ input:					│
-;│			xmm0 = m11		│
-;│			xmm1 = m12		│
-;│			xmm2 = m21		│
-;│			xmm3 = m22		│
+;│			m11				│
+;│			m12				│
+;│			m21				│
+;│			m22				│
 ;│ output:					│
-;│			xmm0 = det(m)	│
+;│			st0 = det(m)	│
 ;└──────────────────────────┘
 proc fa_det2 stdcall m11:QWORD,m12:QWORD,m21:QWORD,m22:QWORD
 	; calculation using xmm

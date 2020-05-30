@@ -62,6 +62,7 @@ section '.edata' export data readable
 			fa_det2,'fa_det2',\
 			fa_hypot,'fa_hypot',\
 			fa_sin,'fa_sin',\
+			fa_sqrt,'fa_sqrt',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
@@ -95,7 +96,7 @@ include 'math/hypot_x86.asm'
 ;include 'math/pow10_x86.asm'
 ;include 'math/round_x86.asm'
 include 'math/sin_x86.asm'
-;include 'math/sqrt_x86.asm'
+include 'math/sqrt_x86.asm'
 ;include 'math/trunc_x86.asm'
 
 ; serial
