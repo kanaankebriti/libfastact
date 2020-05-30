@@ -57,6 +57,8 @@ section '.data' data readable writeable
 section '.edata' export data readable
 	export	'LIBFASTACTCORE_X86.dll',\
 			fa_abs,'fa_abs',\
+			fa_cos,'fa_cos',\
+			fa_sin,'fa_sin',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
@@ -80,18 +82,18 @@ endp
 
 ; math
 include 'math/abs_x86.asm'
-;include 'math/cos.asm'
-;include 'math/deg2rad.asm'
-;include 'math/det2.asm'
-;include 'math/det3.asm'
-;include 'math/fabs.asm'
-;include 'math/hypot.asm'
-;include 'math/pow2.asm'
-;include 'math/pow10.asm'
-;include 'math/round.asm'
-;include 'math/sin.asm'
-;include 'math/sqrt.asm'
-;include 'math/trunc.asm'
+include 'math/cos_x86.asm'
+;include 'math/deg2rad_x86.asm'
+;include 'math/det2_x86.asm'
+;include 'math/det3_x86.asm'
+;include 'math/fabs_x86.asm'
+;include 'math/hypot_x86.asm'
+;include 'math/pow2_x86.asm'
+;include 'math/pow10_x86.asm'
+;include 'math/round_x86.asm'
+include 'math/sin_x86.asm'
+;include 'math/sqrt_x86.asm'
+;include 'math/trunc_x86.asm'
 
 ; serial
 ;include 'serial/closeserial.asm'

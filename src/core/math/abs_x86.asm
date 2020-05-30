@@ -21,7 +21,7 @@
 ;│ output:										│
 ;│			eax = abs(number)					│
 ;└──────────────────────────────────────────────┘
-proc fa_abs stdcall num
+proc fa_abs stdcall num:DWORD
 	mov		eax,[num] ; store rcx in rax
 	neg		eax
 	cmovl	eax,[num] ; if rax is now negative, restore its saved value
