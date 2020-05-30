@@ -58,6 +58,7 @@ section '.edata' export data readable
 	export	'LIBFASTACTCORE_X86.dll',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
+			fa_deg2rad,'fa_deg2rad',\
 			fa_sin,'fa_sin',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -83,7 +84,7 @@ endp
 ; math
 include 'math/abs_x86.asm'
 include 'math/cos_x86.asm'
-;include 'math/deg2rad_x86.asm'
+include 'math/deg2rad_x86.asm'
 ;include 'math/det2_x86.asm'
 ;include 'math/det3_x86.asm'
 ;include 'math/fabs_x86.asm'
