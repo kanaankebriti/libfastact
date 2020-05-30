@@ -59,6 +59,7 @@ section '.edata' export data readable
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
+			fa_hypot,'fa_hypot',\
 			fa_sin,'fa_sin',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -88,7 +89,7 @@ include 'math/deg2rad_x86.asm'
 ;include 'math/det2_x86.asm'
 ;include 'math/det3_x86.asm'
 ;include 'math/fabs_x86.asm'
-;include 'math/hypot_x86.asm'
+include 'math/hypot_x86.asm'
 ;include 'math/pow2_x86.asm'
 ;include 'math/pow10_x86.asm'
 ;include 'math/round_x86.asm'
