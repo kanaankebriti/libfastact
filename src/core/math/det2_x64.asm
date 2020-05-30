@@ -32,6 +32,6 @@ proc fa_det2
 	;└			 ┘
 	mulsd xmm0,xmm3
 	mulsd xmm1,xmm2
-	addsd xmm0,xmm1
+	subsd xmm0,xmm1
 	ret
 endp
