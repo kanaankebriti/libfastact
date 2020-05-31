@@ -18,6 +18,7 @@
 
 #include <d3d9.h>
 #include <d3dx9core.h>
+#include "libfastact.h"
 
 struct fa_VERTEX
 {

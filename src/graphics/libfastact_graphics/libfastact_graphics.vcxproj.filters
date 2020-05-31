@@ -18,9 +18,6 @@
     <ClInclude Include="libfastact_graphics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="libfastact.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="common.h">
       <Filter>Header Files</Filter>
     </ClInclude>

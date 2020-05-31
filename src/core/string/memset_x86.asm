@@ -14,15 +14,21 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────┐
-;│ sqruare root					│
-;│ input:						│
-;│			number				│
-;│ output:						│
-;│			st0 = sqrt(number)	│
-;└──────────────────────────────┘
-proc fa_sqrt stdcall num:QWORD
-	fld	[num]
-	fsqrt
+;┌──────────────────────────────────────────────────┐
+;│ sets the first num bytes of the block of memory	│
+;| pointed by destination_str to the specified value│
+;│ input:											│
+;│			rcx = *destination_str					│
+;│			rdx = value								│
+;│			r8 = size								│
+;│ output:											│
+;│			rax = *destination_str					│
+;└──────────────────────────────────────────────────┘
+proc fa_memset stdcall destination:DWORD,value:BYTE,size:DWORD
+	mov	edi,[destination]	; set destination_str
+	mov	ecx,[size]			; set size
+	mov al,[value]			; set value
+	rep	stosb				; store n times
+	mov	eax,[destination]	; return pointer
 	ret
 endp

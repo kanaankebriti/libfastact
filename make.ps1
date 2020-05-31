@@ -25,7 +25,7 @@ if ($machine -eq "x64")
 elseif($machine -eq "x86")
 {
 	[string]$modulePath = ".\lib\LIBFASTACTCORE_" + $machine + ".dll"
-	.\FASM.EXE .\src\core\libfastactcore_x86.asm .\lib\LIBFASTACTCORE_X86.dll
+	.\FASM.EXE .\src\core\libfastactcore_x86.asm .\lib\LIBFASTACTCORE_x86.dll
 }
 else
 {

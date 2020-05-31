@@ -55,7 +55,7 @@ section '.data' data readable writeable
 	serial_handler dd ?
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.edata' export data readable
-	export	'LIBFASTACTCORE_X86.dll',\
+	export	'LIBFASTACTCORE_x86.dll',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -63,6 +63,7 @@ section '.edata' export data readable
 			fa_hypot,'fa_hypot',\
 			fa_sin,'fa_sin',\
 			fa_sqrt,'fa_sqrt',\
+			fa_memset,'fa_memset',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
@@ -73,16 +74,16 @@ proc DllEntryPoint hinstDLL,fdwReason,lpvReserved
 endp
 
 ; complex
-;include 'complex/cabs.asm'
-;include 'complex/carg.asm'
-;include 'complex/cimag.asm'
-;include 'complex/creal.asm'
+;include 'complex/cabs_x86.asm'
+;include 'complex/carg_x86.asm'
+;include 'complex/cimag_x86.asm'
+;include 'complex/creal_x86.asm'
 
 ; ctype
-;include 'ctype/isdigit.asm'
-;include 'ctype/islower.asm'
-;include 'ctype/isspace.asm'
-;include 'ctype/isupper.asm'
+;include 'ctype/isdigit_x86.asm'
+;include 'ctype/islower_x86.asm'
+;include 'ctype/isspace_x86.asm'
+;include 'ctype/isupper_x86.asm'
 
 ; math
 include 'math/abs_x86.asm'
@@ -100,29 +101,29 @@ include 'math/sqrt_x86.asm'
 ;include 'math/trunc_x86.asm'
 
 ; serial
-;include 'serial/closeserial.asm'
-;include 'serial/openserial.asm'
-;include 'serial/serialread.asm'
+;include 'serial/closeserial_x86.asm'
+;include 'serial/openserial_x86.asm'
+;include 'serial/serialread_x86.asm'
 
 ; stdio
-;include 'stdio/putchar.asm'
+;include 'stdio/putchar_x86.asm'
 
 ; stdlib
-;include 'stdlib/atoi.asm'
-;include 'stdlib/atoui.asm'
-;include 'stdlib/exit.asm'
-;include 'stdlib/ftoa.asm'
-;include 'stdlib/itoa.asm'
-;include 'stdlib/malloc.asm'
-;include 'stdlib/rand.asm'
+;include 'stdlib/atoi_x86.asm'
+;include 'stdlib/atoui_x86.asm'
+;include 'stdlib/exit_x86.asm'
+;include 'stdlib/ftoa_x86.asm'
+;include 'stdlib/itoa_x86.asm'
+;include 'stdlib/malloc_x86.asm'
+;include 'stdlib/rand_x86.asm'
 
 ; string
-;include 'string/memcpy.asm'
-;include 'string/memset.asm'
-;include 'string/strcat.asm'
-;include 'string/strcmp.asm'
-;include 'string/strcpy.asm'
-;include 'string/strlen.asm'
+;include 'string/memcpy_x86.asm'
+include 'string/memset_x86.asm'
+;include 'string/strcat_x86.asm'
+;include 'string/strcmp_x86.asm'
+;include 'string/strcpy_x86.asm'
+;include 'string/strlen_x86.asm'
 
 ; time
 ;include 'time/time_x86.asm'

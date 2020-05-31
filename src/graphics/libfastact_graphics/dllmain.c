@@ -17,8 +17,11 @@
 #define WIN32_LEAN_AND_MEAN
 #pragma comment(lib, "d3d9.lib")
 #pragma comment(lib, "d3dx9.lib")
-#pragma comment(lib, "libfastact.lib")
-
+#ifdef _WIN64
+#pragma comment(lib, "LIBFASTACTCORE_x64.lib")
+#else if _WIN32
+#pragma comment(lib, "LIBFASTACTCORE_x86.lib")
+#endif
 #include "libfastact.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
