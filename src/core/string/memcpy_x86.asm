@@ -14,21 +14,32 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────────────┐
-;│ sets the first num bytes of the block of memory	│
-;| pointed by destination_str to the specified value│
-;│ input:											│
-;│			*destination_str						│
-;│			value									│
-;│			size									│
-;│ output:											│
-;│			eax = *destination_str					│
-;└──────────────────────────────────────────────────┘
-proc fa_memset stdcall destination:DWORD,value:BYTE,size:DWORD
-	mov	edi,[destination]	; set destination_str
-	mov	ecx,[size]			; set size
-	mov al,[value]			; set value
-	rep	stosb				; store n times
-	mov	eax,[destination]	; return pointer
+;┌──────────────────────────────────┐
+;│ copies the values of num bytes	│
+;│ from source destination 			│
+;│ input:							│
+;│			*destination			│
+;│			*source					│
+;│			num						│
+;│ output:							│
+;│			eax = *destination		│
+;└──────────────────────────────────┘
+proc fa_memcpy stdcall destination:DWORD,source:DWORD,num:DWORD
+	push edi
+	push esi
+
+	mov edi,[destination]	; load destination location
+	mov esi,[source]		; load source location
+	mov ecx,[num]			; number of bytes
+
+	@@:
+		lodsb
+		stosb
+		loop	@B
+
+	mov eax,[destination]
+
+	pop esi
+	pop edi
 	ret
 endp

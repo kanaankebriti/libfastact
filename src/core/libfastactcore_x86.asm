@@ -63,6 +63,7 @@ section '.edata' export data readable
 			fa_hypot,'fa_hypot',\
 			fa_sin,'fa_sin',\
 			fa_sqrt,'fa_sqrt',\
+			fa_memcpy,'fa_memcpy',\
 			fa_memset,'fa_memset',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
@@ -118,7 +119,7 @@ include 'math/sqrt_x86.asm'
 ;include 'stdlib/rand_x86.asm'
 
 ; string
-;include 'string/memcpy_x86.asm'
+include 'string/memcpy_x86.asm'
 include 'string/memset_x86.asm'
 ;include 'string/strcat_x86.asm'
 ;include 'string/strcmp_x86.asm'
