@@ -45,7 +45,7 @@ extern "C"
 	/// <summary>creates then opens a new window</summary>
 	HWND fa_createwindow(CONST CHAR* _Title, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
-	VOID fa_drawcrs(fa_point2d* _Vertices, UINT _Size);
+	VOID fa_drawcrs(fa_point2d* _Vertices, UINT _Size, FLOAT _Weight);
 	/// <summary>ends draw to screen</summary>
 	VOID fa_enddraw(VOID);
 	/// <summary>draws a 2d rectangle</summary>

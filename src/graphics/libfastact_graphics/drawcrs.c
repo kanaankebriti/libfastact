@@ -18,19 +18,23 @@
 #include <stdio.h>
 
 /// <summary>draws catmull-rom spline</summary>
-__declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size)
+__declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weight)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;        // the pointer to the device class
     extern D3DCOLOR palette;                // palette color for text, graphics
     VOID* pVoid;                            // the void pointer
-    UINT register i;                        // counter
+    UINT register i, j;                     // counter
+    FLOAT k = 1;                            // weight counter
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
     fa_VERTEX* vertex;
-
+    UINT register number_of_vertices = (_size / sizeof(fa_point2d));
+    number_of_vertices += 2 * _weight;
+    printf("number_of_vertices=%d\tweight factor=%f\n", number_of_vertices, (k / _weight));
     // memory allocation for vertices
-    vertex = malloc((_size / sizeof(fa_point2d)) * sizeof(fa_VERTEX));
+    vertex = malloc(number_of_vertices * sizeof(fa_VERTEX));
 
-    for (i = 0; i < (_size / sizeof(fa_point2d)); i++)
+    // map point #0 and point #1 to vertex #0 and vertex #1
+    for (i = 0; i <= 1; i++)
     {
         vertex[i].location.x = point[i].location.x;
         vertex[i].location.y = point[i].location.y;
@@ -38,15 +42,46 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size)
         vertex[i].rhw = 1.0;
         vertex[i].color = palette;
     }
-    //for (UINT i = 0; i < (sizeof(fa_point2d) / _size); i++)
-        //D3DXVec3CatmullRom(&vertices[2].location, &vertices[0].location, &vertices[1].location, &vertices[3].location, &vertices[4].location, 0.5);
 
-    IDirect3DDevice9_CreateVertexBuffer(d3ddev, i * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
-    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (VOID**)&pVoid, D3DLOCK_READONLY);    // lock the vertex buffer
-    fa_memcpy(pVoid, vertex, i * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3));   // copy the vertices to the locked buffer
+    // map point #2 to point #n-1 to vertex
+    for (i = _weight + 2, j = 2; i <= number_of_vertices - 1; i += _weight + 1, j++)
+    {
+        vertex[i].location.x = point[j].location.x;
+        vertex[i].location.y = point[j].location.y;
+        vertex[i].location.z = 0.5;
+        vertex[i].rhw = 1.0;
+        vertex[i].color = palette;
+    }
+
+    // map point #n to vertex
+    i -= _weight;
+    vertex[i].location.x = point[(_size / sizeof(fa_point2d)) - 1].location.x;
+    vertex[i].location.y = point[(_size / sizeof(fa_point2d)) - 1].location.y;
+    vertex[i].location.z = 0.5;
+    vertex[i].rhw = 1.0;
+    vertex[i].color = palette;
+
+    // point #1 to point #n-1 catmull-rom interpolation
+    for (i = 1; i < number_of_vertices - 2; i += _weight + 1)
+        for (j = i + 1, k = 1; j <= i + _weight; j++, k++)
+        {
+            printf("i=%d\tj=%d\tk=%f\tk/_weight=%f\n", i, j, k, k / (_weight + 1));
+            D3DXVec3CatmullRom(&vertex[j].location, &vertex[i - 1].location, &vertex[i].location, &vertex[i + 1].location, &vertex[i + 2].location, k / (_weight + 1));
+            vertex[j].color = palette;
+            vertex[j].rhw = 1.0;
+        }
+
+    for (i = 0; i <= number_of_vertices - 1; i++)
+    {
+        printf("i=%d\tx=%f\ty=%f", i, vertex[i].location.x, vertex[i].location.y);
+        printf("\tcolor=%d\n", vertex[i].color);
+    }
+    IDirect3DDevice9_CreateVertexBuffer(d3ddev, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (VOID**)&pVoid, D3DLOCK_READONLY); // lock the vertex buffer
+    fa_memcpy(pVoid, vertex, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3));                   // copy the vertices to the locked buffer
     free(vertex);
     IDirect3DVertexBuffer9_Unlock(vertex_buffer);   // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);        // select which vertex format we are using
-    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(fa_VERTEX));  // select the vertex buffer to display
-    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, 4);                   // copy the vertex buffer to the back buffer
+    IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(fa_VERTEX));   // select the vertex buffer to display
+    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, number_of_vertices); // copy the vertex buffer to the back buffer
 }
