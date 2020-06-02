@@ -22,12 +22,10 @@
 #include <d3d9.h>
 #include <d3dx9core.h>
 
-struct fa_VERTEX
+struct fa_point2d
 {
-	D3DXVECTOR3 location;   // (x,y,z)
-	FLOAT rhw;              // from the D3DFVF_XYZRHW flag
-	DWORD color;            // from the D3DFVF_DIFFUSE flag
-};
+	D3DXVECTOR2 location;
+}typedef fa_point2d;
 
 #ifdef __cplusplus
 extern "C"
@@ -47,7 +45,7 @@ extern "C"
 	/// <summary>creates then opens a new window</summary>
 	HWND fa_createwindow(CONST CHAR* _Title, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
-	VOID fa_drawcrs(fa_VERTEX* _Vertices, UINT _Size);
+	VOID fa_drawcrs(fa_point2d* _Vertices, UINT _Size);
 	/// <summary>ends draw to screen</summary>
 	VOID fa_enddraw(VOID);
 	/// <summary>draws a 2d rectangle</summary>

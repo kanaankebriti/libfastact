@@ -26,3 +26,8 @@ struct fa_VERTEX
     FLOAT rhw;              // from the D3DFVF_XYZRHW flag
     DWORD color;            // from the D3DFVF_DIFFUSE flag
 }typedef fa_VERTEX;
+
+struct fa_point2d
+{
+    D3DXVECTOR2 location;
+}typedef fa_point2d;

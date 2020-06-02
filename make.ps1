@@ -33,16 +33,16 @@ else
 	return
 }
 
-cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.dll .\lib\LIBFASTACTGRAPHICS_x64.dll
-cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS.lib .\lib\LIBFASTACTGRAPHICS_x64.lib
-cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS.dll .\lib\LIBFASTACTGRAPHICS_x86.dll
-cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS.lib .\lib\LIBFASTACTGRAPHICS_x86.lib
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS_x64.dll .\lib\LIBFASTACTGRAPHICS_x64.dll
+cp .\src\graphics\x64\Release\LIBFASTACTGRAPHICS_x64.lib .\lib\LIBFASTACTGRAPHICS_x64.lib
+cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS_x86.dll .\lib\LIBFASTACTGRAPHICS_x86.dll
+cp .\src\graphics\x86\Release\LIBFASTACTGRAPHICS_x86.lib .\lib\LIBFASTACTGRAPHICS_x86.lib
 cp .\src\graphics\libfastact_graphics\libfastact_graphics.h .\include\libfastact_graphics.h
 
-cp .\src\cas\x64\Release\LIBFASTACTCAS.dll .\lib\LIBFASTACTCAS_x64.dll
-cp .\src\cas\x64\Release\LIBFASTACTCAS.lib .\lib\LIBFASTACTCAS_x64.lib
-cp .\src\cas\x86\Release\LIBFASTACTCAS.dll .\lib\LIBFASTACTCAS_x86.dll
-cp .\src\cas\x86\Release\LIBFASTACTCAS.lib .\lib\LIBFASTACTCAS_x86.lib
+cp .\src\cas\x64\Release\LIBFASTACTCAS_x64.dll .\lib\LIBFASTACTCAS_x64.dll
+cp .\src\cas\x64\Release\LIBFASTACTCAS_x64.lib .\lib\LIBFASTACTCAS_x64.lib
+cp .\src\cas\x86\Release\LIBFASTACTCAS_x86.dll .\lib\LIBFASTACTCAS_x86.dll
+cp .\src\cas\x86\Release\LIBFASTACTCAS_x86.lib .\lib\LIBFASTACTCAS_x86.lib
 cp .\src\cas\libfastact_cas\libfastact_cas.h .\include\libfastact_cas.h
 
 if(!(Test-Path $modulePath -PathType Leaf))
