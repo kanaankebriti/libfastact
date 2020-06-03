@@ -28,13 +28,13 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     FLOAT k = 1;                            // weight counter
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
     fa_VERTEX* vertex;
-    UINT register number_of_vertices = (_size / sizeof(fa_point2d));
-    number_of_vertices += 2 * _weight;
+    UINT number_of_vertices = _size / sizeof(fa_point2d);                   // number of control points
+    number_of_vertices += (number_of_vertices - 4) * _weight + _weight;     // number of control points + interpolated points
     printf("number_of_vertices=%d\tweight factor=%f\n", number_of_vertices, (k / _weight));
     // memory allocation for vertices
     vertex = malloc(number_of_vertices * sizeof(fa_VERTEX));
 
-    // map point #0 and point #1 to vertex #0 and vertex #1
+    // map control point #0 and point #1 to vertex #0 and vertex #1
     for (i = 0; i <= 1; i++)
     {
         vertex[i].location.x = point[i].location.x + screen_center_x;
@@ -44,7 +44,7 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
         vertex[i].color = palette;
     }
 
-    // map point #2 to point #n-1 to vertex
+    // map control point #2 to point #n-1 to vertex
     for (i = _weight + 2, j = 2; i <= number_of_vertices - 1; i += _weight + 1, j++)
     {
         vertex[i].location.x = point[j].location.x + screen_center_x;
@@ -54,7 +54,7 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
         vertex[i].color = palette;
     }
 
-    // map point #n to vertex
+    // map control point #n to vertex
     i -= _weight;
     vertex[i].location.x = point[(_size / sizeof(fa_point2d)) - 1].location.x + screen_center_x;
     vertex[i].location.y = point[(_size / sizeof(fa_point2d)) - 1].location.y + screen_center_y;
