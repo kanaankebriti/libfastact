@@ -22,7 +22,7 @@
 #else if _WIN32
 #pragma comment(lib, "LIBFASTACTCORE_x86.lib")
 #endif
-#include "libfastact.h"
+#include "common.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {

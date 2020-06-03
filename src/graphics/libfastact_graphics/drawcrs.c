@@ -15,7 +15,6 @@
 ░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
-#include <stdio.h>
 
 /// <summary>draws catmull-rom spline</summary>
 __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weight)
@@ -30,7 +29,6 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     fa_VERTEX* vertex;
     UINT number_of_vertices = _size / sizeof(fa_point2d);                   // number of control points
     number_of_vertices += (number_of_vertices - 4) * _weight + _weight;     // number of control points + interpolated points
-    printf("number_of_vertices=%d\tweight factor=%f\n", number_of_vertices, (k / _weight));
     // memory allocation for vertices
     vertex = malloc(number_of_vertices * sizeof(fa_VERTEX));
 
@@ -66,7 +64,6 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     for (i = 1, m = 0; i < number_of_vertices - 2; i += _weight + 1, m++)
         for (j = i + 1, k = 1; j <= i + _weight; j++, k++)
         {
-            printf("i=%d\tj=%d\tm=%d\tk=%f\tk/_weight=%f\n", i, j, m, k, k / (_weight + 1));
             D3DXVec3CatmullRom(&vertex[j].location, &point[m].location, &point[m + 1].location, &point[m + 2].location, &point[m + 3].location, k / (_weight + 1));
             vertex[j].location.x += screen_center_x;
             vertex[j].location.y += screen_center_y;
@@ -74,14 +71,9 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
             vertex[j].rhw = 1.0;
         }
 
-    for (i = 0; i <= number_of_vertices - 1; i++)
-    {
-        printf("i=%d\tx=%f\ty=%f", i, vertex[i].location.x, vertex[i].location.y);
-        printf("\tcolor=%d\n", vertex[i].color);
-    }
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
-    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (VOID**)&pVoid, D3DLOCK_READONLY); // lock the vertex buffer
-    fa_memcpy(pVoid, vertex, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3));                   // copy the vertices to the locked buffer
+    IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, (VOID**)&pVoid, D3DLOCK_READONLY);     // lock the vertex buffer
+    fa_memcpy(pVoid, vertex, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3)); // copy the vertices to the locked buffer
     free(vertex);
     IDirect3DVertexBuffer9_Unlock(vertex_buffer);   // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);        // select which vertex format we are using
