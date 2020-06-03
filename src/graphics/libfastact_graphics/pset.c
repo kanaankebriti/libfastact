@@ -21,9 +21,10 @@ __declspec(dllexport) VOID fa_pset(FLOAT _x, FLOAT _y)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
     extern D3DCOLOR palette;            // palette color for text, graphics
+    extern FLOAT screen_center_x, screen_center_y;      // center of screen
     VOID* pVoid;                        // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
-    fa_VERTEX p1 = { _x,_y,0,1,palette };
+    fa_VERTEX p1 = { _x + screen_center_x,_y + screen_center_y,0,1,palette };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(fa_VERTEX), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
     IDirect3DVertexBuffer9_Lock(vertex_buffer, 0, 0, &pVoid, D3DLOCK_READONLY);    // lock the vertex buffer

@@ -22,8 +22,9 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
 {
     extern LPDIRECT3DDEVICE9 d3ddev;        // the pointer to the device class
     extern D3DCOLOR palette;                // palette color for text, graphics
+    extern FLOAT screen_center_x, screen_center_y;      // center of screen
     VOID* pVoid;                            // the void pointer
-    UINT register i, j;                     // counter
+    UINT register i, j, m;                  // counter
     FLOAT k = 1;                            // weight counter
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
     fa_VERTEX* vertex;
@@ -36,9 +37,9 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     // map point #0 and point #1 to vertex #0 and vertex #1
     for (i = 0; i <= 1; i++)
     {
-        vertex[i].location.x = point[i].location.x;
-        vertex[i].location.y = point[i].location.y;
-        vertex[i].location.z = 0.5;
+        vertex[i].location.x = point[i].location.x + screen_center_x;
+        vertex[i].location.y = point[i].location.y + screen_center_y;
+        vertex[i].location.z = 0;
         vertex[i].rhw = 1.0;
         vertex[i].color = palette;
     }
@@ -46,27 +47,29 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     // map point #2 to point #n-1 to vertex
     for (i = _weight + 2, j = 2; i <= number_of_vertices - 1; i += _weight + 1, j++)
     {
-        vertex[i].location.x = point[j].location.x;
-        vertex[i].location.y = point[j].location.y;
-        vertex[i].location.z = 0.5;
+        vertex[i].location.x = point[j].location.x + screen_center_x;
+        vertex[i].location.y = point[j].location.y + screen_center_y;
+        vertex[i].location.z = 0;
         vertex[i].rhw = 1.0;
         vertex[i].color = palette;
     }
 
     // map point #n to vertex
     i -= _weight;
-    vertex[i].location.x = point[(_size / sizeof(fa_point2d)) - 1].location.x;
-    vertex[i].location.y = point[(_size / sizeof(fa_point2d)) - 1].location.y;
-    vertex[i].location.z = 0.5;
+    vertex[i].location.x = point[(_size / sizeof(fa_point2d)) - 1].location.x + screen_center_x;
+    vertex[i].location.y = point[(_size / sizeof(fa_point2d)) - 1].location.y + screen_center_y;
+    vertex[i].location.z = 0;
     vertex[i].rhw = 1.0;
     vertex[i].color = palette;
 
     // point #1 to point #n-1 catmull-rom interpolation
-    for (i = 1; i < number_of_vertices - 2; i += _weight + 1)
+    for (i = 1, m = 0; i < number_of_vertices - 2; i += _weight + 1, m++)
         for (j = i + 1, k = 1; j <= i + _weight; j++, k++)
         {
-            printf("i=%d\tj=%d\tk=%f\tk/_weight=%f\n", i, j, k, k / (_weight + 1));
-            D3DXVec3CatmullRom(&vertex[j].location, &vertex[i - 1].location, &vertex[i].location, &vertex[i + 1].location, &vertex[i + 2].location, k / (_weight + 1));
+            printf("i=%d\tj=%d\tm=%d\tk=%f\tk/_weight=%f\n", i, j, m, k, k / (_weight + 1));
+            D3DXVec3CatmullRom(&vertex[j].location, &point[m].location, &point[m + 1].location, &point[m + 2].location, &point[m + 3].location, k / (_weight + 1));
+            vertex[j].location.x += screen_center_x;
+            vertex[j].location.y += screen_center_y;
             vertex[j].color = palette;
             vertex[j].rhw = 1.0;
         }

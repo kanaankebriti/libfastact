@@ -25,7 +25,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         DestroyWindow(hwnd);
         break;
     case WM_DESTROY:
-        PostQuitMessage(0);
+        PostQuitMessage(WM_QUIT);
         break;
     default:
         return DefWindowProc(hwnd, msg, wParam, lParam);
@@ -57,8 +57,7 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, UINT _width, UINT
 
     if (!RegisterClassEx(&wc))
     {
-        MessageBox(NULL, "Window Registration Failed!", "Error!",
-            MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
         return 0;
     }
 
@@ -79,8 +78,7 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, UINT _width, UINT
 
     if (hwnd == NULL)
     {
-        MessageBox(NULL, "Window Creation Failed!", "Error!",
-            MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
         return 0;
     }
 
