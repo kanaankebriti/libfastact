@@ -43,7 +43,7 @@ extern "C"
 	/// <summary>clears entire viewport rectangle and sets background color</summary>
 	VOID fa_cls(VOID);
 	/// <summary>creates then opens a new window</summary>
-	HWND fa_createwindow(CONST CHAR* _Title, UINT _Width, UINT _Height);
+	HWND fa_createwindow(CONST CHAR* _Title, HINSTANCE _HInstance, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
 	VOID fa_drawcrs(fa_point2d* _Vertices, UINT _Size, FLOAT _Weight);
 	/// <summary>ends draw to screen</summary>

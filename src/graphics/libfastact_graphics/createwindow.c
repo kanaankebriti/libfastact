@@ -34,7 +34,7 @@ LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 }
 
 /// <summary>creates then opens a new window</summary>
-__declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, UINT _width, UINT _height)
+__declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInstance, UINT _width, UINT _height)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;
     WNDCLASSEX wc;
@@ -47,7 +47,7 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, UINT _width, UINT
     wc.lpfnWndProc = WndProc;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
-    //wc.hInstance = hInstance;
+    wc.hInstance = _hInstance;
     wc.hIcon = LoadIcon(NULL, IDI_APPLICATION);
     wc.hCursor = LoadCursor(NULL, IDC_ARROW);
     wc.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);

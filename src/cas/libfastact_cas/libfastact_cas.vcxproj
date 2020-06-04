@@ -79,13 +79,17 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>LIBFASTACTCAS</TargetName>
+    <TargetName>LIBFASTACTCAS_$(PROCESSOR_ARCHITECTURE)</TargetName>
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\Users\KWM\Documents\GitHub\libfastact\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\KWM\Documents\GitHub\libfastact\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(PROCESSOR_ARCHITECTURE)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <TargetName>LIBFASTACTCAS</TargetName>
+    <TargetName>LIBFASTACTCAS_$(Platform)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <LibraryPath>C:\Users\KWM\Documents\GitHub\libfastact\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\KWM\Documents\GitHub\libfastact\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -119,7 +123,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -161,7 +165,6 @@
     <ClCompile Include="tinyexpr.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="libfastact.h" />
     <ClInclude Include="libfastact_cas.h" />
     <ClInclude Include="tinyexpr.h" />
   </ItemGroup>

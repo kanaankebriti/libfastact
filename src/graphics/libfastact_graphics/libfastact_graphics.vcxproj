@@ -79,10 +79,11 @@
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <TargetName>LIBFASTACTGRAPHICS</TargetName>
+    <TargetName>LIBFASTACTGRAPHICS_$(PROCESSOR_ARCHITECTURE)</TargetName>
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>C:\Users\Kanaan\Documents\libfastact\include;C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Kanaan\Documents\libfastact\lib;C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)$(PROCESSOR_ARCHITECTURE)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>LIBFASTACTGRAPHICS_$(Platform)</TargetName>

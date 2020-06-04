@@ -15,9 +15,13 @@
 ░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #define WIN32_LEAN_AND_MEAN
-#pragma comment(lib, "libfastact.lib")
+#ifdef _WIN64
+#pragma comment(lib, "LIBFASTACTCORE_x64.lib")
+#else if _WIN32
+#pragma comment(lib, "LIBFASTACTCORE_x86.lib")
+#endif
 
-#include "libfastact.h"
+#include "libfastact_core.h"
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)
 {
