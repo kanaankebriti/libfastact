@@ -30,9 +30,7 @@ section '.idata' import data readable writeable
 	library	kernel32,'KERNEL32.DLL',\
 			user32,'USER32.DLL',\
 			gdi32,'GDI32.DLL',\
-			ntdll,'NTDLL.DLL',\
-			d3d9,'D3D9.DLL',\
-			fastact_nonasm,'libfastactnonasm.dll'
+			ntdll,'NTDLL.DLL'
 
 	include	'..\include\api\kernel32.inc'
 	include	'..\include\api\user32.inc'
@@ -42,14 +40,6 @@ section '.idata' import data readable writeable
 			RtlTimeToSecondsSince1970,'RtlTimeToSecondsSince1970'
 	import	d3d9,\
 			Direct3DCreate9,'Direct3DCreate9'
-	import	fastact_nonasm,\
-			fa_begindraw,'fa_begindraw',\
-			fa_cls,'fa_cls',\
-			fa_get_d3ddev,'fa_get_d3ddev',\
-			fa_enddraw,'fa_enddraw',\
-			fa_initgraphics,'fa_initgraphics',\
-			fa_line,'fa_line',\
-			fa_pset,'fa_pset'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.data' data readable writeable
 	serial_handler dq ?
