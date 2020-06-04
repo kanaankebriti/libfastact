@@ -17,7 +17,7 @@
 #include "common.h"
 
 /// <summary>draws catmull-rom spline</summary>
-__declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weight)
+__declspec(dllexport) fa_point2d* fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weight)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;        // the pointer to the device class
     extern D3DCOLOR palette;                // palette color for text, graphics
@@ -26,11 +26,15 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     UINT register i, j, m;                  // counter
     FLOAT k = 1;                            // weight counter
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
-    fa_VERTEX* vertex;
+    fa_VERTEX* vertex;                      // array vertices that to be drawed
+    fa_point2d* boundery_point;             // array of (x,y) locations of vertex will return using this pointer
+
     UINT number_of_vertices = _size / sizeof(fa_point2d);                   // number of control points
     number_of_vertices += (number_of_vertices - 4) * _weight + _weight;     // number of control points + interpolated points
-    // memory allocation for vertices
+
+    // memory allocation for vertices and boundary_points
     vertex = malloc(number_of_vertices * sizeof(fa_VERTEX));
+    boundery_point = malloc(number_of_vertices * sizeof(fa_point2d));
 
     // map control point #0 and point #1 to vertex #0 and vertex #1
     for (i = 0; i <= 1; i++)
@@ -40,6 +44,9 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
         vertex[i].location.z = 0;
         vertex[i].rhw = 1.0;
         vertex[i].color = palette;
+
+        boundery_point[i].location.x = vertex[i].location.x;
+        boundery_point[i].location.y = vertex[i].location.y;
     }
 
     // map control point #2 to point #n-1 to vertex
@@ -50,15 +57,21 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
         vertex[i].location.z = 0;
         vertex[i].rhw = 1.0;
         vertex[i].color = palette;
+
+        boundery_point[i].location.x = vertex[i].location.x;
+        boundery_point[i].location.y = vertex[i].location.y;
     }
 
-    // map control point #n to vertex
+    // map control point #n to vertex and boundary_point
     i -= _weight;
     vertex[i].location.x = point[(_size / sizeof(fa_point2d)) - 1].location.x + screen_center_x;
     vertex[i].location.y = point[(_size / sizeof(fa_point2d)) - 1].location.y + screen_center_y;
     vertex[i].location.z = 0;
     vertex[i].rhw = 1.0;
     vertex[i].color = palette;
+
+    boundery_point[i].location.x = vertex[i].location.x;
+    boundery_point[i].location.y = vertex[i].location.y;
 
     // point #1 to point #n-1 catmull-rom interpolation
     for (i = 1, m = 0; i < number_of_vertices - 2; i += _weight + 1, m++)
@@ -69,6 +82,9 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
             vertex[j].location.y += screen_center_y;
             vertex[j].color = palette;
             vertex[j].rhw = 1.0;
+
+            boundery_point[i].location.x = vertex[j].location.x;
+            boundery_point[i].location.y = vertex[j].location.y;
         }
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, number_of_vertices * sizeof(fa_VERTEX) - sizeof(D3DXVECTOR3), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);
@@ -78,5 +94,7 @@ __declspec(dllexport) VOID fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weig
     IDirect3DVertexBuffer9_Unlock(vertex_buffer);   // unlock the vertex buffer
     IDirect3DDevice9_SetFVF(d3ddev, D3DFVF);        // select which vertex format we are using
     IDirect3DDevice9_SetStreamSource(d3ddev, 0, vertex_buffer, 0, sizeof(fa_VERTEX));   // select the vertex buffer to display
-    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, number_of_vertices); // copy the vertex buffer to the back buffer
+    IDirect3DDevice9_DrawPrimitive(d3ddev, D3DPT_LINESTRIP, 0, number_of_vertices);     // copy the vertex buffer to the back buffer
+
+    return boundery_point;
 }

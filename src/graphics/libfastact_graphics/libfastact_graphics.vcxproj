@@ -81,8 +81,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>LIBFASTACTGRAPHICS_$(PROCESSOR_ARCHITECTURE)</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\Users\Kanaan\Documents\libfastact\include;C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Kanaan\Documents\libfastact\lib;C:\Program Files\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\KWM\Documents\GitHub\libfastact\include;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\KWM\Documents\GitHub\libfastact\lib;C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)$(PROCESSOR_ARCHITECTURE)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -172,6 +172,7 @@
     <ClCompile Include="createwindow.c" />
     <ClCompile Include="dllmain.c" />
     <ClCompile Include="drawcrs.c" />
+    <ClCompile Include="drawplist.c" />
     <ClCompile Include="enddraw.c" />
     <ClCompile Include="initgraph.c" />
     <ClCompile Include="libfastact_graphics.c" />
