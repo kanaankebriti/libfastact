@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			st0 = sin(number)	│
 ;└──────────────────────────────┘
-proc fa_sin stdcall num:QWORD
+proc fa_sin c num:QWORD
 	fld		[num]	; load [temp_result] into x87 stack (ST0)
 	fsin			; ST0 = sin(ST0)
 	ret

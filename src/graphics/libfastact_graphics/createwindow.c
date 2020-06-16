@@ -17,18 +17,24 @@
 #include "common.h"
 
 /// <summary>the window Procedure</summary>
-LRESULT CALLBACK WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    switch (msg)
+    PAINTSTRUCT ps;
+    HDC hdc;
+
+    switch (message)
     {
-    case WM_CLOSE:
-        DestroyWindow(hwnd);
+    case WM_PAINT:
+        hdc = BeginPaint(hWnd, &ps);
+        EndPaint(hWnd, &ps);
         break;
+
     case WM_DESTROY:
-        PostQuitMessage(WM_QUIT);
+        PostQuitMessage(0);
         break;
+
     default:
-        return DefWindowProc(hwnd, msg, wParam, lParam);
+        return DefWindowProc(hWnd, message, wParam, lParam);
     }
     return 0;
 }

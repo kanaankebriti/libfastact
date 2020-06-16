@@ -24,7 +24,7 @@
 ;│ output:											│
 ;│			eax = *destination_str					│
 ;└──────────────────────────────────────────────────┘
-proc fa_memset stdcall destination:DWORD,value:BYTE,size:DWORD
+proc fa_memset c destination:DWORD,value:BYTE,size:DWORD
 	mov	edi,[destination]	; set destination_str
 	mov	ecx,[size]			; set size
 	mov al,[value]			; set value

@@ -58,6 +58,8 @@ extern "C"
 	VOID fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line with color RGB</summary>
 	VOID fa_line(FLOAT _X1, FLOAT _Y1, FLOAT _X2, FLOAT _Y2);
+	/// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
+	WORD* fa_meshing(void* _PointList, float _Factor, int _NumberOfInputPoints, int _NumDimensions, int _Clockwise, int* _NumTriangleVertices);
 	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
 	VOID fa_outtextxy(FLOAT _X, FLOAT _Y, CONST CHAR* _Txt);
 	/// <summary>sets palette color for backgound</summary>

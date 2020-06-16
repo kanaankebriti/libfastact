@@ -53,6 +53,7 @@ section '.edata' export data readable
 			fa_sqrt,'fa_sqrt',\
 			fa_memcpy,'fa_memcpy',\
 			fa_memset,'fa_memset',\
+			fa_strlen,'fa_strlen',\
 			fa_wait,'fa_wait'
 ;▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 section '.text' code readable executable
@@ -112,7 +113,7 @@ include 'string/memset_x86.asm'
 ;include 'string/strcat_x86.asm'
 ;include 'string/strcmp_x86.asm'
 ;include 'string/strcpy_x86.asm'
-;include 'string/strlen_x86.asm'
+include 'string/strlen_x86.asm'
 
 ; time
 ;include 'time/time_x86.asm'

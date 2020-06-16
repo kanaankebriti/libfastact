@@ -23,7 +23,7 @@
 ;│ output:									│
 ;│			xmm0 = sqrt(x^2 + y^2)			│
 ;└──────────────────────────────────────────┘
-proc fa_hypot stdcall x:QWORD,y:QWORD
+proc fa_hypot c x:QWORD,y:QWORD
 	; calculation using xmm
 	; store in st0
 	locals

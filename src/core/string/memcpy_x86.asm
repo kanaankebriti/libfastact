@@ -24,7 +24,7 @@
 ;│ output:							│
 ;│			eax = *destination		│
 ;└──────────────────────────────────┘
-proc fa_memcpy stdcall destination:DWORD,source:DWORD,num:DWORD
+proc fa_memcpy c destination:DWORD,source:DWORD,num:DWORD
 	push edi
 	push esi
 

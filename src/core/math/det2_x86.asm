@@ -25,7 +25,7 @@
 ;│ output:					│
 ;│			st0 = det(m)	│
 ;└──────────────────────────┘
-proc fa_det2 stdcall m11:QWORD,m12:QWORD,m21:QWORD,m22:QWORD
+proc fa_det2 c m11:QWORD,m12:QWORD,m21:QWORD,m22:QWORD
 	; calculation using xmm
 	; store in st0
 	locals

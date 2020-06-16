@@ -166,6 +166,7 @@
     <ClCompile Include="begindraw.c" />
     <ClCompile Include="center.c" />
     <ClCompile Include="circle.c" />
+    <ClCompile Include="clarkson-delaunay.c" />
     <ClCompile Include="closegraph.c" />
     <ClCompile Include="cls.c" />
     <ClCompile Include="common.c" />
@@ -185,6 +186,7 @@
     <ClCompile Include="setcolor.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="clarkson-delaunay.h" />
     <ClInclude Include="common.h" />
     <ClInclude Include="libfastact_graphics.h" />
   </ItemGroup>

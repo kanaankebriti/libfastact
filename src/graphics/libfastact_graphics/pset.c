@@ -19,9 +19,9 @@
 /// <summary>draws a 2d pixel with color specified in palette</summary>
 __declspec(dllexport) VOID fa_pset(FLOAT _x, FLOAT _y)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
-    extern D3DCOLOR palette;            // palette color for text, graphics
-    extern FLOAT screen_center_x, screen_center_y;      // center of screen
+    extern LPDIRECT3DDEVICE9 d3ddev;                // the pointer to the device class
+    extern D3DCOLOR palette;                        // palette color for text, graphics
+    extern FLOAT screen_center_x, screen_center_y;  // center of screen
     VOID* pVoid;                        // the void pointer
     LPDIRECT3DVERTEXBUFFER9 vertex_buffer;
     fa_VERTEX p1 = { _x + screen_center_x,_y + screen_center_y,0,1,palette };

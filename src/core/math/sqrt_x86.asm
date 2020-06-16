@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			st0 = sqrt(number)	│
 ;└──────────────────────────────┘
-proc fa_sqrt stdcall num:QWORD
+proc fa_sqrt c num:QWORD
 	fld	[num]
 	fsqrt
 	ret

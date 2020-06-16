@@ -21,14 +21,15 @@
 ;│ output:							│
 ;│			rax = length of	source	│
 ;└──────────────────────────────────┘
-proc fa_strlen stdcall source:DWORD
+proc fa_strlen c source:DWORD
 	xor ecx,ecx			; set counter to 0
-    mov esi,[source]	; load source location
+	mov esi,[source]	; load source location
 	@@:
-		inc ecx
+		inc		ecx
 		lodsb
-		cmp al,al
-		jnz @B
+		test	al,al
+		jnz		@B
+	dec ecx		; exclude NULL ending character
 	mov eax,ecx
 	ret
 endp

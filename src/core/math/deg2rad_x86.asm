@@ -21,7 +21,7 @@
 ;│ output:						│
 ;│			st0 = rad output	│
 ;└──────────────────────────────┘
-proc fa_deg2rad stdcall num:QWORD
+proc fa_deg2rad c num:QWORD
 	locals
 		pi			dq M_PI
 		divisor		dq 180.000

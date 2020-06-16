@@ -22,7 +22,7 @@
 ;│ output:										│
 ;│			NaN									│
 ;└──────────────────────────────────────────────┘
-proc fa_wait stdcall ms:DWORD
+proc fa_wait c ms:DWORD
 	;╔══════════════════════╗
 	;║ void Sleep(			║
 	;║ DWORD dwMilliseconds	║
