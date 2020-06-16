@@ -15,7 +15,7 @@
 ░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
-#include <stdio.h>
+
 /// <summary>draws txt to screen at location (x,y)</summary>
 extern "C" __declspec(dllexport) VOID fa_outtextxy(LONG _x, LONG _y, CONST CHAR* txt)
 {
@@ -39,7 +39,7 @@ extern "C" __declspec(dllexport) VOID fa_outtextxy(LONG _x, LONG _y, CONST CHAR*
     FontRect.top = screen_center_y -_y;
     FontRect.bottom = FontRect.top + 16;
     FontRect.right = FontRect.left + (16 * string_length);
-    printf("%d\t%d\t%d\t%d\n", _x, _y, FontRect.bottom, FontRect.right);
+
     // draw final text
     font->DrawTextA(NULL, LPCSTR(txt), -1, &FontRect, DT_CENTER, palette);
 }
