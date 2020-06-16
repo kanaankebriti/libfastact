@@ -184,6 +184,7 @@
     <ClCompile Include="render.c" />
     <ClCompile Include="setbkcolor.c" />
     <ClCompile Include="setcolor.c" />
+    <ClCompile Include="triangle.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="clarkson-delaunay.h" />

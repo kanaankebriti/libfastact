@@ -16,7 +16,7 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+/// <summary>draws txt to screen at location (x,y)</summary>
 __declspec(dllexport) VOID fa_outtextxy(FLOAT _x, FLOAT _y, CONST CHAR* txt)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class

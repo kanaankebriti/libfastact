@@ -56,16 +56,18 @@ extern "C"
 	IDirect3DDevice9* fa_get_d3ddev(VOID);
 	/// <summary>initializes and prepares Direct3D</summary>
 	VOID fa_initgraph(HWND hWnd);
-	/// <summary>draws a 2d line with color RGB</summary>
+	/// <summary>draws a 2d line</summary>
 	VOID fa_line(FLOAT _X1, FLOAT _Y1, FLOAT _X2, FLOAT _Y2);
 	/// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
 	WORD* fa_meshing(void* _PointList, float _Factor, int _NumberOfInputPoints, int _NumDimensions, int _Clockwise, int* _NumTriangleVertices);
-	/// <summary>draws txt to screen at location (x,y) with color RGB</summary>
+	/// <summary>draws txt to screen at location (x,y)</summary>
 	VOID fa_outtextxy(FLOAT _X, FLOAT _Y, CONST CHAR* _Txt);
 	/// <summary>sets palette color for backgound</summary>
 	VOID fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>
 	VOID fa_setcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
+	/// <summary>draws a triangle</summary>
+	VOID fa_triangle(fa_point2d _P1, fa_point2d _P2, fa_point2d _P3);
 	/// <summary>draws a 2d pixel with color RGB</summary>
 	VOID fa_pset(FLOAT _X, FLOAT _Y);
 	/// <summary>main rendering function</summary>

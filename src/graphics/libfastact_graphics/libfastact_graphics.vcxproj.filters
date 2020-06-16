@@ -89,5 +89,8 @@
     <ClCompile Include="clarkson-delaunay.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="triangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
