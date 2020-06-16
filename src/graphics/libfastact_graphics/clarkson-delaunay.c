@@ -1104,7 +1104,7 @@ static void triangleList_out(int v0, int v1, int v2, int v3)
 }
 
 /// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
-__declspec(dllexport) WORD *fa_meshing(void *pointList, float factor, int numberOfInputPoints, int numDimensions, int clockwise, int *numTriangleVertices )
+__declspec(dllexport) WORD* fa_meshing(void *pointList, float factor, int numberOfInputPoints, int numDimensions, int clockwise, int *numTriangleVertices )
 {
 	// returns an index list that can be used by: ->IASetIndexBuffer(), using the format: DXGI_FORMAT_R16_UINT
 	// Adjust triangleList_out() if you do not want to spend time putting the triangles into clockwise order,

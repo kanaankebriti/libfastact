@@ -27,6 +27,11 @@ struct fa_point2d
 	D3DXVECTOR2 location;
 }typedef fa_point2d;
 
+struct fa_mesh2d
+{
+	D3DXVECTOR2 p1, p2, p3, centroid;
+}typedef fa_mesh2d;
+
 #ifdef __cplusplus
 extern "C"
 {
