@@ -21,6 +21,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     PAINTSTRUCT ps;
     HDC hdc;
+    UINT width, height;
 
     switch (message)
     {
@@ -30,13 +31,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         break;
 
     case WM_DESTROY:
-        PostQuitMessage(0);
+        PostQuitMessage(WM_QUIT);
         break;
-
-    default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
     }
-    return 0;
+
+    return DefWindowProc(hWnd, message, wParam, lParam);;
 }
 
 /// <summary>creates then opens a new window</summary>
