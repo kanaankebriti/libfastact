@@ -40,9 +40,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 /// <summary>creates then opens a new window</summary>
 __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInstance, UINT _width, UINT _height)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;
+    extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
+    extern HWND hWnd;                   // window handler
     WNDCLASSEX wc;
-    HWND hwnd;
     MSG Msg;
 
     //Step 1: Registering the Window Class
@@ -72,7 +72,7 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInsta
     MultiByteToWideChar(CP_ACP, 0, _title, -1, w_title, _title_length);
 
     // Step 2: Creating the Window
-    hwnd = CreateWindowEx(
+    hWnd = CreateWindowEx(
         (WS_VISIBLE || WS_OVERLAPPED),
         wc.lpszClassName,
         w_title,
@@ -80,14 +80,14 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInsta
         CW_USEDEFAULT, CW_USEDEFAULT, _width, _height,
         NULL, NULL, NULL, NULL);
 
-    if (hwnd == NULL)
+    if (hWnd == NULL)
     {
         MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
         return 0;
     }
 
-    ShowWindow(hwnd, SW_SHOW);
-    UpdateWindow(hwnd);
+    ShowWindow(hWnd, SW_SHOW);
+    UpdateWindow(hWnd);
 
-    return hwnd;
+    return hWnd;
 }

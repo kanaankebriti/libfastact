@@ -47,9 +47,6 @@
     <ClCompile Include="cls.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="common.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="drawcrs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,9 +60,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="line.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="outtextxy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pset.c">
@@ -90,6 +84,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="triangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="outtextxy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

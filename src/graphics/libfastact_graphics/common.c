@@ -21,3 +21,4 @@ LPDIRECT3DDEVICE9 d3ddev;                           // the pointer to the device
 D3DCOLOR palette = D3DCOLOR_XRGB(255, 255, 255);    // palette color for text, graphics
 D3DCOLOR bpalette = D3DCOLOR_XRGB(0, 0, 0);         // palette color for background
 FLOAT screen_center_x = 0, screen_center_y = 0;     // center of screen
+HWND hWnd;											// window handler

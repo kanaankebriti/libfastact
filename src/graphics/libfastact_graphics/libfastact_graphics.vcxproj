@@ -178,7 +178,7 @@
     <ClCompile Include="initgraph.c" />
     <ClCompile Include="libfastact_graphics.c" />
     <ClCompile Include="line.c" />
-    <ClCompile Include="outtextxy.c" />
+    <ClCompile Include="outtextxy.cpp" />
     <ClCompile Include="pset.c" />
     <ClCompile Include="rectangle.c" />
     <ClCompile Include="render.c" />

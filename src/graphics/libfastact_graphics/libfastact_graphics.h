@@ -66,7 +66,7 @@ extern "C"
 	/// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
 	fa_mesh2d* fa_meshing(fa_point2d* _PointList, INT _NumberOfInputPoints, INT* _NumTriangleVertices);
 	/// <summary>draws txt to screen at location (x,y)</summary>
-	VOID fa_outtextxy(FLOAT _X, FLOAT _Y, CONST CHAR* _Txt);
+	VOID fa_outtextxy(LONG _X, LONG _Y, CONST CHAR* _Txt);
 	/// <summary>sets palette color for backgound</summary>
 	VOID fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>
