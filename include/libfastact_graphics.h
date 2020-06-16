@@ -64,7 +64,7 @@ extern "C"
 	/// <summary>draws a 2d line</summary>
 	VOID fa_line(FLOAT _X1, FLOAT _Y1, FLOAT _X2, FLOAT _Y2);
 	/// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
-	WORD* fa_meshing(void* _PointList, float _Factor, int _NumberOfInputPoints, int _NumDimensions, int _Clockwise, int* _NumTriangleVertices);
+	fa_mesh2d* fa_meshing(fa_point2d* _PointList, INT _NumberOfInputPoints, INT* _NumTriangleVertices);
 	/// <summary>draws txt to screen at location (x,y)</summary>
 	VOID fa_outtextxy(FLOAT _X, FLOAT _Y, CONST CHAR* _Txt);
 	/// <summary>sets palette color for backgound</summary>

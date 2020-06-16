@@ -27,12 +27,12 @@ __declspec(dllexport) VOID fa_triangle(fa_point2d _p1, fa_point2d _p2, fa_point2
 
     fa_VERTEX vertices[6] =
     {
-        {screen_center_x - _p1.location.x, screen_center_y - _p1.location.y, 0.5f, 1.0f, palette },
-        {screen_center_x - _p2.location.x, screen_center_y - _p2.location.y, 0.5f, 1.0f, palette },
-        {screen_center_x - _p1.location.x, screen_center_y - _p1.location.y, 0.5f, 1.0f, palette },
-        {screen_center_x - _p3.location.x, screen_center_y - _p3.location.y, 0.5f, 1.0f, palette },
-        {screen_center_x - _p2.location.x, screen_center_y - _p2.location.y, 0.5f, 1.0f, palette },
-        {screen_center_x - _p3.location.x, screen_center_y - _p3.location.y, 0.5f, 1.0f, palette }
+        {screen_center_x + _p1.location.x, screen_center_y - _p1.location.y, 0.5f, 1.0f, palette },
+        {screen_center_x + _p2.location.x, screen_center_y - _p2.location.y, 0.5f, 1.0f, palette },
+        {screen_center_x + _p1.location.x, screen_center_y - _p1.location.y, 0.5f, 1.0f, palette },
+        {screen_center_x + _p3.location.x, screen_center_y - _p3.location.y, 0.5f, 1.0f, palette },
+        {screen_center_x + _p2.location.x, screen_center_y - _p2.location.y, 0.5f, 1.0f, palette },
+        {screen_center_x + _p3.location.x, screen_center_y - _p3.location.y, 0.5f, 1.0f, palette }
     };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);

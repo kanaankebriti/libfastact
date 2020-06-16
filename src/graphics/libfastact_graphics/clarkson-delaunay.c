@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "clarkson-delaunay.h"
+#include "common.h"
 
 /*
  * Ken Clarkson wrote this.  Copyright (c) 1995 by AT&T..
@@ -1104,8 +1105,11 @@ static void triangleList_out(int v0, int v1, int v2, int v3)
 }
 
 /// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
-__declspec(dllexport) WORD* fa_meshing(void *pointList, float factor, int numberOfInputPoints, int numDimensions, int clockwise, int *numTriangleVertices )
+__declspec(dllexport) fa_mesh2d* fa_meshing(fa_point2d* _pointList, INT numberOfInputPoints, INT* _numOfMeshes)
 {
+	INT numDimensions = 2;	// work in 2d space
+	INT clockwise = 0;		// don't care about clockwise or anti-clockwise
+
 	// returns an index list that can be used by: ->IASetIndexBuffer(), using the format: DXGI_FORMAT_R16_UINT
 	// Adjust triangleList_out() if you do not want to spend time putting the triangles into clockwise order,
 	// or to put them in anti-clockwise order.
@@ -1114,23 +1118,56 @@ __declspec(dllexport) WORD* fa_meshing(void *pointList, float factor, int number
 	// it will accept, but I set the return value to 16-bit integers because I assume nobody needs
 	// more than 64,000 triangles at a time
 
-	if (factor)
-	{
-		ptrToIntsToIndex = NULL;     // set to NULL to show get_next_site() to process floating-points
-		mult_up = factor;
-		listOfFloatsToIndex = (float*)pointList;
-	}
-	else
-		// the points are integers, in which case mult_up and listOfFloatsToIndex will not be used
-		// so they don't need to be initialized
-		listOfIntsToIndex = (int*)pointList;
+	ptrToIntsToIndex = NULL;				// set to NULL to show get_next_site() to process floating-points
+	mult_up = CD_FACTOR;
+	listOfFloatsToIndex = _pointList;
 
 	pdim = numDimensions;
 	totalInputPoints = numberOfInputPoints;
 	triangleDirection = clockwise;
 
-	build_convex_hull();		// This function does all the work
+	build_convex_hull();					// This function does all the work
 
-	*numTriangleVertices = currenOutputIndex;
-	return ptrToOutputList;		// calling function has to free return value: ptrToOutputList ;
+	*_numOfMeshes = currenOutputIndex;
+
+	fa_point2d* line_index;
+	fa_mesh2d* mesh;
+
+	line_index = (fa_point2d*)malloc(currenOutputIndex * sizeof(FLOAT));
+	mesh = (fa_mesh2d*)malloc(currenOutputIndex * sizeof(fa_mesh2d));
+
+	// listOfFloatsToIndex is like x1,y1,x2,y2,...
+	// rearrange this like (x1,y1),(x2,y2),...
+	for (int i = 0, j = 0; j < numberOfInputPoints; i++, j += 2)
+	{
+		line_index[i].location.x = listOfFloatsToIndex[j];
+		line_index[i].location.y = listOfFloatsToIndex[j + 1];
+	}
+
+	// draw all meshes and calculate centroid of every mesh
+	for (int i = 0, j = 0; j < currenOutputIndex / 2; i += 3, j++)	// dividing currenOutputIndex by 2 gives of number of triangles
+	{
+		fa_point2d p1, p2, p3;
+
+		p1.location.x = line_index[ptrToOutputList[i]].location.x;
+		p1.location.y = line_index[ptrToOutputList[i]].location.y;
+		p2.location.x = line_index[ptrToOutputList[i + 1]].location.x;
+		p2.location.y = line_index[ptrToOutputList[i + 1]].location.y;
+		p3.location.x = line_index[ptrToOutputList[i + 2]].location.x;
+		p3.location.y = line_index[ptrToOutputList[i + 2]].location.y;
+
+		mesh[i].p1 = p1.location;
+		mesh[i].p2 = p2.location;
+		mesh[i].p3 = p3.location;
+		mesh[i].centroid.x = (p1.location.x + p2.location.x + p3.location.x) / 3;
+		mesh[i].centroid.y = (p1.location.y + p2.location.y + p3.location.y) / 3;
+
+		fa_triangle(p1, p2, p3);
+	}
+
+	//free(ptrToOutputList);
+	//free(line_index);
+
+	// calling function has to free return value ptrToOutputList
+	return mesh;
 }

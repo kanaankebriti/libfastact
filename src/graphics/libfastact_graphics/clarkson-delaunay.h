@@ -8,7 +8,7 @@
  * documentation for such software.
  */
 #include <Windows.h>
-
+#include <stdio.h>
 #define max_blocks 10000
 #define Nobj 10000
 #define MAXDIM 4
@@ -16,6 +16,7 @@
 #define MAXBLOCKS 1000
 #define VA(x) ((x)->vecs+rdim)
 #define VB(x) ((x)->vecs)
+#define CD_FACTOR 100000			// sufficiently large clarkson-delaunay factor!
 
 typedef double Coord;
 typedef Coord* point;

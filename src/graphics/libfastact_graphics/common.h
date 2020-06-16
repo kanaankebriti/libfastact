@@ -27,7 +27,12 @@ struct fa_VERTEX
     DWORD color;            // from the D3DFVF_DIFFUSE flag
 }typedef fa_VERTEX;
 
-struct fa_point2d
+struct fa_point2d           // every point consists of 2 data. x and y.
 {
     D3DXVECTOR2 location;
 }typedef fa_point2d;
+
+struct fa_mesh2d            // every mesh consists of 4 points. vertices and centroid
+{
+    D3DXVECTOR2 p1, p2, p3, centroid;
+}typedef fa_mesh2d;
