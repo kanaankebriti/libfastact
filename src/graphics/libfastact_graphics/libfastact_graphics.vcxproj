@@ -166,7 +166,7 @@
     <ClCompile Include="begindraw.c" />
     <ClCompile Include="center.c" />
     <ClCompile Include="circle.c" />
-    <ClCompile Include="clarkson-delaunay.c" />
+    <ClCompile Include="meshing.c" />
     <ClCompile Include="closegraph.c" />
     <ClCompile Include="cls.c" />
     <ClCompile Include="common.c" />
@@ -182,6 +182,7 @@
     <ClCompile Include="pset.c" />
     <ClCompile Include="rectangle.c" />
     <ClCompile Include="render.c" />
+    <ClCompile Include="scale.c" />
     <ClCompile Include="setbkcolor.c" />
     <ClCompile Include="setcolor.c" />
     <ClCompile Include="triangle.c" />

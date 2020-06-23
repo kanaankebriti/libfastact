@@ -80,9 +80,6 @@
     <ClCompile Include="drawplist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="clarkson-delaunay.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="triangle.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="outtextxy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="scale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="meshing.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

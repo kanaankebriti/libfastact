@@ -67,16 +67,18 @@ extern "C"
 	fa_mesh2d* fa_meshing(fa_point2d* _PointList, INT _NumberOfInputPoints, INT* _NumTriangleVertices);
 	/// <summary>draws txt to screen at location (x,y)</summary>
 	VOID fa_outtextxy(LONG _X, LONG _Y, CONST CHAR* _Txt);
+	/// <summary>draws a 2d pixel with color RGB</summary>
+	VOID fa_pset(FLOAT _X, FLOAT _Y);
+	/// <summary>main rendering function</summary>
+	VOID fa_render(VOID);
+	/// <summary>scales a 2d shape based on pointlist</summary>
+	VOID fa_scale(fa_point2d* _pointlist, UINT _size, INT _factor);
 	/// <summary>sets palette color for backgound</summary>
 	VOID fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>
 	VOID fa_setcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>draws a triangle</summary>
 	VOID fa_triangle(fa_point2d _P1, fa_point2d _P2, fa_point2d _P3);
-	/// <summary>draws a 2d pixel with color RGB</summary>
-	VOID fa_pset(FLOAT _X, FLOAT _Y);
-	/// <summary>main rendering function</summary>
-	VOID fa_render(VOID);
 #ifdef __cplusplus
 }
 #endif

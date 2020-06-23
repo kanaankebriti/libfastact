@@ -1105,10 +1105,11 @@ static void triangleList_out(int v0, int v1, int v2, int v3)
 }
 
 /// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
-__declspec(dllexport) fa_mesh2d* fa_meshing(fa_point2d* _pointList, INT numberOfInputPoints, INT* _numOfMeshes)
+__declspec(dllexport) fa_mesh2d* fa_meshing(fa_point2d* _pointList, INT _size, INT* _numOfMeshes)
 {
-	INT numDimensions = 2;	// work in 2d space
-	INT clockwise = 0;		// don't care about clockwise or anti-clockwise
+	INT numDimensions = 2;		// work in 2d space
+	INT clockwise = 0;			// don't care about clockwise or anti-clockwise
+	_size *= 2;	// one for x and another for y
 
 	// returns an index list that can be used by: ->IASetIndexBuffer(), using the format: DXGI_FORMAT_R16_UINT
 	// Adjust triangleList_out() if you do not want to spend time putting the triangles into clockwise order,
@@ -1123,10 +1124,10 @@ __declspec(dllexport) fa_mesh2d* fa_meshing(fa_point2d* _pointList, INT numberOf
 	listOfFloatsToIndex = _pointList;
 
 	pdim = numDimensions;
-	totalInputPoints = numberOfInputPoints;
+	totalInputPoints = _size;
 	triangleDirection = clockwise;
 
-	build_convex_hull();					// This function does all the work
+	build_convex_hull();						// This function does all the work
 
 	*_numOfMeshes = currenOutputIndex;
 
@@ -1138,7 +1139,7 @@ __declspec(dllexport) fa_mesh2d* fa_meshing(fa_point2d* _pointList, INT numberOf
 
 	// listOfFloatsToIndex is like x1,y1,x2,y2,...
 	// rearrange this like (x1,y1),(x2,y2),...
-	for (int i = 0, j = 0; j < numberOfInputPoints; i++, j += 2)
+	for (int i = 0, j = 0; j < _size; i++, j += 2)
 	{
 		line_index[i].location.x = listOfFloatsToIndex[j];
 		line_index[i].location.y = listOfFloatsToIndex[j + 1];
