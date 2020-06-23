@@ -17,15 +17,20 @@
 #include "common.h"
 #include "stdio.h"
 /// <summary>scales a 2d shape based on pointlist</summary>
-__declspec(dllexport) VOID fa_scale(fa_point2d* _pointlist, UINT _size, INT _factor)
+__declspec(dllexport) fa_point2d* fa_scale(fa_point2d* _pointlist, UINT _size, FLOAT _factor)
 {
-    extern LPDIRECT3DDEVICE9 d3ddev;                    // the pointer to the device class
     extern FLOAT screen_center_x, screen_center_y;      // center of screen
     extern D3DCOLOR palette;                            // palette color for text, graphics
     fa_point2d centroid = { 0,0 };
+    float x_distance_from_centroid, y_distance_from_centroid;
+    fa_point2d* scaled_pointlist;
+    UINT register i;    // loop counter
+
+    // number scaled points is equal to number of original points
+    scaled_pointlist = (fa_point2d*)malloc(_size * sizeof(fa_point2d));
 
     // find centroid of shape
-    for (int i = 0; i < _size; i++)
+    for (i = 0; i < _size; i++)
     {
         centroid.location.x += _pointlist[i].location.x;
         centroid.location.y += _pointlist[i].location.y;
@@ -34,5 +39,22 @@ __declspec(dllexport) VOID fa_scale(fa_point2d* _pointlist, UINT _size, INT _fac
     centroid.location.x /= _size;
     centroid.location.y /= _size;
     
-    printf("center_x=%f\tcenter_y=%f\n", centroid.location.x, centroid.location.y);
+    //centroid.location.x += screen_center_x;
+    //centroid.location.y += screen_center_y;
+
+    // scale
+    for (i = 0; i < _size; i++)
+    {
+        x_distance_from_centroid =  _pointlist[i].location.x - centroid.location.x;
+        y_distance_from_centroid =  _pointlist[i].location.y - centroid.location.y;
+        
+        x_distance_from_centroid *= _factor;
+        y_distance_from_centroid *= _factor;
+
+        scaled_pointlist[i].location.x = centroid.location.x + x_distance_from_centroid;
+        scaled_pointlist[i].location.y = centroid.location.y + y_distance_from_centroid;
+        printf("x=%f\ty=%f\n", scaled_pointlist[i].location.x, scaled_pointlist[i].location.y);
+    }
+
+    return scaled_pointlist;
 }

@@ -50,7 +50,7 @@ extern "C"
 	/// <summary>creates then opens a new window</summary>
 	HWND fa_createwindow(CONST CHAR* _Title, HINSTANCE _HInstance, UINT _Width, UINT _Height);
 	/// <summary>draws catmull-rom spline</summary>
-	fa_point2d* fa_drawcrs(fa_point2d* _Vertices, UINT _Size, FLOAT _Weight);
+	fa_point2d* fa_drawcrs(fa_point2d* _Vertices, UINT _Size, UINT _Weight);
 	/// <summary>draws list of points</summary>
 	VOID fa_drawplist(fa_point2d* point, UINT _size);
 	/// <summary>ends draw to screen</summary>
@@ -72,7 +72,7 @@ extern "C"
 	/// <summary>main rendering function</summary>
 	VOID fa_render(VOID);
 	/// <summary>scales a 2d shape based on pointlist</summary>
-	VOID fa_scale(fa_point2d* _pointlist, UINT _size, INT _factor);
+	fa_point2d* fa_scale(fa_point2d* _pointlist, UINT _size, FLOAT _factor);
 	/// <summary>sets palette color for backgound</summary>
 	VOID fa_setbkcolor(unsigned short int _R, unsigned short int _G, unsigned short int _B);
 	/// <summary>sets palette color for text, graphics and backgound</summary>

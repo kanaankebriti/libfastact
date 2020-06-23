@@ -17,7 +17,7 @@
 #include "common.h"
 
 /// <summary>draws catmull-rom spline</summary>
-__declspec(dllexport) fa_point2d* fa_drawcrs(fa_point2d* point, UINT _size, FLOAT _weight)
+__declspec(dllexport) fa_point2d* fa_drawcrs(fa_point2d* point, UINT _size, UINT _weight)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;        // the pointer to the device class
     extern D3DCOLOR palette;                // palette color for text, graphics
