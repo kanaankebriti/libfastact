@@ -17,7 +17,7 @@
 #include "common.h"
 
 /// <summary>draws a 2d pixel</summary>
-__declspec(dllexport) VOID fa_line(FLOAT _x1, FLOAT _y1, FLOAT _x2, FLOAT _y2)
+__declspec(dllexport) VOID fa_line(_In_ FLOAT _x1, _In_ FLOAT _y1, _In_ FLOAT _x2, _In_ FLOAT _y2)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;                // the pointer to the device class
     extern D3DCOLOR palette;                        // palette color for text, graphics
@@ -27,8 +27,8 @@ __declspec(dllexport) VOID fa_line(FLOAT _x1, FLOAT _y1, FLOAT _x2, FLOAT _y2)
 
     fa_VERTEX vertices[2] =
     {
-        {screen_center_x - _x1, screen_center_y - _y1, 0.5f, 1.0f, palette },
-        {screen_center_x - _x2, screen_center_y - _y2, 0.5f, 1.0f, palette },
+        {screen_center_x + _x1, screen_center_y - _y1, 0, 1.0f, palette },
+        {screen_center_x + _x2, screen_center_y - _y2, 0, 1.0f, palette },
     };
 
     IDirect3DDevice9_CreateVertexBuffer(d3ddev, sizeof(vertices), 0, D3DFVF, D3DPOOL_MANAGED, &vertex_buffer, NULL);

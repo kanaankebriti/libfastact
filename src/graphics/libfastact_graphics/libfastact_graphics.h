@@ -62,13 +62,13 @@ extern "C"
 	/// <summary>initializes and prepares Direct3D</summary>
 	VOID fa_initgraph(HWND hWnd);
 	/// <summary>draws a 2d line</summary>
-	VOID fa_line(FLOAT _X1, FLOAT _Y1, FLOAT _X2, FLOAT _Y2);
+	VOID fa_line(_In_ FLOAT _x1, _In_ FLOAT _y1, _In_ FLOAT _x2, _In_ FLOAT _y2);
 	/// <summary>meshing a point list using clarkson-delaunay algorithm</summary>
 	fa_mesh2d* fa_meshing(fa_point2d* _PointList, INT _NumberOfInputPoints, INT* _NumTriangleVertices);
 	/// <summary>draws txt to screen at location (x,y)</summary>
 	VOID fa_outtextxy(LONG _X, LONG _Y, CONST CHAR* _Txt);
 	/// <summary>draws a 2d pixel with color RGB</summary>
-	VOID fa_pset(FLOAT _X, FLOAT _Y);
+	VOID fa_pset(_In_ FLOAT _x, _In_ FLOAT _y);
 	/// <summary>main rendering function</summary>
 	VOID fa_render(VOID);
 	/// <summary>scales a 2d shape based on pointlist</summary>

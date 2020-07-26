@@ -24,11 +24,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
     switch (message)
     {
+    /*
     case WM_PAINT:
         hdc = BeginPaint(hWnd, &ps);
         EndPaint(hWnd, &ps);
         break;
-
+    */
     case WM_DESTROY:
         PostQuitMessage(WM_QUIT);
         return 0;
@@ -43,11 +44,10 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInsta
     extern LPDIRECT3DDEVICE9 d3ddev;    // the pointer to the device class
     extern HWND hWnd;                   // window handler
     WNDCLASSEX wc;
-    MSG Msg;
 
     //Step 1: Registering the Window Class
     wc.cbSize = sizeof(WNDCLASSEX);
-    wc.style = 0;
+    wc.style = CS_HREDRAW | CS_VREDRAW;
     wc.lpfnWndProc = WndProc;
     wc.cbClsExtra = 0;
     wc.cbWndExtra = 0;
@@ -61,7 +61,7 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInsta
 
     if (!RegisterClassEx(&wc))
     {
-        MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, TEXT("Window Registration Failed!"), TEXT("Error!"), MB_ICONERROR | MB_OK);
         return 0;
     }
 
@@ -78,11 +78,11 @@ __declspec(dllexport) HWND fa_createwindow(CONST CHAR* _title, HINSTANCE _hInsta
         w_title,
         WS_OVERLAPPEDWINDOW,
         CW_USEDEFAULT, CW_USEDEFAULT, _width, _height,
-        NULL, NULL, NULL, NULL);
+        NULL, NULL, _hInstance, NULL);
 
     if (hWnd == NULL)
     {
-        MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error!"), MB_ICONEXCLAMATION | MB_OK);
+        MessageBox(NULL, TEXT("Window Creation Failed!"), TEXT("Error!"), MB_ICONERROR | MB_OK);
         return 0;
     }
 

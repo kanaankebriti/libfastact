@@ -56,12 +56,6 @@
     <ClCompile Include="enddraw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="initgraph.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="line.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="pset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -93,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="meshing.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initgraph.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="line.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

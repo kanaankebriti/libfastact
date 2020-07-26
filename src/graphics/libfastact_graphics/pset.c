@@ -17,7 +17,7 @@
 #include "common.h"
 
 /// <summary>draws a 2d pixel with color specified in palette</summary>
-__declspec(dllexport) VOID fa_pset(FLOAT _x, FLOAT _y)
+__declspec(dllexport) VOID fa_pset(_In_ FLOAT _x, _In_ FLOAT _y)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;                // the pointer to the device class
     extern D3DCOLOR palette;                        // palette color for text, graphics
