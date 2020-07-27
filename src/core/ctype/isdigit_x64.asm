@@ -17,7 +17,7 @@
 ;┌──────────────────────────────────────────────┐
 ;│ checks whether c is decimal digit character	│
 ;│ input:										│
-;│			rcx = number						│
+;│			cx = number							│
 ;│ output:										│
 ;│			rax = 0	if c is not digit			│
 ;│			rax = number if c is digit			│

@@ -42,13 +42,13 @@ extern "C"
 
 	// ctype
 	/// <summary>checks whether c is decimal digit character</summary>
-	short int				fa_isdigit(unsigned short int _Character);
+	short int				fa_isdigit(_In_ SHORT _Character);
 	/// <summary>checks whether c is a lowercase letter</summary>
-	short int				fa_islower(unsigned short int _Character);
+	short int				fa_islower(_In_ SHORT _Character);
 	/// <summary>checks whether c is a white-space character</summary>
-	short int				fa_isspace(unsigned short int _Character);
+	short int				fa_isspace(_In_ SHORT _Character);
 	/// <summary>checks whether c is an uppercase letter</summary>
-	short int				fa_isupper(unsigned short int _Character);
+	short int				fa_isupper(_In_ SHORT _Character);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);

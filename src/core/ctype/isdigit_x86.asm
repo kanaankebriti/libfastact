@@ -15,15 +15,19 @@
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────────┐
-;│ returns absolute value of an integer number	│
+;│ checks whether c is decimal digit character	│
 ;│ input:										│
 ;│			number								│
 ;│ output:										│
-;│			eax = abs(number)					│
+;│			rax = 0	if c is not digit			│
+;│			rax = number if c is digit			│
 ;└──────────────────────────────────────────────┘
-proc fa_abs c num:DWORD
-	mov		eax,[num] ; store [num] in eax
-	neg		eax
-	cmovl	eax,[num] ; if eax is now negative, restore its saved value
+proc fa_isdigit c num:WORD
+	xor ax,ax
+	cmp [num],'9'
+	cmovbe ax,[num]
+	mov [num],0
+	cmp ax,'0'
+	cmovb ax,[num]
 	ret
 endp
