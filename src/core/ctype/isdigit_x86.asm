@@ -17,10 +17,10 @@
 ;┌──────────────────────────────────────────────┐
 ;│ checks whether c is decimal digit character	│
 ;│ input:										│
-;│			number								│
+;│			num									│
 ;│ output:										│
-;│			rax = 0	if c is not digit			│
-;│			rax = number if c is digit			│
+;│			ax = 0	if c is not digit			│
+;│			ax = number if c is digit			│
 ;└──────────────────────────────────────────────┘
 proc fa_isdigit c num:WORD
 	xor ax,ax

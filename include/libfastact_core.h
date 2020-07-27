@@ -42,27 +42,27 @@ extern "C"
 
 	// ctype
 	/// <summary>checks whether c is decimal digit character</summary>
-	short int				fa_isdigit(_In_ SHORT _Character);
+	_Check_return_ SHORT	fa_isdigit(_In_ SHORT _Character);
 	/// <summary>checks whether c is a lowercase letter</summary>
-	short int				fa_islower(_In_ SHORT _Character);
+	_Check_return_ SHORT	fa_islower(_In_ SHORT _Character);
 	/// <summary>checks whether c is a white-space character</summary>
-	short int				fa_isspace(_In_ SHORT _Character);
+	_Check_return_ SHORT	fa_isspace(_In_ SHORT _Character);
 	/// <summary>checks whether c is an uppercase letter</summary>
-	short int				fa_isupper(_In_ SHORT _Character);
+	_Check_return_ SHORT	fa_isupper(_In_ SHORT _Character);
 
 	// math
 	unsigned long long int	fa_abs(long long int _X);
-	double					fa_cos(double _X);
-	double					fa_deg2rad(double _X);
-	double					fa_det2(double _M11, double _M12, double _M21, double _M22);
-	double					fa_det3(double _M11, double _M12, double _M13, double _M21, double _M22, double _M23, double _M31, double _M32, double _M33);
-	double					fa_fabs(double _X);
-	double					fa_hypot(double _X, double _Y);
+	_Check_return_ DOUBLE	fa_cos(_In_ double _X);
+	_Check_return_ DOUBLE	fa_deg2rad(double _X);
+	_Check_return_ DOUBLE	fa_det2(double _M11, double _M12, double _M21, double _M22);
+	_Check_return_ DOUBLE	fa_det3(double _M11, double _M12, double _M13, double _M21, double _M22, double _M23, double _M31, double _M32, double _M33);
+	_Check_return_ DOUBLE	fa_fabs(double _X);
+	_Check_return_ DOUBLE	fa_hypot(double _X, double _Y);
 	long long int			fa_pow2(long long int _X);
 	long long int			fa_pow10(long long int _X);
 	long long int			fa_round(double _X);
-	double					fa_sin(double _X);
-	double					fa_sqrt(double _X);
+	_Check_return_ DOUBLE	fa_sin(double _X);
+	_Check_return_ DOUBLE	fa_sqrt(double _X);
 	long long int			fa_trunc(double _X);
 
 	// serial
@@ -75,7 +75,7 @@ extern "C"
 
 	// stdio
 	/// <summary>writes a character to the stdout</summary>
-	unsigned short int		fa_putchar(unsigned short int _Character);
+	_Check_return_opt_ INT	fa_putchar(_In_ INT _Character);
 
 	// stdlib
 	/// <summary>convert string to integer</summary>
@@ -105,7 +105,7 @@ extern "C"
 	/// <summary>copy string from source to destination</summary>
 	char*					fa_strcpy(char* _Destination, const char* _Source);
 	/// <summary>returns length of a string</summary>
-	unsigned long long int	fa_strlen(const char* _Str);
+	unsigned long long int	fa_strlen(_In_ _Null_terminated_ const char* _Str);
 
 	// time
 	/// <summary>returns current time in unix time format</summary>

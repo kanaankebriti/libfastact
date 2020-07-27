@@ -17,7 +17,7 @@
 ;┌──────────────────────────────────────────┐
 ;│ checks whether c is an uppercase letter	│
 ;│ input:									│
-;│			rcx = number					│
+;│			ecx = number					│
 ;│ output:									│
 ;│			rax = 0	if c is not uppercase	│
 ;│			rax = number if c is uppercase	│

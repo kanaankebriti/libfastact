@@ -14,20 +14,30 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────┐
-;│ checks whether c is a lowercase letter	│
-;│ input:									│
-;│			num								│
-;│ output:									│
-;│			ax = 0	if c is not lowercase	│
-;│			ax = number if c is lowercase	│
-;└──────────────────────────────────────────┘
-proc fa_islower c num:WORD
+;┌──────────────────────────────────────────────┐
+;│ checks whether c is a white-space character	│
+;│ input:										│
+;│			num									│
+;│ output:										│
+;│			ax = 0	if c is not a white-space	│
+;│			ax = number if c is a white-space	│
+;└──────────────────────────────────────────────┘
+proc fa_isspace c num:WORD
 	xor ax,ax
-	cmp [num],'z'
-	cmovbe ax,[num]
-	mov [num],0
-	cmp ax,'a'
-	cmovb ax,[num]
+	cmp [num],0x20		; SPC
+	je @F
+	cmp [num],0x09		; TAB \t
+	je @F
+	cmp [num],0x0A		; LF \n
+	je @F
+	cmp [num],0x0B		; VT \v
+	je @F
+	cmp [num],0x0C		; FF \f
+	je @F
+	cmp [num],0x0D		; CR \r
+	je @F
 	ret
+	@@:
+		inc al
+		ret
 endp

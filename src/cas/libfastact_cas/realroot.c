@@ -63,7 +63,7 @@ VOID WINAPI upper_bound()
 	root = upper_than_at;
 }
 
-__declspec(dllexport) DOUBLE fa_realroot(const char* __expression, const char* __variable, double __at)
+__declspec(dllexport) DOUBLE fa_realroot(const char* __expression, const char* __variable, DOUBLE __at)
 {
 	_expression = __expression;		// store __expression for global access
 	_variable = __variable;			// store __variable for global access

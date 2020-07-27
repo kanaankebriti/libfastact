@@ -23,6 +23,7 @@
 extern "C"
 {
 #endif
+	double fa_integrate(const char* _Expression, const char* _Variable, double _Lbound, double _Hbound, unsigned int _Intervals);
 	double fa_realroot(const char* _Expression, const char* _Variable, double _At);
 #ifdef __cplusplus
 }

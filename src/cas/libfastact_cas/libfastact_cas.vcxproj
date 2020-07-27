@@ -161,6 +161,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.c" />
+    <ClCompile Include="integrate.c" />
     <ClCompile Include="realroot.c" />
     <ClCompile Include="tinyexpr.c" />
   </ItemGroup>

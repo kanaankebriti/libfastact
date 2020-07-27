@@ -14,19 +14,19 @@
 ;░ You should have received a copy of the GNU General Public License	░
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
-;┌──────────────────────────────────────────┐
-;│ writes a character to the stdout			│
-;│ input:									│
-;│			rcx = (unsigned short int) char	│
-;│ output:									│
-;│			rax = (unsigned short int) char	│
-;└──────────────────────────────────────────┘
+;┌──────────────────────────────────┐
+;│ writes a character to the stdout	│
+;│ input:							│
+;│			rcx = (int) char		│
+;│ output:							│
+;│			rax = (int) char		│
+;└──────────────────────────────────┘
 proc fa_putchar
 	locals
-		temp_char db ?
+		temp_char dd ?
 	endl
 
-	mov [temp_char],cl			; store character
+	mov [temp_char],ecx			; store character
 
 	;╔══════════════════════════════╗
 	;║ HANDLE WINAPI GetStdHandle(	║
@@ -51,6 +51,6 @@ proc fa_putchar
 	xor r9d,r9d
 	call [WriteConsole]
 
-	movzx rax,[temp_char]
+	mov eax,[temp_char]
 	ret
 endp

@@ -15,19 +15,19 @@
 ;░ along with libfastact.  If not, see <https://www.gnu.org/licenses/>.	░
 ;░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
 ;┌──────────────────────────────────────────┐
-;│ checks whether c is a lowercase letter	│
+;│ checks whether c is an uppercase letter	│
 ;│ input:									│
 ;│			num								│
 ;│ output:									│
-;│			ax = 0	if c is not lowercase	│
-;│			ax = number if c is lowercase	│
+;│			ax = 0	if c is not uppercase	│
+;│			ax = number if c is uppercase	│
 ;└──────────────────────────────────────────┘
-proc fa_islower c num:WORD
+proc fa_isupper c num:WORD
 	xor ax,ax
-	cmp [num],'z'
+	cmp [num],'Z'
 	cmovbe ax,[num]
 	mov [num],0
-	cmp ax,'a'
+	cmp ax,'A'
 	cmovb ax,[num]
 	ret
 endp

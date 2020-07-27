@@ -17,7 +17,7 @@
 ;┌──────────────────────────────────────────────┐
 ;│ checks whether c is a white-space character	│
 ;│ input:										│
-;│			rcx = number						│
+;│			cx = number							│
 ;│ output:										│
 ;│			rax = 0	if c is not a white-space	│
 ;│			rax = number if c is a white-space	│
@@ -38,6 +38,6 @@ proc fa_isspace
 	je @F
 	ret
 	@@:
-		mov ax,cx
+		inc al
 		ret
 endp

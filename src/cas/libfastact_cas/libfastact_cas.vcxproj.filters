@@ -32,5 +32,8 @@
     <ClCompile Include="realroot.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="integrate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
