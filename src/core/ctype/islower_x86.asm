@@ -17,17 +17,17 @@
 ;┌──────────────────────────────────────────┐
 ;│ checks whether c is a lowercase letter	│
 ;│ input:									│
-;│			cx = number						│
+;│			number							│
 ;│ output:									│
 ;│			rax = 0	if c is not lowercase	│
 ;│			rax = number if c is lowercase	│
 ;└──────────────────────────────────────────┘
-proc fa_islower
+proc fa_islower c num:WORD
 	xor ax,ax
-	cmp cx,'z'
-	cmovbe ax,cx
-	xor cx,cx
+	cmp [num],'z'
+	cmovbe ax,[num]
+	mov [num],0
 	cmp ax,'a'
-	cmovb ax,cx
+	cmovb ax,[num]
 	ret
 endp

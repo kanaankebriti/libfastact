@@ -45,6 +45,7 @@ section '.data' data readable writeable
 section '.edata' export data readable
 	export	'LIBFASTACTCORE_x86.dll',\
 			fa_isdigit,'fa_isdigit',\
+			fa_islower,'fa_islower',\
 			fa_abs,'fa_abs',\
 			fa_cos,'fa_cos',\
 			fa_deg2rad,'fa_deg2rad',\
@@ -72,7 +73,7 @@ endp
 
 ; ctype
 include 'ctype/isdigit_x86.asm'
-;include 'ctype/islower_x86.asm'
+include 'ctype/islower_x86.asm'
 ;include 'ctype/isspace_x86.asm'
 ;include 'ctype/isupper_x86.asm'
 
