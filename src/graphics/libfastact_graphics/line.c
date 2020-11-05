@@ -16,7 +16,7 @@
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░*/
 #include "common.h"
 
-/// <summary>draws a 2d pixel</summary>
+/// <summary>draws a 2d line</summary>
 __declspec(dllexport) VOID fa_line(_In_ FLOAT _x1, _In_ FLOAT _y1, _In_ FLOAT _x2, _In_ FLOAT _y2)
 {
     extern LPDIRECT3DDEVICE9 d3ddev;                // the pointer to the device class
